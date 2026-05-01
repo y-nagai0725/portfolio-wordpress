@@ -16,6 +16,7 @@
 /readme.html
 /wp-*.php
 /xmlrpc.php
+node_modules/
 
 # Configuration
 wp-config.php
@@ -46,3 +47,7 @@ wp-config.php
 # Note: If you wish to whitelist themes,
 # uncomment the next line
 #/wp-content/themes
+
+# 無視しない（Gitで管理する）ものを指定
+!/wp-content/plugins/
+!/wp-content/themes/portfolio-theme/

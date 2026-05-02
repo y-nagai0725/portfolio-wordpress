@@ -1,0 +1,94 @@
+@use "../global" as *;
+
+.footer {
+  position: relative;
+  padding: 46px 0;
+
+  @media screen and (width >= 768px) {
+    padding: 36px 0;
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+
+    @media screen and (width >= 768px) {
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 0 calc(80 / 768 * 100%);
+    }
+  }
+
+  &__link {
+    display: block;
+    padding: 10px 0;
+    font-family: $oswald;
+    font-size: 36px;
+    font-weight: 700;
+    color: $gray;
+    letter-spacing: -0.03em;
+    text-decoration: none;
+    transition: 0.4s ease-out;
+
+    &:hover {
+      color: $white;
+    }
+  }
+
+  &__small {
+    font-family: $oswald;
+    font-size: 11px;
+    color: $gray;
+    letter-spacing: 0.05em;
+  }
+
+  &__back-btn {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid $paleGray;
+    border-radius: 50%;
+    transition: 0.4s ease-out;
+
+    &::before {
+      position: absolute;
+      top: 54%;
+      left: 50%;
+      width: 8px;
+      height: 8px;
+      content: "";
+      border-top: 1px solid $paleGray;
+      border-right: 1px solid $paleGray;
+      transform: translate(-50%, -50%) rotate(-45deg);
+      transition: 0.4s ease-out;
+    }
+
+    @media screen and (width >= 768px) {
+      bottom: 50%;
+      transform: translateY(50%);
+    }
+
+    @media screen and (width >= 1024px) {
+      right: 40px;
+
+      &:hover {
+        background: $white;
+      }
+
+      &:hover::before {
+        border-top: 1px solid $black;
+        border-right: 1px solid $black;
+      }
+    }
+  }
+}

@@ -1,0 +1,335 @@
+@use "../global" as *;
+
+.menu-btn {
+  position: relative;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  pointer-events: all;
+  cursor: pointer;
+
+  &.js-opened {
+    .menu-btn__top,
+    .menu-btn__middle,
+    .menu-btn__bottom {
+      background: $black;
+    }
+
+    .menu-btn__top {
+      top: 50%;
+      transform: translateY(-50%) rotate(-45deg);
+    }
+
+    .menu-btn__middle {
+      opacity: 0;
+    }
+
+    .menu-btn__bottom {
+      top: 50%;
+      width: 100%;
+      transform: translateY(-50%) rotate(45deg);
+    }
+  }
+
+  @media screen and (width >= 1024px) {
+    &:hover {
+      .menu-btn__middle {
+        width: 90%;
+      }
+
+      .menu-btn__bottom {
+        width: 80%;
+      }
+    }
+
+    &.js-opened:hover {
+      .menu-btn__bottom {
+        width: 100%;
+      }
+    }
+  }
+
+  &__top,
+  &__middle,
+  &__bottom {
+    position: absolute;
+    left: 0;
+    display: block;
+    height: 2px;
+    background: $white;
+    transition: 0.3s ease-out;
+  }
+
+  &__top {
+    top: 10px;
+    width: 100%;
+  }
+
+  &__middle {
+    top: 50%;
+    width: 100%;
+    transform: translateY(-50%);
+  }
+
+  &__bottom {
+    bottom: 10px;
+    width: 100%;
+  }
+}
+
+.gnav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100vh;
+  padding-top: 120px;
+  pointer-events: none;
+  opacity: 0;
+
+  @media screen and (width >= 1024px) {
+    padding-top: 160px;
+  }
+
+  &.js-opened {
+    pointer-events: all;
+    opacity: 1;
+
+    &::before {
+      position: absolute;
+      right: 0;
+      width: 0;
+      height: 0;
+      content: "";
+      background-color: $white;
+      border-radius: 50%;
+      transform: translate(50%, -50%);
+      transform-origin: center;
+      animation: zoomUpSp 1.4s forwards;
+
+      @media screen and (width >= 768px) {
+        animation: zoomUpTab 1.4s forwards;
+      }
+
+      @media screen and (width >= 1024px) {}
+    }
+  }
+
+  &__wrap {
+    position: relative;
+    z-index: 999;
+    display: block;
+    padding: 0 20px;
+
+    @media screen and (width >= 768px) {
+      padding: 0 50px;
+    }
+
+    @media screen and (width >= 1024px) {
+      width: 100%;
+      max-width: 1600px;
+      padding: 0 0 0 50px;
+      margin: 0 auto;
+    }
+  }
+
+  &__list {
+    list-style-type: none;
+    opacity: 0;
+
+    &:not(:last-of-type) {
+      border-bottom: 1px solid $gray;
+    }
+
+    &:nth-of-type(2) {
+      animation-delay: 0.3s;
+    }
+
+    &:nth-of-type(3) {
+      animation-delay: 0.6s;
+    }
+
+    &:nth-of-type(4) {
+      animation-delay: 0.9s;
+    }
+
+    &.js-active {
+      animation-name: fadeUp;
+      animation-duration: 1s;
+      animation-fill-mode: forwards;
+    }
+
+    @media screen and (width >= 1024px) {
+      text-align-last: left;
+
+      &:not(:last-of-type) {
+        border-bottom: none;
+      }
+    }
+  }
+
+  &__link {
+    position: relative;
+    display: block;
+    padding: 24px 0;
+    font-family: $oswald;
+    font-size: 14px;
+    color: $black;
+    text-align: center;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+
+    &.github {
+      &::before {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 24px;
+        height: 24px;
+        content: "";
+        background: url("../images/common/icon_github_black.svg") center center / cover;
+        transform: translate(calc(-50% + 48px), -50%);
+      }
+    }
+
+    @media screen and (width >= 768px) {
+      padding: 32px 0;
+      font-size: 16px;
+    }
+
+    @media screen and (width >= 1024px) {
+      display: inline-block;
+      padding: 40px 0;
+      font-size: 64px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+
+      &.github {
+        padding: 40px 80px 40px 0;
+
+        &::before {
+          right: 0;
+          left: unset;
+          width: 64px;
+          height: 64px;
+          transform: translate(0, -50%);
+        }
+      }
+
+      &::after {
+        position: absolute;
+        bottom: 20px;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        content: "";
+        background: $black;
+        transform: scale(0, 1);
+        transform-origin: right;
+        transition: transform 0.4s ease-out;
+      }
+
+      &:hover {
+        &::after {
+          transform: scale(1, 1);
+          transform-origin: left;
+        }
+      }
+    }
+  }
+}
+
+.breadcrumb {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  padding: 0 calc(30 / 375 * 100%) 24px;
+
+  @media screen and (width >= 768px) {
+    position: relative;
+    padding: 0 calc(80 / 768 * 100%) 24px;
+
+    &::before {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: calc(100% - calc(80 / 768 * 100% * 2));
+      height: 1px;
+      content: "";
+      background: $gray;
+      transform: translateX(-50%);
+    }
+  }
+
+  &__list {
+    position: relative;
+    list-style-type: none;
+
+    &:not(:last-of-type)::after {
+      position: absolute;
+      top: 50%;
+      right: -15px;
+      width: 6px;
+      height: 6px;
+      content: "";
+      border-top: 1px solid $gray;
+      border-right: 1px solid $gray;
+      transform: rotate(45deg) translateY(-50%);
+    }
+  }
+
+  &__link {
+    position: relative;
+    display: block;
+    padding: 10px 0;
+    font-family: $oswald;
+    font-size: 13px;
+    color: $gray;
+    text-decoration: none;
+    transition: 0.4s;
+
+    &::before {
+      position: absolute;
+      bottom: 7px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      content: "";
+      background: $gray;
+    }
+
+    &::after {
+      position: absolute;
+      bottom: 7px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      content: "";
+      background: $white;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.4s;
+    }
+
+    &:hover {
+      color: $white;
+
+      &::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+    }
+  }
+
+  &__txt {
+    font-size: 13px;
+    color: $white;
+
+    &.en {
+      font-family: $oswald;
+    }
+  }
+}

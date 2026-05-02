@@ -1,0 +1,58 @@
+@use "../setting" as *;
+
+// コンテンツ幅
+@mixin contents-width($max-width: 1600px) {
+  padding: 0 calc(30 / 375 * 100%);
+
+  @media screen and (width >= 768px) {
+    padding: 0 calc(80 / 768 * 100%);
+  }
+
+  @media screen and (width >= 1024px) {
+    width: 90%;
+    max-width: $max-width;
+    padding: 0;
+    margin: 0 auto;
+  }
+}
+
+// 見出しスタイル
+@mixin section-title($align: left) {
+  margin-bottom: 32px;
+  font-family: $oswald;
+  font-size: 62px;
+  font-weight: 700;
+  line-height: 1;
+  color: $white;
+  text-align: $align;
+
+  @media screen and (width >= 768px) {
+    margin-bottom: 80px;
+    font-size: 130px;
+  }
+}
+
+// リンクボタンスタイル
+@mixin link-circle-btn($width, $font-size, $font-family: $oswald) {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: $width;
+  height: $width;
+  font-family: $font-family;
+  font-size: $font-size;
+  font-weight: 700;
+  color: $white;
+  text-align: center;
+  letter-spacing: -0.03em;
+  text-decoration: none;
+  border: 1px solid $paleGray;
+  border-radius: 50%;
+  transition: 0.4s ease-out;
+
+  &:hover {
+    color: $black;
+    background: $white;
+  }
+}

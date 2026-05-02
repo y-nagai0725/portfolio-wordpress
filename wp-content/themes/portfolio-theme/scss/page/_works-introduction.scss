@@ -1,0 +1,433 @@
+@use "../global" as *;
+
+#works-introduction {
+  .site-view {
+    position: relative;
+    margin: 80px calc(30 / 375 * 100%) 60px;
+    opacity: 0;
+    animation: fadeUp 1s 0.5s forwards;
+
+    @media screen and (width >= 768px) {
+      margin: 176px calc(80 / 768 * 100%) 60px;
+    }
+
+    @media screen and (width >= 1024px) {
+      width: 90%;
+      max-width: 1160px;
+      margin: 176px auto 60px;
+    }
+
+    &__scroll-area {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1920 / 1080;
+      overflow: hidden scroll;
+      user-select: none;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    &__scroll-img-wrapper {
+      width: 100%;
+      height: 100%;
+    }
+
+    &__img {
+      display: block;
+      width: 100%;
+      object-fit: cover;
+
+      &--horizontal {
+        width: auto;
+        height: 100%;
+      }
+    }
+
+    &__scrollbar {
+      position: absolute;
+      top: 0;
+      right: -8px;
+      width: 1px;
+      height: 100%;
+      cursor: pointer;
+      user-select: none;
+      background: $white;
+
+      &::before {
+        position: absolute;
+        top: 0;
+        right: -16px;
+        font-family: $oswald;
+        font-size: 10px;
+        color: $white;
+        letter-spacing: 0.08em;
+        cursor: default;
+        content: "Scroll";
+        writing-mode: vertical-rl;
+      }
+
+      @media screen and (width >= 768px) {
+        right: -15px;
+
+        &::before {
+          right: -24px;
+          font-size: 12px;
+        }
+      }
+    }
+
+    &__scrollbar-thumb {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 7px;
+      height: 7px;
+      cursor: pointer;
+      user-select: none;
+      background: $gray;
+      border-radius: 50%;
+      transform: translate(-50%, 0);
+
+      @media screen and (width >= 768px) {
+        width: 9px;
+        height: 9px;
+      }
+
+      @media screen and (width >= 1024px) {
+        width: 11px;
+        height: 11px;
+      }
+    }
+  }
+
+  .introduction {
+    @include contents-width(1160px);
+
+    opacity: 0;
+    animation: fadeUp 1s 0.5s forwards;
+
+    &__ttl {
+      margin-bottom: 20px;
+      font-size: 26px;
+      font-weight: 700;
+      color: $white;
+      letter-spacing: 0.05em;
+
+      &.en {
+        font-family: $oswald;
+      }
+    }
+
+    &__tag-wrap {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 30px;
+
+      @media screen and (width >= 768px) {
+        margin-bottom: 70px;
+      }
+    }
+
+    &__tag {
+      font-family: $oswald;
+      font-size: 11px;
+      color: $gray;
+    }
+
+    &__txt {
+      margin-bottom: 40px;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 2;
+      color: $gray;
+      letter-spacing: 0.05em;
+
+      @media screen and (width >= 768px) {
+        margin-bottom: 60px;
+        font-size: 14px;
+      }
+
+      @media screen and (width >= 1024px) {
+        margin-bottom: 80px;
+      }
+    }
+
+    &__btn-wrap {
+      width: 60%;
+      max-width: 250px;
+      margin: 0 auto 40px;
+
+      @media screen and (width >= 768px) {
+        margin: 0 auto 60px;
+      }
+
+      @media screen and (width >= 1024px) {
+        margin: 0 auto 80px;
+      }
+    }
+
+    &__site-link {
+      position: relative;
+      z-index: 1;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 21px 0;
+      font-family: $oswald;
+      font-size: 16px;
+      font-weight: 700;
+      color: $white;
+      text-decoration: none;
+      border: 1px solid $white;
+      transition: 0.4s ease-out;
+
+      .arrow {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        width: 52px;
+        height: 20px;
+        transform: translate(50%, -50%);
+        transition: 0.4s ease-out;
+
+        &::before {
+          position: absolute;
+          top: 50%;
+          right: 0;
+          width: 52px;
+          height: 1px;
+          content: "";
+          background: $white;
+          transform: translateY(-50%);
+        }
+
+        &::after {
+          position: absolute;
+          top: calc(50% - 4px);
+          right: 0;
+          width: 8px;
+          height: 8px;
+          content: "";
+          background-color: $white;
+          clip-path: polygon(0 0, 0 100%, 100% 100%);
+          transform: translateY(-50%);
+        }
+      }
+
+      &::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        content: "";
+        background: $white;
+        transform: scale(0, 1);
+        transform-origin: right top;
+        transition: transform 0.4s ease-out;
+      }
+
+      &:hover {
+        color: $black;
+
+        .arrow {
+          transform: translate(100%, -50%);
+        }
+
+        &::before {
+          transform: scale(1, 1);
+          transform-origin: left top;
+        }
+      }
+    }
+
+    &__site-notice {
+      margin-top: 16px;
+      font-size: 11px;
+      line-height: 1.8;
+      color: $white;
+
+      @media screen and (width >= 768px) {
+        margin-top: 20px;
+        font-size: 12px;
+      }
+
+      @media screen and (width >= 1024px) {
+        margin-top: 24px;
+        font-size: 13px;
+      }
+    }
+
+    &__table {
+      margin-bottom: 80px;
+
+      @media screen and (width >= 768px) {
+        margin-bottom: 115px;
+      }
+
+      @media screen and (width >= 1024px) {
+        margin-bottom: 120px;
+      }
+    }
+
+    &__table-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 16px 0;
+      border-top: 1px solid $gray;
+
+      &:last-of-type {
+        border-bottom: 1px solid $gray;
+      }
+
+      @media screen and (width >= 768px) {
+        flex-direction: row;
+        gap: 0;
+        padding: 36px 0;
+      }
+    }
+
+    &__table-heading {
+      font-size: 14px;
+      line-height: 2;
+      color: $gray;
+
+      @media screen and (width >= 768px) {
+        width: 18%;
+        font-size: 16px;
+      }
+
+      @media screen and (width >= 1024px) {
+        width: 15%;
+      }
+    }
+
+    &__table-description {
+      font-size: 14px;
+      line-height: 2;
+      color: $white;
+
+      @media screen and (width >= 768px) {
+        width: 82%;
+        font-size: 16px;
+      }
+
+      @media screen and (width >= 1024px) {
+        width: 85%;
+      }
+    }
+
+    &__table-link {
+      position: relative;
+      display: inline-block;
+      width: fit-content;
+      font-size: 14px;
+      line-height: 2;
+      color: #3ea6ff;
+      word-break: break-all;
+      text-decoration: none;
+      transition: 0.4s;
+
+      @media screen and (width >= 1024px) {
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+    }
+
+    &__nav-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 120px;
+      margin-bottom: 80px;
+
+      @media screen and (width >= 768px) {
+        padding-bottom: 0;
+        margin-bottom: 115px;
+      }
+
+      @media screen and (width >= 1024px) {
+        max-width: 910px;
+        margin: 0 auto 120px;
+      }
+    }
+
+    &__link-prev,
+    &__link-next {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 45%;
+      text-decoration: none;
+
+      &:hover {
+        img {
+          transform: scale(1.1);
+        }
+      }
+
+      @media screen and (width >= 768px) {
+        width: 30%;
+      }
+    }
+
+    &__link-img-wrap {
+      width: 100%;
+      overflow: hidden;
+    }
+
+    &__link-img {
+      display: block;
+      width: 100%;
+      object-fit: cover;
+      transition: 0.4s;
+    }
+
+    &__link-txt {
+      font-size: 12px;
+      color: $white;
+
+      @media screen and (width >= 768px) {
+        font-size: 14px;
+      }
+
+      @media screen and (width >= 1024px) {
+        font-size: 16px;
+      }
+
+      &.en {
+        font-family: $oswald;
+      }
+    }
+
+    &__link-works {
+      @include link-circle-btn(80px, 13px);
+
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+
+      @media screen and (width >= 768px) {
+        @include link-circle-btn(130px, 18px);
+
+        position: static;
+        transform: none;
+      }
+
+      @media screen and (width >= 1024px) {
+        @include link-circle-btn(223px, 24px);
+      }
+    }
+  }
+}

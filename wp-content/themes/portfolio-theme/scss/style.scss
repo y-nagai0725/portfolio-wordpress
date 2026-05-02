@@ -1,4 +1,4 @@
-.test {
-  display: block;
-  color: aqua;
-}
+@use "foundation";
+@use "layout";
+@use "page";
+@use "utility";

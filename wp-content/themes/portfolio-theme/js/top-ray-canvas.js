@@ -75,7 +75,7 @@ const camera = new THREE.OrthographicCamera();
 camera.matrixAutoUpdate = false;
 
 //テクスチャ
-const texture = new THREE.TextureLoader().load("../images/top/canvas_ray.jpg");
+const texture = new THREE.TextureLoader().load(`${myThemeData.themeUrl}/images/top/canvas_ray.jpg`);
 texture.colorSpace = THREE.SRGBColorSpace;
 texture.wrapS = THREE.MirroredRepeatWrapping;
 texture.wrapT = THREE.MirroredRepeatWrapping;

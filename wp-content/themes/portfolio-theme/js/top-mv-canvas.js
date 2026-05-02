@@ -47,7 +47,7 @@ scene.add(light_2);
 scene.fog = new THREE.FogExp2(0x000000, 0.1);
 
 //テクスチャ
-const texture = new THREE.TextureLoader().load("../images/top/canvas_mv.jpg");
+const texture = new THREE.TextureLoader().load(`${myThemeData.themeUrl}/images/top/canvas_mv.jpg`);
 texture.colorSpace = THREE.SRGBColorSpace;
 texture.wrapS = THREE.RepeatWrapping;
 texture.wrapT = THREE.MirroredRepeatWrapping;

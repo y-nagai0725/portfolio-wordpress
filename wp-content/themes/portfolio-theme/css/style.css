@@ -2203,10 +2203,10 @@ body {
 #works .works-view__filter-btn:hover {
   color: #fff;
 }
-#works .works-view__filter-btn.js-active {
+#works .works-view__filter-btn.is-active {
   color: #fff;
 }
-#works .works-view__filter-btn.js-active::before {
+#works .works-view__filter-btn.is-active::before {
   background: #fff;
   transform: scaleX(1);
   transform-origin: left;
@@ -2245,7 +2245,7 @@ body {
   gap: 18px;
   list-style-type: none;
 }
-#works .works-view__list.js-hidden {
+#works .works-view__list.is-hidden {
   display: none;
 }
 #works .works-view__list.training::before {
@@ -2280,6 +2280,7 @@ body {
 #works .works-view__img {
   display: block;
   width: 100%;
+  height: auto;
   object-fit: cover;
   transition: 0.4s;
 }
@@ -2291,29 +2292,11 @@ body {
 #works .works-view__name.en {
   font-family: "Oswald", sans-serif;
 }
-#works .works-view__name::before {
-  font-family: "Oswald", sans-serif;
-  content: "Title : ";
-}
-#works .works-view__tag-wrap {
-  display: flex;
-  gap: 20px;
-}
 #works .works-view__tag {
-  position: relative;
   font-family: "Oswald", sans-serif;
   font-size: 12px;
+  line-height: 1.4;
   color: #868686;
-}
-#works .works-view__tag:first-of-type::before {
-  content: "Skill : ";
-}
-#works .works-view__tag:not(:last-of-type)::after {
-  position: absolute;
-  top: 50%;
-  right: -12px;
-  content: "/";
-  transform: translateY(-50%);
 }
 
 #works-introduction .site-view {

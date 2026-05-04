@@ -50,7 +50,7 @@ function my_portfolio_enqueue_scripts()
 
   // 作品一覧ページのみで読み込むJS (アーカイブページやカスタム投稿タイプアーカイブなど)
   if (is_post_type_archive('works') || is_page('works')) {
-    wp_enqueue_script('works-script', get_template_directory_uri() . '/js/works.js', array('gsap', 'scroll-trigger', 'common-script'), filemtime(get_theme_file_path('/js/works.js')), true);
+    wp_enqueue_script('works-filter-script', get_template_directory_uri() . '/js/works-filter.js', array('gsap', 'scroll-trigger', 'common-script'), filemtime(get_theme_file_path('/js/works-filter.js')), true);
   }
 
   // 作品詳細ページのみで読み込むJS

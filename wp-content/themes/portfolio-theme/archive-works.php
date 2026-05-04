@@ -1,239 +1,88 @@
 <?php get_header(); ?>
 
 <main>
-  <div class="works-view">
-    <div class="works-view__box">
-      <h2 class="works-view__ttl">WORKS</h2>
-      <div class="works-view__filter-wrap">
-        <span class="works-view__filter-btn ja js-active" data-filter="all">すべて</span>
-        <span class="works-view__filter-btn" data-filter="Responsive">Responsive</span>
-        <span class="works-view__filter-btn" data-filter="WordPress">WordPress</span>
-        <span class="works-view__filter-btn" data-filter="GSAP">GSAP</span>
-        <span class="works-view__filter-btn" data-filter="App">アプリ</span>
+  <div class="works-archive-container">
+    <div class="works-view">
+      <div class="works-view__box">
+        <h2 class="works-view__ttl">WORKS</h2>
+        <div class="works-view__filter-wrap">
+          <span class="works-view__filter-btn is-active" data-filter="all">ALL</span>
+          <span class="works-view__filter-btn" data-filter="vue-js">Vue.js</span>
+          <span class="works-view__filter-btn" data-filter="wordpress">WordPress</span>
+          <span class="works-view__filter-btn" data-filter="gsap">GSAP</span>
+        </div>
       </div>
+      <ul class="works-view__ul">
+        <?php
+        // ACFの「list_order」で並び替えるための条件を指定
+        $args = array(
+          'post_type'      => 'works',
+          'posts_per_page' => -1, // 「-1」は全件表示
+          'meta_key'       => 'list_order',
+          'orderby'        => 'meta_value_num',
+          'order'          => 'ASC'
+        );
+
+        // 指定した条件で、新しいクエリを作る
+        $works_query = new WP_Query($args);
+
+        // データがあるかチェックしてループ開始
+        if ($works_query->have_posts()) :
+          while ($works_query->have_posts()) : $works_query->the_post();
+
+            // この作品に設定された「使用技術（タクソノミー）」を取得
+            $skills = get_the_terms(get_the_ID(), 'skill');
+
+            // フィルター用skillスラッグ文字列作成
+            $skill_slugs = '';
+            if ($skills && ! is_wp_error($skills)) {
+              foreach ($skills as $skill) {
+                // スラッグを半角スペース空けで繋げる
+                $skill_slugs .= esc_attr($skill->slug) . ' ';
+              }
+            }
+
+            // skill表示用文字列作成
+            $skill_names = '';
+            if ($skills && ! is_wp_error($skills)) {
+              foreach ($skills as $index => $skill) {
+                $skill_names .= esc_attr($skill->name);
+                if ($index !== array_key_last($skills)) {
+                  $skill_names .= ' / ';
+                }
+              }
+            }
+        ?>
+            <li class="works-view__list" data-skills="<?php echo trim($skill_slugs); ?>">
+              <a href="<?php the_permalink(); ?>" class="works-view__link">
+                <?php
+                if (has_post_thumbnail()) {
+                  the_post_thumbnail('large', array('class' => 'works-view__img', 'alt' => get_the_title() . 'サムネイル画像'));
+                }
+                ?>
+              </a>
+              <h3 class="works-view__name"><?php the_title(); ?></h3>
+              <?php if ($skill_names): ?>
+                <span class="works-view__tag">Skill: <?php echo esc_html($skill_names); ?></span>
+              <?php endif; ?>
+            </li>
+        <?php
+          endwhile;
+          // リセット処理
+          wp_reset_postdata();
+        endif;
+        ?>
+      </ul>
     </div>
-    <ul class="works-view__ul">
-      <li class="works-view__list">
-        <a href="geminitype/index.html" class="works-view__link">
-          <img src="../images/works/thumbnail_large_geminitype.jpg" alt="GeminiTypeサムネイル" class="works-view__img">
-        </a>
-        <h3 class="works-view__name en">GeminiType</h3>
-        <div class="works-view__tag-wrap">
-          <span class="works-view__tag" data-tag="Node">Node.js</span>
-          <span class="works-view__tag" data-tag="Express">Express</span>
-          <span class="works-view__tag" data-tag="Vue">Vue</span>
-          <span class="works-view__tag" data-tag="Responsive">Responsive</span>
-          <span class="works-view__tag" data-tag="App">アプリ</span>
-        </div>
+    <ul class="breadcrumb">
+      <li class="breadcrumb__list">
+        <a href="<?php echo esc_url(home_url('/')); ?>" class="breadcrumb__link">HOME</a>
       </li>
-      <li class="works-view__list">
-        <a href="diary/index.html" class="works-view__link">
-          <img src="../images/works/thumbnail_large_diary.jpg" alt="Diaryサムネイル" class="works-view__img">
-        </a>
-        <h3 class="works-view__name en">Diary</h3>
-        <div class="works-view__tag-wrap">
-          <span class="works-view__tag" data-tag="Node">Node.js</span>
-          <span class="works-view__tag" data-tag="Express">Express</span>
-          <span class="works-view__tag" data-tag="Vue">Vue</span>
-          <span class="works-view__tag" data-tag="Responsive">Responsive</span>
-          <span class="works-view__tag" data-tag="App">アプリ</span>
-        </div>
-      </li>
-      <li class="works-view__list">
-        <a href="homesnap/index.html" class="works-view__link">
-          <img src="../images/works/thumbnail_large_homesnap.jpg" alt="Home Snapサムネイル" class="works-view__img">
-        </a>
-        <h3 class="works-view__name en">Home Snap</h3>
-        <div class="works-view__tag-wrap">
-          <span class="works-view__tag" data-tag="HTML">HTML</span>
-          <span class="works-view__tag" data-tag="JavaScript">JavaScript</span>
-          <span class="works-view__tag" data-tag="Responsive">Responsive</span>
-          <span class="works-view__tag" data-tag="GSAP">GSAP</span>
-        </div>
-      </li>
-      <li class="works-view__list">
-        <a href="sierra/index.html" class="works-view__link">
-          <img src="../images/works/thumbnail_large_sierra.jpg" alt="Sierra Solutionサムネイル" class="works-view__img">
-        </a>
-        <h3 class="works-view__name en">Sierra Solution</h3>
-        <div class="works-view__tag-wrap">
-          <span class="works-view__tag" data-tag="HTML">HTML</span>
-          <span class="works-view__tag" data-tag="JavaScript">JavaScript</span>
-          <span class="works-view__tag" data-tag="Responsive">Responsive</span>
-          <span class="works-view__tag" data-tag="GSAP">GSAP</span>
-        </div>
-      </li>
-      <li class="works-view__list">
-        <a href="alphadesign/index.html" class="works-view__link">
-          <img src="../images/works/thumbnail_large_alphadesign.jpg" alt="Alpha Designサムネイル"
-            class="works-view__img">
-        </a>
-        <h3 class="works-view__name en">Alpha Design</h3>
-        <div class="works-view__tag-wrap">
-          <span class="works-view__tag" data-tag="HTML">HTML</span>
-          <span class="works-view__tag" data-tag="JavaScript">JavaScript</span>
-          <span class="works-view__tag" data-tag="Responsive">Responsive</span>
-          <span class="works-view__tag" data-tag="GSAP">GSAP</span>
-        </div>
-      </li>
-      <li class="works-view__list">
-        <a href="manroen/index.html" class="works-view__link">
-          <img src="../images/works/thumbnail_large_manroen.jpg" alt="中華料理 満楼苑サムネイル" class="works-view__img">
-        </a>
-        <h3 class="works-view__name">中華料理 満楼苑</h3>
-        <div class="works-view__tag-wrap">
-          <span class="works-view__tag" data-tag="HTML">HTML</span>
-          <span class="works-view__tag" data-tag="JavaScript">JavaScript</span>
-          <span class="works-view__tag" data-tag="Responsive">Responsive</span>
-        </div>
-      </li>
-      <li class="works-view__list">
-        <a href="diary-sample/index.html" class="works-view__link">
-          <img src="../images/works/thumbnail_large_diary-samle.jpg" alt="日記アプリサムネイル" class="works-view__img">
-        </a>
-        <h3 class="works-view__name">日記アプリ（サンプル）</h3>
-        <div class="works-view__tag-wrap">
-          <span class="works-view__tag" data-tag="Node">Node.js</span>
-          <span class="works-view__tag" data-tag="Express">Express</span>
-          <span class="works-view__tag" data-tag="Vue">Vue</span>
-          <span class="works-view__tag" data-tag="Responsive">Responsive</span>
-          <span class="works-view__tag" data-tag="App">アプリ</span>
-        </div>
-      </li>
-      <li class="works-view__list">
-        <a href="blog/index.html" class="works-view__link">
-          <img src="../images/works/thumbnail_large_blog.jpg" alt="みかん箱ブログサムネイル" class="works-view__img">
-        </a>
-        <h3 class="works-view__name">みかん箱ブログ</h3>
-        <div class="works-view__tag-wrap">
-          <span class="works-view__tag" data-tag="WordPress">WordPress</span>
-          <span class="works-view__tag" data-tag="Responsive">Responsive</span>
-        </div>
-      </li>
-      <li class="works-view__list">
-        <a href="weather/index.html" class="works-view__link">
-          <img src="../images/works/thumbnail_large_weather.jpg" alt="天気予報アプリサムネイル" class="works-view__img">
-        </a>
-        <h3 class="works-view__name">天気予報アプリ</h3>
-        <div class="works-view__tag-wrap">
-          <span class="works-view__tag" data-tag="HTML">HTML</span>
-          <span class="works-view__tag" data-tag="JavaScript">JavaScript</span>
-          <span class="works-view__tag" data-tag="Responsive">Responsive</span>
-          <span class="works-view__tag" data-tag="App">アプリ</span>
-        </div>
-      </li>
-      <li class="works-view__list">
-        <a href="ryokuei/index.html" class="works-view__link">
-          <img src="../images/works/thumbnail_large_ryokuei.jpg" alt="緑影山荘サムネイル" class="works-view__img">
-        </a>
-        <h3 class="works-view__name">緑影山荘</h3>
-        <div class="works-view__tag-wrap">
-          <span class="works-view__tag" data-tag="WordPress">WordPress</span>
-          <span class="works-view__tag" data-tag="Responsive">Responsive</span>
-        </div>
-      </li>
-      <li class="works-view__list">
-        <a href="reposer/index.html" class="works-view__link">
-          <img src="../images/works/thumbnail_large_reposer.jpg" alt="Reposer【ルポゼ】サムネイル" class="works-view__img">
-        </a>
-        <h3 class="works-view__name">Reposer【ルポゼ】</h3>
-        <div class="works-view__tag-wrap">
-          <span class="works-view__tag" data-tag="HTML">HTML</span>
-          <span class="works-view__tag" data-tag="JavaScript">JavaScript</span>
-          <span class="works-view__tag" data-tag="Responsive">Responsive</span>
-        </div>
-      </li>
-      <li class="works-view__list training">
-        <a href="portfolio/index.html" class="works-view__link">
-          <img src="../images/works/thumbnail_large_portfolio.jpg" alt="ポートフォリオサムネイル" class="works-view__img">
-        </a>
-        <h3 class="works-view__name">ポートフォリオ</h3>
-        <div class="works-view__tag-wrap">
-          <span class="works-view__tag" data-tag="Responsive">Responsive</span>
-          <span class="works-view__tag" data-tag="GSAP">GSAP</span>
-          <span class="works-view__tag" data-tag="three">three.js</span>
-        </div>
-      </li>
-      <li class="works-view__list training">
-        <a href="tsukisamutei/index.html" class="works-view__link">
-          <img src="../images/works/thumbnail_large_tsukisamutei.jpg" alt="源流の宿 月寒亭サムネイル" class="works-view__img">
-        </a>
-        <h3 class="works-view__name">源流の宿 月寒亭</h3>
-        <div class="works-view__tag-wrap">
-          <span class="works-view__tag" data-tag="HTML">HTML</span>
-          <span class="works-view__tag" data-tag="JavaScript">JavaScript</span>
-        </div>
-      </li>
-      <li class="works-view__list training">
-        <a href="musubi/index.html" class="works-view__link">
-          <img src="../images/works/thumbnail_large_musubi.jpg" alt="ごはんや むすびサムネイル" class="works-view__img">
-        </a>
-        <h3 class="works-view__name">ごはんや むすび</h3>
-        <div class="works-view__tag-wrap">
-          <span class="works-view__tag" data-tag="HTML">HTML</span>
-          <span class="works-view__tag" data-tag="JavaScript">JavaScript</span>
-        </div>
-      </li>
-      <li class="works-view__list training">
-        <a href="azito/index.html" class="works-view__link">
-          <img src="../images/works/thumbnail_large_azito.jpg" alt="cafe azitoサムネイル" class="works-view__img">
-        </a>
-        <h3 class="works-view__name en">cafe azito</h3>
-        <div class="works-view__tag-wrap">
-          <span class="works-view__tag" data-tag="HTML">HTML</span>
-          <span class="works-view__tag" data-tag="JavaScript">JavaScript</span>
-        </div>
-      </li>
-      <li class="works-view__list training">
-        <a href="wss/index.html" class="works-view__link">
-          <img src="../images/works/thumbnail_large_wss.jpg" alt="ウェブスタディサッポロサムネイル" class="works-view__img">
-        </a>
-        <h3 class="works-view__name">ウェブスタディサッポロ</h3>
-        <div class="works-view__tag-wrap">
-          <span class="works-view__tag" data-tag="HTML">HTML</span>
-          <span class="works-view__tag" data-tag="JavaScript">JavaScript</span>
-        </div>
-      </li>
-      <li class="works-view__list training">
-        <a href="cafecamp/index.html" class="works-view__link">
-          <img src="../images/works/thumbnail_large_cafecamp.jpg" alt="CAFE CAMP FESTIVALサムネイル"
-            class="works-view__img">
-        </a>
-        <h3 class="works-view__name en">CAFE CAMP FESTIVAL</h3>
-        <div class="works-view__tag-wrap">
-          <span class="works-view__tag" data-tag="HTML">HTML</span>
-        </div>
-      </li>
-      <li class="works-view__list training">
-        <a href="nextone/index.html" class="works-view__link">
-          <img src="../images/works/thumbnail_large_nextone.jpg" alt="NEXTONEサムネイル" class="works-view__img">
-        </a>
-        <h3 class="works-view__name en">NEXTONE</h3>
-        <div class="works-view__tag-wrap">
-          <span class="works-view__tag" data-tag="HTML">HTML</span>
-          <span class="works-view__tag" data-tag="JavaScript">JavaScript</span>
-        </div>
-      </li>
-      <li class="works-view__list training">
-        <a href="furnitureSpot/index.html" class="works-view__link">
-          <img src="../images/works/thumbnail_large_furnitureSpot.jpg" alt="Furniture Spotサムネイル"
-            class="works-view__img">
-        </a>
-        <h3 class="works-view__name en">Furniture Spot</h3>
-        <div class="works-view__tag-wrap">
-          <span class="works-view__tag" data-tag="HTML">HTML</span>
-        </div>
+      <li class="breadcrumb__list">
+        <p class="breadcrumb__txt en">WORKS</p>
       </li>
     </ul>
   </div>
-  <ul class="breadcrumb">
-    <li class="breadcrumb__list">
-      <a href="../index.html" class="breadcrumb__link">HOME</a>
-    </li>
-    <li class="breadcrumb__list">
-      <p class="breadcrumb__txt en">WORKS</p>
-    </li>
-  </ul>
 </main>
 
 <?php get_footer(); ?>

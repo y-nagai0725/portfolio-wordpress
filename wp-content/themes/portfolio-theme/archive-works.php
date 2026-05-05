@@ -33,6 +33,9 @@
             // タイトルへの欧文フォント適用
             $en_class = get_field('use_en_font') ? 'en' : '';
 
+            // 職業訓練作品表示用クラス
+            $training_class = get_field('is_training_work') ? 'training' : '';
+
             // この作品に設定された「使用技術（タクソノミー）」を取得
             $skills = get_the_terms(get_the_ID(), 'skill');
 
@@ -56,7 +59,7 @@
               }
             }
         ?>
-            <li class="works-view__list" data-skills="<?php echo trim($skill_slugs); ?>">
+            <li class="works-view__list <?php echo $training_class; ?>" data-skills="<?php echo trim($skill_slugs); ?>">
               <a href="<?php the_permalink(); ?>" class="works-view__link">
                 <?php
                 if (has_post_thumbnail()) {

@@ -572,97 +572,61 @@
       <div id="works__scroll-outer" class="works__scroll-outer">
         <h2 class="works__ttl js-fadeRight">WORKS</h2>
         <div class="works__scroll-inner">
-          <div class="works__item">
-            <div class="works__txt-wrap">
-              <h3 class="works__item-ttl">GeminiType</h3>
-              <p class="works__item-txt">
-                AI生成で問題は無限大!<br class="works__br">
-                Gemini APIを活用したタイピング練習アプリ。
-              </p>
-            </div>
-            <div class="works__img-wrap">
-              <img src="<?php echo get_template_directory_uri(); ?>/images/top/works_geminitype.jpg" alt="GeminiType" class="works__item-img">
-              <a href="works/geminitype/index.html" class="works__more-link">MORE</a>
-            </div>
-          </div>
-          <div class="works__item">
-            <div class="works__txt-wrap">
-              <h3 class="works__item-ttl">Home Snap</h3>
-              <p class="works__item-txt">
-                「これまで」と「これから」。<br class="works__br">
-                架空のサービスの10周年記念webサイト。
-              </p>
-            </div>
-            <div class="works__img-wrap">
-              <img src="<?php echo get_template_directory_uri(); ?>/images/top/works_homesnap.jpg" alt="Home Snap" class="works__item-img">
-              <a href="works/homesnap/index.html" class="works__more-link">MORE</a>
-            </div>
-          </div>
-          <div class="works__item">
-            <div class="works__txt-wrap">
-              <h3 class="works__item-ttl">Sierra Solution</h3>
-              <p class="works__item-txt">
-                マーケティングをブラッシュアップ。<br class="works__br">
-                商品販促広告サービス会社サイト。
-              </p>
-            </div>
-            <div class="works__img-wrap">
-              <img src="<?php echo get_template_directory_uri(); ?>/images/top/works_sierra.jpg" alt="Sierra Solution" class="works__item-img">
-              <a href="works/sierra/index.html" class="works__more-link">MORE</a>
-            </div>
-          </div>
-          <div class="works__item">
-            <div class="works__txt-wrap">
-              <h3 class="works__item-ttl">Alpha Design</h3>
-              <p class="works__item-txt">
-                架空のブランド紹介LP。<br class="works__br">
-                スクロール連動アニメーションが特徴です。
-              </p>
-            </div>
-            <div class="works__img-wrap">
-              <img src="<?php echo get_template_directory_uri(); ?>/images/top/works_alphadesign.jpg" alt="Alpha Design" class="works__item-img">
-              <a href="works/alphadesign/index.html" class="works__more-link">MORE</a>
-            </div>
-          </div>
-          <div class="works__item">
-            <div class="works__txt-wrap">
-              <h3 class="works__item-ttl">Diary 日記帳アプリ</h3>
-              <p class="works__item-txt">
-                シンプルな日記帳アプリ。<br class="works__br">
-                AI(Gemini API)からコメントをもらえるのが特徴。
-              </p>
-            </div>
-            <div class="works__img-wrap">
-              <img src="<?php echo get_template_directory_uri(); ?>/images/top/works_diary.jpg" alt="Diary 日記帳アプリ" class="works__item-img">
-              <a href="works/diary/index.html" class="works__more-link">MORE</a>
-            </div>
-          </div>
-          <div class="works__item">
-            <div class="works__txt-wrap">
-              <h3 class="works__item-ttl">中華料理 満楼苑</h3>
-              <p class="works__item-txt">
-                中華の極み、 心躍る一皿へ。<br class="works__br">
-                老舗本格中華を味わえる中華料理店サイト。
-              </p>
-            </div>
-            <div class="works__img-wrap">
-              <img src="<?php echo get_template_directory_uri(); ?>/images/top/works_manroen.jpg" alt="中華料理 満楼苑" class="works__item-img">
-              <a href="works/manroen/index.html" class="works__more-link">MORE</a>
-            </div>
-          </div>
-          <div class="works__item">
-            <div class="works__txt-wrap">
-              <h3 class="works__item-ttl">みかん箱ブログ</h3>
-              <p class="works__item-txt">
-                技術をアウトプットする為の備忘録。<br class="works__br">
-                WordPressオリジナルテーマで作成しました。
-              </p>
-            </div>
-            <div class="works__img-wrap">
-              <img src="<?php echo get_template_directory_uri(); ?>/images/top/works_blog.jpg" alt="みかん箱ブログ" class="works__item-img">
-              <a href="works/blog/index.html" class="works__more-link">MORE</a>
-            </div>
-          </div>
+          <?php
+          // 表示する作品の条件を指定（'show_on_top' が true の7件）
+          $top_works_args = array(
+            'post_type'      => 'works',
+            'posts_per_page' => 7, // 7件表示
+            'meta_key'       => 'top_order', // 並び替えの基準は「トップ表示順」
+            'orderby'        => 'meta_value_num',
+            'order'          => 'ASC',
+            'meta_query'     => array(
+              array(
+                'key'     => 'show_on_top',
+                'value'   => '1', // ACFの「真偽値（True / False）」は 1 / 0(または空) で保存される為
+                'compare' => '=='
+              )
+            )
+          );
+
+          // クエリを作成
+          $top_works_query = new WP_Query($top_works_args);
+
+          // ループ開始
+          if ($top_works_query->have_posts()) :
+            while ($top_works_query->have_posts()) : $top_works_query->the_post();
+              // タイトル
+              $title = get_the_title();
+
+              // タイトルへの欧文フォント適用
+              $en_class = get_field('use_en_font') ? 'en' : '';
+
+              // 紹介文取得
+              $short_desc_1 = get_field('short_desc_1');
+              $short_desc_2 = get_field('short_desc_2');
+          ?>
+              <div class="works__item">
+                <div class="works__txt-wrap">
+                  <h3 class="works__item-ttl <?php echo $en_class; ?>"><?php echo $title; ?></h3>
+                  <p class="works__item-txt">
+                    <?php echo $short_desc_1; ?><br class="works__br">
+                    <?php echo $short_desc_2; ?>
+                  </p>
+                </div>
+                <div class="works__img-wrap">
+                  <?php
+                  if (has_post_thumbnail()) {
+                    the_post_thumbnail('large', array('class' => 'works__item-img', 'alt' => $title . 'サムネイル画像'));
+                  }
+                  ?>
+                  <a href="<?php the_permalink(); ?>" class="works__more-link">MORE</a>
+                </div>
+              </div>
+          <?php
+            endwhile;
+            // リセット処理
+            wp_reset_postdata();
+          endif; ?>
         </div>
         <div id="works__nav-wrap" class="works__nav-wrap">
           <div class="works__nav">
@@ -674,7 +638,7 @@
             <span class="works__nav-btn">06</span>
             <span class="works__nav-btn">07</span>
           </div>
-          <a href="works/index.html" class="works__all-btn">VIEW ALL</a>
+          <a href="<?php echo esc_url(get_post_type_archive_link('works')); ?>" class="works__all-btn">VIEW ALL</a>
           <div class="works__scroll-icon-wrap">
             <div class="works__scroll-icon-box">
               <svg id="works__scroll-icon" class="works__scroll-icon" viewBox="0 0 132 132" fill="none"
@@ -735,7 +699,7 @@
         お問い合わせは下のボタンから<br class="contact__br">
         入力フォームへお進みください。
       </p>
-      <a href="contact/index.html" class="contact__link-btn">CONTACT<br>FORM</a>
+      <a href="" class="contact__link-btn">CONTACT<br>FORM</a>
     </div>
   </section>
 </main>

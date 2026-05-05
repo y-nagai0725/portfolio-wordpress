@@ -682,6 +682,7 @@
     &__item {
       display: flex;
       flex-direction: column;
+      width: 100%;
 
       &:not(:first-of-type) {
         position: absolute;
@@ -773,6 +774,7 @@
     &__item-img {
       display: block;
       width: 100%;
+      height: auto;
       object-fit: cover;
       border-radius: 10px;
     }

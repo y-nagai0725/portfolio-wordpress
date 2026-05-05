@@ -30,6 +30,9 @@
         if ($works_query->have_posts()) :
           while ($works_query->have_posts()) : $works_query->the_post();
 
+            // タイトルへの欧文フォント適用
+            $en_class = get_field('use_en_font') ? 'en' : '';
+
             // この作品に設定された「使用技術（タクソノミー）」を取得
             $skills = get_the_terms(get_the_ID(), 'skill');
 
@@ -61,7 +64,7 @@
                 }
                 ?>
               </a>
-              <h3 class="works-view__name"><?php the_title(); ?></h3>
+              <h3 class="works-view__name <?php echo $en_class; ?>"><?php the_title(); ?></h3>
               <?php if ($skill_names): ?>
                 <span class="works-view__tag">Skill: <?php echo esc_html($skill_names); ?></span>
               <?php endif; ?>

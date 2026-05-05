@@ -7,6 +7,9 @@
       // 'skill' タクソノミーのデータを取得
       $skills = get_the_terms(get_the_ID(), 'skill');
 
+      // タイトルへの欧文フォント適用
+      $en_class = get_field('use_en_font') ? 'en' : '';
+
       // 使用技術配列
       $tech_details = get_field('tech_details');
 
@@ -14,7 +17,7 @@
       $current_order = (int) get_field('list_order');
 
       // --------------------------------------------------
-      // 次の作品を取得（今の数字より【大きい】中で一番小さいもの）
+      // 次の作品を取得
       // --------------------------------------------------
       $next_posts = get_posts(array(
         'post_type'      => 'works',
@@ -33,8 +36,23 @@
       ));
       $next_post = !empty($next_posts) ? $next_posts[0] : null;
 
+      // もし「次の作品」がない場合、最初の作品を取得
+      if (empty($next_post)) {
+        $first_posts = get_posts(array(
+          'post_type'      => 'works',
+          'posts_per_page' => 1,
+          'meta_key'       => 'list_order',
+          'orderby'        => 'meta_value_num',
+          'order'          => 'ASC' // 一番数字が小さいものを取得
+        ));
+        $next_post = !empty($first_posts) ? $first_posts[0] : null;
+      }
+
+      // 「次の作品」のタイトルへの欧文フォント適用
+      $next_post_en_class = get_field('use_en_font', $next_post->ID) ? 'en' : '';
+
       // --------------------------------------------------
-      // 前の作品を取得（今の数字より【小さい】中で一番大きいもの）
+      // 前の作品を取得
       // --------------------------------------------------
       $prev_posts = get_posts(array(
         'post_type'      => 'works',
@@ -53,21 +71,6 @@
       ));
       $prev_post = !empty($prev_posts) ? $prev_posts[0] : null;
 
-      // --------------------------------------------------
-      // 循環（ループ）処理
-      // --------------------------------------------------
-      // もし「次の作品」がない場合、最初の作品を取得
-      if (empty($next_post)) {
-        $first_posts = get_posts(array(
-          'post_type'      => 'works',
-          'posts_per_page' => 1,
-          'meta_key'       => 'list_order',
-          'orderby'        => 'meta_value_num',
-          'order'          => 'ASC' // 一番数字が小さいものを取得
-        ));
-        $next_post = !empty($first_posts) ? $first_posts[0] : null;
-      }
-
       // もし「前の作品」がない場合、最後の作品を取得
       if (empty($prev_post)) {
         $last_posts = get_posts(array(
@@ -79,6 +82,9 @@
         ));
         $prev_post = !empty($last_posts) ? $last_posts[0] : null;
       }
+
+      // 「前の作品」のタイトルへの欧文フォント適用
+      $prev_post_en_class = get_field('use_en_font', $prev_post->ID) ? 'en' : '';
   ?>
       <div class="works-detail-container">
         <div class="site-view">
@@ -97,7 +103,7 @@
           </div>
         </div>
         <div class="introduction">
-          <h2 class="introduction__ttl"><?php the_title(); ?></h2>
+          <h2 class="introduction__ttl <?php echo $en_class; ?>"><?php the_title(); ?></h2>
           <?php if ($skills && ! is_wp_error($skills)): ?>
             <div class="introduction__tag-wrap">
               <?php
@@ -226,7 +232,7 @@
                 <div class="introduction__link-img-wrap">
                   <?php echo get_the_post_thumbnail($prev_post->ID, 'medium', 'class=introduction__link-img'); ?>
                 </div>
-                <span class="introduction__link-txt"><?php echo esc_html($prev_post->post_title); ?></span>
+                <span class="introduction__link-txt <?php echo $prev_post_en_class; ?>"><?php echo esc_html($prev_post->post_title); ?></span>
               </a>
             <?php endif; ?>
 
@@ -237,7 +243,7 @@
                 <div class="introduction__link-img-wrap">
                   <?php echo get_the_post_thumbnail($next_post->ID, 'medium', 'class=introduction__link-img'); ?>
                 </div>
-                <span class="introduction__link-txt"><?php echo esc_html($next_post->post_title); ?></span>
+                <span class="introduction__link-txt <?php echo $next_post_en_class; ?>"><?php echo esc_html($next_post->post_title); ?></span>
               </a>
             <?php endif; ?>
           </div>
@@ -250,7 +256,7 @@
             <a href="<?php echo esc_url(get_post_type_archive_link('works')); ?>" class="breadcrumb__link">WORKS</a>
           </li>
           <li class="breadcrumb__list">
-            <p class="breadcrumb__txt"><?php the_title(); ?></p>
+            <p class="breadcrumb__txt <?php echo $en_class; ?>"><?php the_title(); ?></p>
           </li>
         </ul>
       </div>

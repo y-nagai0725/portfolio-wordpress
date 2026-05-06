@@ -42,7 +42,7 @@ function my_portfolio_enqueue_scripts()
     wp_enqueue_script('top-mv-canvas', get_template_directory_uri() . '/js/top-mv-canvas.js', array('three-js'), filemtime(get_theme_file_path('/js/top-mv-canvas.js')), true);
     wp_enqueue_script('top-ray-canvas', get_template_directory_uri() . '/js/top-ray-canvas.js', array('three-js'), filemtime(get_theme_file_path('/js/top-ray-canvas.js')), true);
 
-    // ★JSへWordPressの画像パスを渡す処理★
+    // JSへWordPressの画像パスを渡す処理
     wp_localize_script('top-mv-canvas', 'myThemeData', array(
       'themeUrl' => get_template_directory_uri()
     ));
@@ -61,9 +61,29 @@ function my_portfolio_enqueue_scripts()
     $post_id = get_queried_object_id();
 
     // 横スクロールアニメーション用JSを読み込む
-    if ( get_field('use_horizontal_scroll', $post_id) ) {
-        wp_enqueue_script('works-intro-horizontal-script', get_template_directory_uri() . '/js/worksIntroduction_horizontalScroll.js', array('gsap', 'scroll-trigger', 'common-script'), filemtime(get_theme_file_path('/js/worksIntroduction_horizontalScroll.js')), true);
+    if (get_field('use_horizontal_scroll', $post_id)) {
+      wp_enqueue_script('works-intro-horizontal-script', get_template_directory_uri() . '/js/worksIntroduction_horizontalScroll.js', array('gsap', 'scroll-trigger', 'common-script'), filemtime(get_theme_file_path('/js/worksIntroduction_horizontalScroll.js')), true);
     }
+  }
+
+  // お問い合わせページのみで読み込むJS
+  if (is_page('contact')) {
+    wp_enqueue_script(
+      'contact-script',
+      get_template_directory_uri() . '/js/contact.js',
+      array(),
+      filemtime(get_theme_file_path('/js/contact.js')),
+      true
+    );
+
+    // PHPのデータをJSに渡す
+    wp_localize_script(
+      'contact-script',
+      'myGlobalData',
+      array(
+        'thanksUrl' => esc_url( home_url('/thanks/') )
+      )
+    );
   }
 }
 add_action('wp_enqueue_scripts', 'my_portfolio_enqueue_scripts');
@@ -80,3 +100,12 @@ function add_type_attribute($tag, $handle, $src)
   return $tag;
 }
 add_filter('script_loader_tag', 'add_type_attribute', 10, 3);
+
+// Contact Form 7の自動整形（<p>や<br>の自動挿入）を無効化する
+add_filter('wpcf7_autop_or_not', '__return_false');
+
+// Contact Form 7のデフォルトCSSを読み込まない
+add_filter('wpcf7_load_css', '__return_false');
+
+// サイトの「管理画面バー」を非表示にする
+add_filter( 'show_admin_bar', '__return_false' );

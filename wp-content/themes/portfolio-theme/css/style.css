@@ -2032,8 +2032,8 @@ body {
   }
 }
 #contact .contact-area__form .wpcf7-response-output {
+  display: none;
   padding: 1em;
-  margin-top: 1.5em;
   font-size: 14px;
   font-weight: 700;
   line-height: 1.5;
@@ -2051,12 +2051,11 @@ body {
     font-size: 16px;
   }
 }
-#contact .contact-area__form form.sent .wpcf7-response-output {
-  color: #4faf76;
-  background-color: #ebffef;
-}
 #contact .contact-area__form form.invalid .wpcf7-response-output,
-#contact .contact-area__form form.failed .wpcf7-response-output {
+#contact .contact-area__form form.failed .wpcf7-response-output,
+#contact .contact-area__form form.unaccepted .wpcf7-response-output,
+#contact .contact-area__form form.spam .wpcf7-response-output {
+  display: block;
   color: #f00;
   background-color: #fff0f0;
 }
@@ -2115,7 +2114,7 @@ body {
   gap: 15px;
   margin-bottom: 30px;
 }
-#contact .contact-area__form-box:last-of-type {
+#contact .contact-area__form-box:nth-last-of-type(2) {
   margin-bottom: 0;
 }
 @media screen and (width >= 768px) {

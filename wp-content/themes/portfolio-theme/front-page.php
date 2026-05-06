@@ -699,7 +699,7 @@
         お問い合わせは下のボタンから<br class="contact__br">
         入力フォームへお進みください。
       </p>
-      <a href="" class="contact__link-btn">CONTACT<br>FORM</a>
+      <a href="<?php echo esc_url( home_url('/contact/') ); ?>" class="contact__link-btn">CONTACT<br>FORM</a>
     </div>
   </section>
 </main>

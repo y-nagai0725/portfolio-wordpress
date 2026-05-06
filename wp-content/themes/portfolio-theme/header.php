@@ -43,7 +43,7 @@ if (is_front_page() || is_home()) {
     <header id="header" class="header">
       <div class="header__inner">
         <h1 class="header__logo">
-          <a href="index.html" id="header__logo-link" class="header__logo-link">NAGAI YOSHITAKA</a>
+          <a href="<?php echo esc_url( home_url('/') ); ?>" id="header__logo-link" class="header__logo-link">NAGAI YOSHITAKA</a>
         </h1>
         <div id="menu-btn" class="menu-btn">
           <span class="menu-btn__top"></span>
@@ -52,9 +52,9 @@ if (is_front_page() || is_home()) {
         </div>
         <nav id="gnav" class="gnav">
           <ul class="gnav__wrap">
-            <li class="gnav__list"><a href="index.html" class="gnav__link">HOME</a></li>
-            <li class="gnav__list"><a href="works/index.html" class="gnav__link">WORKS</a></li>
-            <li class="gnav__list"><a href="contact/index.html" class="gnav__link">CONTACT</a></li>
+            <li class="gnav__list"><a href="<?php echo esc_url( home_url('/') ); ?>" class="gnav__link">HOME</a></li>
+            <li class="gnav__list"><a href="<?php echo esc_url( get_post_type_archive_link('works') ); ?>" class="gnav__link">WORKS</a></li>
+            <li class="gnav__list"><a href="<?php echo esc_url( home_url('/contact/') ); ?>" class="gnav__link">CONTACT</a></li>
             <li class="gnav__list"><a href="https://github.com/y-nagai0725" class="gnav__link github"
                 target="_blank">GITHUB</a></li>
           </ul>

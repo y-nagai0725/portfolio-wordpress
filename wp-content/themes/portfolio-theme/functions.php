@@ -107,5 +107,8 @@ add_filter('wpcf7_autop_or_not', '__return_false');
 // Contact Form 7のデフォルトCSSを読み込まない
 add_filter('wpcf7_load_css', '__return_false');
 
+// WordPressの画像自動縮小機能（長辺2560px制限）を無効化する
+add_filter( 'big_image_size_threshold', '__return_false' );
+
 // サイトの「管理画面バー」を非表示にする
 add_filter( 'show_admin_bar', '__return_false' );

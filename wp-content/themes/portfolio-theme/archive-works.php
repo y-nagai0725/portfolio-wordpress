@@ -20,7 +20,7 @@
           'posts_per_page' => -1, // 「-1」は全件表示
           'meta_key'       => 'list_order',
           'orderby'        => 'meta_value_num',
-          'order'          => 'ASC'
+          'order'          => 'DESC'
         );
 
         // 指定した条件で、新しいクエリを作る

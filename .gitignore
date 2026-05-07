@@ -43,6 +43,8 @@ wp-content/siteguard/
 wp-content/cache/
 wp-content/upgrade/
 
+wp-content/ai1wm-backups
+
 # All plugins
 #
 # Note: If you wish to whitelist plugins,

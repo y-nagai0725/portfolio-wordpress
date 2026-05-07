@@ -4,6 +4,9 @@ function my_portfolio_setup()
 {
   // テーマにサムネイル画像（アイキャッチ）の機能を有効化する
   add_theme_support('post-thumbnails');
+
+  // <title>タグを自動で出力する
+  add_theme_support('title-tag');
 }
 add_action('after_setup_theme', 'my_portfolio_setup');
 
@@ -81,7 +84,7 @@ function my_portfolio_enqueue_scripts()
       'contact-script',
       'myGlobalData',
       array(
-        'thanksUrl' => esc_url( home_url('/thanks/') )
+        'thanksUrl' => esc_url(home_url('/thanks/'))
       )
     );
   }
@@ -108,7 +111,7 @@ add_filter('wpcf7_autop_or_not', '__return_false');
 add_filter('wpcf7_load_css', '__return_false');
 
 // WordPressの画像自動縮小機能（長辺2560px制限）を無効化する
-add_filter( 'big_image_size_threshold', '__return_false' );
+add_filter('big_image_size_threshold', '__return_false');
 
 // サイトの「管理画面バー」を非表示にする
-add_filter( 'show_admin_bar', '__return_false' );
+add_filter('show_admin_bar', '__return_false');

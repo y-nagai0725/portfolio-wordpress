@@ -5,11 +5,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
-  <meta name="description" content="">
-  <meta name="keywords" content="">
-  <meta name="robots" content="noindex, nofollow">
-  <link rel="icon" href="images/common/favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="images/common/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -43,7 +38,7 @@ if (is_front_page() || is_home()) {
     <header id="header" class="header">
       <div class="header__inner">
         <h1 class="header__logo">
-          <a href="<?php echo esc_url( home_url('/') ); ?>" id="header__logo-link" class="header__logo-link">NAGAI YOSHITAKA</a>
+          <a href="<?php echo esc_url(home_url('/')); ?>" id="header__logo-link" class="header__logo-link">NAGAI YOSHITAKA</a>
         </h1>
         <div id="menu-btn" class="menu-btn">
           <span class="menu-btn__top"></span>
@@ -52,9 +47,9 @@ if (is_front_page() || is_home()) {
         </div>
         <nav id="gnav" class="gnav">
           <ul class="gnav__wrap">
-            <li class="gnav__list"><a href="<?php echo esc_url( home_url('/') ); ?>" class="gnav__link">HOME</a></li>
-            <li class="gnav__list"><a href="<?php echo esc_url( get_post_type_archive_link('works') ); ?>" class="gnav__link">WORKS</a></li>
-            <li class="gnav__list"><a href="<?php echo esc_url( home_url('/contact/') ); ?>" class="gnav__link">CONTACT</a></li>
+            <li class="gnav__list"><a href="<?php echo esc_url(home_url('/')); ?>" class="gnav__link">HOME</a></li>
+            <li class="gnav__list"><a href="<?php echo esc_url(get_post_type_archive_link('works')); ?>" class="gnav__link">WORKS</a></li>
+            <li class="gnav__list"><a href="<?php echo esc_url(home_url('/contact/')); ?>" class="gnav__link">CONTACT</a></li>
             <li class="gnav__list"><a href="https://github.com/y-nagai0725" class="gnav__link github"
                 target="_blank">GITHUB</a></li>
           </ul>

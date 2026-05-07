@@ -24,12 +24,12 @@
         'posts_per_page' => 1,
         'meta_key'       => 'list_order', // ACFのフィールド名を指定
         'orderby'        => 'meta_value_num', // 数字として並び替える
-        'order'          => 'ASC', // 小さい順
+        'order'          => 'DESC',
         'meta_query'     => array(
           array(
             'key'     => 'list_order',
             'value'   => $current_order,
-            'compare' => '>', // 今の数字より大きい（>）ものだけ探す
+            'compare' => '<', // 今の数字より小さい（<）ものだけ探す
             'type'    => 'NUMERIC'
           )
         )
@@ -43,7 +43,7 @@
           'posts_per_page' => 1,
           'meta_key'       => 'list_order',
           'orderby'        => 'meta_value_num',
-          'order'          => 'ASC' // 一番数字が小さいものを取得
+          'order'          => 'DESC'
         ));
         $next_post = !empty($first_posts) ? $first_posts[0] : null;
       }
@@ -59,12 +59,12 @@
         'posts_per_page' => 1,
         'meta_key'       => 'list_order',
         'orderby'        => 'meta_value_num',
-        'order'          => 'DESC', // 大きい順
+        'order'          => 'ASC',
         'meta_query'     => array(
           array(
             'key'     => 'list_order',
             'value'   => $current_order,
-            'compare' => '<', // 今の数字より小さい（<）ものだけ探す
+            'compare' => '>', // 今の数字より大きい（>）ものだけ探す
             'type'    => 'NUMERIC'
           )
         )
@@ -78,7 +78,7 @@
           'posts_per_page' => 1,
           'meta_key'       => 'list_order',
           'orderby'        => 'meta_value_num',
-          'order'          => 'DESC' // 一番数字が大きいものを取得
+          'order'          => 'ASC'
         ));
         $prev_post = !empty($last_posts) ? $last_posts[0] : null;
       }
@@ -167,6 +167,14 @@
                 </dd>
               </div>
             <?php endif; ?>
+            <?php if (get_field('group_work_role')): ?>
+              <div class="introduction__table-group">
+                <dt class="introduction__table-heading">担当役割</dt>
+                <dd class="introduction__table-description">
+                  <?php the_field('group_work_role'); ?>
+                </dd>
+              </div>
+            <?php endif; ?>
             <?php if (get_field('period')): ?>
               <div class="introduction__table-group">
                 <dt class="introduction__table-heading">制作期間</dt>
@@ -207,24 +215,33 @@
                 <?php endif; ?>
               </dd>
             </div>
-            <div class="introduction__table-group">
-              <dt class="introduction__table-heading">Github</dt>
-              <dd class="introduction__table-description">
-                <a href="<?php the_field('github_url'); ?>" class="introduction__table-link"
-                  target="_blank"><?php the_field('github_url'); ?></a>
-              </dd>
-            </div>
-            <div class="introduction__table-group">
-              <dt class="introduction__table-heading">デザイン</dt>
-              <dd class="introduction__table-description">
-                <?php if (get_field('design_url')): ?>
+            <?php if (get_field('github_url')): ?>
+              <div class="introduction__table-group">
+                <dt class="introduction__table-heading">Github</dt>
+                <dd class="introduction__table-description">
+                  <a href="<?php the_field('github_url'); ?>" class="introduction__table-link"
+                    target="_blank"><?php the_field('github_url'); ?></a>
+                </dd>
+              </div>
+            <?php endif; ?>
+            <?php if (get_field('design_url')): ?>
+              <div class="introduction__table-group">
+                <dt class="introduction__table-heading">デザイン</dt>
+                <dd class="introduction__table-description">
                   <a href="<?php the_field('design_url'); ?>"
                     class="introduction__table-link" target="_blank">Figmaページ（閲覧のみ可能です）</a>
-                <?php else: ?>
-                  デザインデータ無し
-                <?php endif; ?>
-              </dd>
-            </div>
+                </dd>
+              </div>
+            <?php endif; ?>
+            <?php if (get_field('design_file')): ?>
+              <div class="introduction__table-group">
+                <dt class="introduction__table-heading">デザイン</dt>
+                <dd class="introduction__table-description">
+                  <a href="<?php the_field('design_file'); ?>"
+                    class="introduction__table-link" target="_blank">デザインファイル（XDファイル）</a>
+                </dd>
+              </div>
+            <?php endif; ?>
           </dl>
           <div class="introduction__nav-wrap">
             <?php if ($prev_post): ?>

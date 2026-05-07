@@ -36,6 +36,13 @@ wp-config.php
 # htaccess
 /.htaccess
 
+# SiteGuardが自動生成するフォルダ
+wp-content/siteguard/
+
+# キャッシュや一時ファイル
+wp-content/cache/
+wp-content/upgrade/
+
 # All plugins
 #
 # Note: If you wish to whitelist plugins,

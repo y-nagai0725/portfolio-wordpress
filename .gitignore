@@ -42,14 +42,17 @@ wp-content/siteguard/
 # キャッシュや一時ファイル
 wp-content/cache/
 wp-content/upgrade/
-
+wp-content/upgrade-temp-backup
 wp-content/ai1wm-backups
+
+# vscode
+.vscode/
 
 # All plugins
 #
 # Note: If you wish to whitelist plugins,
 # uncomment the next line
-#/wp-content/plugins
+/wp-content/plugins
 
 # All themes
 #
@@ -58,5 +61,4 @@ wp-content/ai1wm-backups
 #/wp-content/themes
 
 # 無視しない（Gitで管理する）ものを指定
-!/wp-content/plugins/
 !/wp-content/themes/portfolio-theme/

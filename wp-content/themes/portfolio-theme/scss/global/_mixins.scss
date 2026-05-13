@@ -1,0 +1,48 @@
+@use "./variables" as v;
+
+// =========================================================================
+// Media Queries & State (メディアクエリ・状態)
+// =========================================================================
+
+// タブレット用メディアクエリ
+@mixin tab {
+  @media screen and (width >= #{v.$tab}px) {
+    @content;
+  }
+}
+
+// PC用メディアクエリ
+@mixin pc {
+  @media screen and (width >= #{v.$pc}px) {
+    @content;
+  }
+}
+
+// ホバー判定 (スマホなどホバー非対応デバイスで、タップ時にホバー状態が残り続けることを防ぐ)
+@mixin hover {
+  @media (any-hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+// =========================================================================
+// Layout Utilities (レイアウト用共通設定)
+// =========================================================================
+
+// コンテンツの最大幅と中央揃え
+@mixin contents-width {
+  padding: 0 3rem;
+
+  @include tab {
+    padding: 0 8rem;
+  }
+
+  @include pc {
+    width: 90%;
+    max-width: 160rem;
+    padding: 0;
+    margin-inline: auto;
+  }
+}

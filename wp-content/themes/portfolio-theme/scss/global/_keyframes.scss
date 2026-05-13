@@ -1,0 +1,38 @@
+@use "./variables" as v;
+
+// fade-right
+@keyframes fade-right {
+  0%{
+    opacity: 0;
+    transform: translateX(-4rem);
+  }
+
+  100%{
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// fade-up
+@keyframes fade-up {
+  0%{
+    opacity: 0;
+    transform: translateY(4rem);
+  }
+
+  100%{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// fade-in
+@keyframes fade-in {
+  0%{
+    opacity: 0;
+  }
+
+  100%{
+    opacity: 1;
+  }
+}

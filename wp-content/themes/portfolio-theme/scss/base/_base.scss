@@ -1,0 +1,11 @@
+@use "../global" as g;
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: g.$noto-sans;
+  font-weight: g.$normal;
+  background-color: g.$black;
+}

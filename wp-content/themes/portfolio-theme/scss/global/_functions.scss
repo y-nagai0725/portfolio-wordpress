@@ -1,0 +1,24 @@
+@use "sass:math";
+@use "sass:meta";
+
+// =========================================================================
+// Functions (数値計算などの裏方処理)
+// =========================================================================
+
+// 数値から単位 (px, remなど) を取り除く関数
+// 計算式の中で単位同士が衝突してエラーになるのを防ぐための安全装置
+@function strip-unit($number) {
+  @if meta.type-of($number) == "number" and not math.is-unitless($number) {
+    @return math.div($number, ($number * 0 + 1));
+  }
+
+  @return $number;
+}
+
+// pxをremに変換する関数
+// html { font-size: 62.5%; } (1rem = 10px) の設定が前提の計算式
+@function px-to-rem($px) {
+  $val: strip-unit($px);
+
+  @return math.div($val, 10) * 1rem;
+}

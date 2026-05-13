@@ -1,20 +1,24 @@
-@use "./variables" as v;
+@use "sass:map";
+@use "variables" as v;
+@use "functions" as f;
 
 // =========================================================================
 // Media Queries & State (メディアクエリ・状態)
 // =========================================================================
 
-// タブレット用メディアクエリ
-@mixin tab {
-  @media screen and (width >= #{v.$tab}px) {
-    @content;
-  }
-}
+// メディアクエリ
+@mixin mq($bp: md) {
+  // Mapから値を取得、なければ引数をそのまま使用
+  $value: map.get(v.$breakpoints, $bp);
 
-// PC用メディアクエリ
-@mixin pc {
-  @media screen and (width >= #{v.$pc}px) {
-    @content;
+  @if $value {
+    @media screen and (width >= #{$value}) {
+      @content;
+    }
+  } @else {
+    @media screen and (width >= #{$bp}) {
+      @content;
+    }
   }
 }
 
@@ -25,6 +29,50 @@
       @content;
     }
   }
+}
+
+// =========================================================================
+// Fluid Typography & Spacing (可変サイズ生成)
+// =========================================================================
+
+// 画面幅に合わせて文字サイズを滑らかに拡大縮小させる (clamp生成)
+// ブラウザのフォントサイズ変更設定にも対応できるよう、最終出力はremで行う
+@mixin fluid-text($min-font-size, $max-font-size, $min-viewport: 375, $max-viewport: 1280) {
+  $min-size: f.strip-unit($min-font-size);
+  $max-size: f.strip-unit($max-font-size);
+  $min-vw: f.strip-unit($min-viewport);
+  $max-vw: f.strip-unit($max-viewport);
+
+  // 1次関数の計算 (y = ax + b の a(傾き) と b(切片) を求める)
+  $size-diff: $max-size - $min-size;
+  $vw-diff: $max-vw - $min-vw;
+  $slope: math.div($size-diff, $vw-diff);
+  $y-intercept: $min-size - ($slope * $min-vw);
+
+  font-size: clamp(
+    #{f.px-to-rem($min-size)},
+    calc(#{f.px-to-rem($y-intercept)} + #{$slope * 100}vw),
+    #{f.px-to-rem($max-size)}
+  );
+}
+
+// フォントサイズ以外のプロパティ (padding, gap, width等) を可変にする汎用版
+// 使い方: @include fluid-style(padding-bottom, 20, 60);
+@mixin fluid-style($property, $min-value, $max-value, $min-vw: 375, $max-vw: 1280) {
+  $min-val: f.strip-unit($min-value);
+  $max-val: f.strip-unit($max-value);
+  $min-vw: f.strip-unit($min-vw);
+  $max-vw: f.strip-unit($max-vw);
+  $val-diff: $max-val - $min-val;
+  $vw-diff: $max-vw - $min-vw;
+  $slope: math.div($val-diff, $vw-diff);
+  $y-intercept: $min-val - ($slope * $min-vw);
+
+  #{$property}: clamp(
+    #{f.px-to-rem($min-val)},
+    calc(#{f.px-to-rem($y-intercept)} + #{$slope * 100}vw),
+    #{f.px-to-rem($max-val)}
+  );
 }
 
 // =========================================================================

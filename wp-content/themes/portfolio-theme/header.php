@@ -35,22 +35,22 @@ if (is_front_page() || is_home()) {
       } ?> <?php body_class(); ?>>
   <?php wp_body_open(); ?>
   <div id="wrapper" class="wrapper">
-    <header id="header" class="header">
-      <div class="header__inner">
-        <h1 class="header__logo">
-          <a href="<?php echo esc_url(home_url('/')); ?>" id="header__logo-link" class="header__logo-link">NAGAI YOSHITAKA</a>
+    <header id="l-header" class="l-header">
+      <div class="l-header__inner">
+        <h1 class="l-header__logo">
+          <a href="<?php echo esc_url(home_url('/')); ?>" id="l-header__logo-link" class="l-header__logo-link">NAGAI YOSHITAKA</a>
         </h1>
-        <div id="menu-btn" class="menu-btn">
-          <span class="menu-btn__top"></span>
-          <span class="menu-btn__middle"></span>
-          <span class="menu-btn__bottom"></span>
-        </div>
-        <nav id="gnav" class="gnav">
-          <ul class="gnav__wrap">
-            <li class="gnav__list"><a href="<?php echo esc_url(home_url('/')); ?>" class="gnav__link">HOME</a></li>
-            <li class="gnav__list"><a href="<?php echo esc_url(get_post_type_archive_link('works')); ?>" class="gnav__link">WORKS</a></li>
-            <li class="gnav__list"><a href="<?php echo esc_url(home_url('/contact/')); ?>" class="gnav__link">CONTACT</a></li>
-            <li class="gnav__list"><a href="https://github.com/y-nagai0725" class="gnav__link github"
+        <button id="l-header__hamburger" class="l-header__hamburger">
+          <span class="l-header__hamburger-line l-header__hamburger-line--top"></span>
+          <span class="l-header__hamburger-line l-header__hamburger-line--middle"></span>
+          <span class="l-header__hamburger-line l-header__hamburger-line--bottom"></span>
+        </button>
+        <nav id="l-header__nav" class="l-header__nav">
+          <ul class="l-header__nav-list">
+            <li class="l-header__nav-item"><a href="<?php echo esc_url(home_url('/')); ?>" class="l-header__nav-link">HOME</a></li>
+            <li class="l-header__nav-item"><a href="<?php echo esc_url(get_post_type_archive_link('works')); ?>" class="l-header__nav-link">WORKS</a></li>
+            <li class="l-header__nav-item"><a href="<?php echo esc_url(home_url('/contact/')); ?>" class="l-header__nav-link">CONTACT</a></li>
+            <li class="l-header__nav-item"><a href="https://github.com/y-nagai0725" class="l-header__nav-link l-header__nav-link--github"
                 target="_blank">GITHUB</a></li>
           </ul>
         </nav>

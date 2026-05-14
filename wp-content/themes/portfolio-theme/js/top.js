@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const svgList = document.querySelectorAll('.skill__icon-svg');
 
   //ヘッダー
-  const header = document.getElementById('header');
+  const header = document.getElementById('l-header');
 
   //キャッチコピー：日本語
   const catchcopyJa = document.getElementById('mv__catchcopy-ja');
@@ -248,7 +248,7 @@ document.addEventListener('DOMContentLoaded', function () {
   //mvのアニメーション開始処理
   function startMvAnimation() {
     //ヘッダー表示処理を止める
-    header.classList.remove('js-show');
+    header.classList.remove('is-active');
 
     //ページ最上部にいるときのみ開始を少し遅らせる
     if (window.scrollY === 0) {
@@ -261,7 +261,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       }, 800);
       setTimeout(() => {
-        header.classList.add('js-show');
+        header.classList.add('is-active');
       }, 2000);
     } else {
       catchcopyJa.classList.add('js-completed');
@@ -270,7 +270,7 @@ document.addEventListener('DOMContentLoaded', function () {
       catchcopyEnImg.classList.add('js-active');
       scrollBtn.classList.add('js-completed');
       scrollBtn.classList.add('js-active');
-      header.classList.add('js-show');
+      header.classList.add('is-active');
       if (window.scrollY < messageSection.getBoundingClientRect().top + window.scrollY - window.innerHeight) {
         if (!mvCanvasWrapper.classList.contains("entered")) {
           mvCanvasWrapper.classList.remove("hidden");

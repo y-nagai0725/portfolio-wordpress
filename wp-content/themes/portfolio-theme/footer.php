@@ -5,7 +5,7 @@
     </p>
     <p class="l-footer__copyright"><small class="l-footer__small">&copy; 2026 NAGAI YOSHITAKA PORTFOLIO.</small></p>
   </div>
-  <button id="l-footer__back-btn" class="l-footer__back-btn"></button>
+  <button class="l-footer__back-btn"></button>
 </footer>
 </div>
 <?php wp_footer(); ?>

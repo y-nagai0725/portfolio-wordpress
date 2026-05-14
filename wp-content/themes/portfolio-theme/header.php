@@ -34,18 +34,18 @@ if (is_front_page() || is_home()) {
         echo 'id="' . esc_attr($my_body_id) . '"';
       } ?> <?php body_class(); ?>>
   <?php wp_body_open(); ?>
-  <div id="wrapper" class="wrapper">
-    <header id="l-header" class="l-header">
+  <div class="wrapper">
+    <header class="l-header">
       <div class="l-header__inner">
         <h1 class="l-header__logo">
-          <a href="<?php echo esc_url(home_url('/')); ?>" id="l-header__logo-link" class="l-header__logo-link">NAGAI YOSHITAKA</a>
+          <a href="<?php echo esc_url(home_url('/')); ?>" class="l-header__logo-link">NAGAI YOSHITAKA</a>
         </h1>
-        <button id="l-header__hamburger" class="l-header__hamburger">
+        <button class="l-header__hamburger">
           <span class="l-header__hamburger-line l-header__hamburger-line--top"></span>
           <span class="l-header__hamburger-line l-header__hamburger-line--middle"></span>
           <span class="l-header__hamburger-line l-header__hamburger-line--bottom"></span>
         </button>
-        <nav id="l-header__nav" class="l-header__nav">
+        <nav class="l-header__nav">
           <ul class="l-header__nav-list">
             <li class="l-header__nav-item"><a href="<?php echo esc_url(home_url('/')); ?>" class="l-header__nav-link">HOME</a></li>
             <li class="l-header__nav-item"><a href="<?php echo esc_url(get_post_type_archive_link('works')); ?>" class="l-header__nav-link">WORKS</a></li>

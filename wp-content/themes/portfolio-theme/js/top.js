@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const svgList = document.querySelectorAll('.skill__icon-svg');
 
   //ヘッダー
-  const header = document.getElementById('l-header');
+  const header = document.querySelector('.l-header');
 
   //キャッチコピー：日本語
   const catchcopyJa = document.getElementById('mv__catchcopy-ja');

@@ -1,119 +1,164 @@
-// 全ページ共通のJS
-document.addEventListener('DOMContentLoaded', function () {
+/**
+ * 全ページ共通のJavaScript
+ * GSAP (ScrollTrigger / ScrollToPlugin) を使用した共通UIおよびアニメーションの制御
+ */
+document.addEventListener('DOMContentLoaded', () => {
+  // GSAPプラグインの登録
+  gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-  // クラス付与のスクロール位置調整用
-  const adjustmentNumber = 0.65;
+  /**
+   * wrapper
+   */
+  const wrapper = document.querySelector('.wrapper');
 
-  // wrapper
-  const wrapper = document.getElementById('wrapper');
+  /**
+   * ヘッダー
+   */
+  const header = document.querySelector('.l-header');
 
-  // ヘッダー
-  const header = document.getElementById('l-header');
+  /**
+   * ヘッダーロゴ
+   */
+  const headerLogo = document.querySelector('.l-header__logo-link');
 
-  // ヘッダーロゴ
-  const headerLogo = document.getElementById('l-header__logo-link');
+  /**
+   * ハンバーガーボタン
+   */
+  const hamburgerBtn = document.querySelector('.l-header__hamburger');
 
-  // グローバルナビゲーション
-  const gnav = document.getElementById('l-header__nav');
+  /**
+   * グローバルナビゲーション
+   */
+  const gnav = document.querySelector('.l-header__nav');
 
-  // グローバルナビゲーションリスト
+  /**
+   * グローバルナビゲーションリスト
+   */
   const gnavList = document.querySelectorAll('.l-header__nav-item');
 
-  // ハンバーガーボタン
-  const hamburgerBtn = document.getElementById('l-header__hamburger');
+  /**
+   * トップへ戻るボタン
+   */
+  const backBtn = document.querySelector('.l-footer__back-btn');
 
-  // トップへ戻るボタン
-  const backBtn = document.getElementById('l-footer__back-btn');
+  /**
+   * ページ表示時の初期アニメーション
+   */
+  const startPageAnimation = () => {
+    wrapper?.classList.add('is-active');
+    header?.classList.add('is-active');
+  };
 
-  // クラス付与対象リスト
-  const jsTargetList = document.querySelectorAll('.js-fadeIn, .js-fadeUp, .js-fadeUpLarge, .js-fadeRight');
-
-  // スクロールイベント時処理
-  window.addEventListener('scroll', function () {
-    if (window.scrollY === 0) {
-      headerLogo.classList.remove('is-hidden');
-    } else {
-      headerLogo.classList.add('is-hidden');
-    }
-
-    headerInit();
-    setJsTargetActive();
-  });
-
-  // ハンバーガーボタンクリック時処理
-  hamburgerBtn.addEventListener('click', function () {
-    if (this.classList.contains('is-open')) {
-      headerInit();
-    } else {
-      this.classList.add('is-open');
-      gnav.classList.add('is-open');
-      headerLogo.classList.add('is-inverted');
-      gnavList.forEach(li => {
-        li.classList.add('is-active');
-      });
-
-      // メニューが開かれているときはスクロール禁止
-      document.addEventListener('touchmove', noScroll, { passive: false });
-      document.addEventListener('wheel', noScroll, { passive: false });
-    }
-  });
-
-  // トップへ戻るボタンクリック時処理
-  backBtn.addEventListener('click', function () {
-    window.scroll({
-      top: 0,
-      behavior: 'smooth'
-    });
-  });
-
-  // ヘッダー初期化
-  function headerInit() {
-    hamburgerBtn.classList.remove('is-open');
-    gnav.classList.remove('is-open');
-    headerLogo.classList.remove('is-inverted');
-    gnavList.forEach(li => {
-      li.classList.remove('is-active');
-    });
-
-    // スクロール禁止を解除
-    document.removeEventListener('touchmove', noScroll);
-    document.removeEventListener('wheel', noScroll);
-  }
-
-  // イベント処理禁止用
-  function noScroll(e) {
-    e.preventDefault();
-  }
-
-  // ヘッダー表示
-  function showHeader() {
-    header.classList.add('is-active');
-  }
-
-  // 対象にクラス付与
-  function setJsTargetActive() {
-    const windowHeight = window.innerHeight;
-    const st = window.scrollY;
-    jsTargetList.forEach((e) => {
-      const position = e.getBoundingClientRect().top + st;
-      if (st > position - windowHeight * adjustmentNumber) {
-        e.classList.add('is-active');
+  /**
+   * ヘッダーのスクロール制御
+   * ロゴの表示・非表示および反転クラスの管理を行う
+   */
+  const initHeaderScroll = () => {
+    ScrollTrigger.create({
+      start: 'top top',
+      onUpdate: (self) => {
+        // 1pxでもスクロールされたらロゴを隠す
+        if (self.scroll() > 0) {
+          headerLogo?.classList.add('is-hidden');
+        } else {
+          headerLogo?.classList.remove('is-hidden');
+        }
       }
     });
-  }
+  };
 
-  // ページ表示時アニメーション設定
-  function startPageAnimation() {
-    wrapper.classList.add('is-active');
-  }
+  /**
+   * 各セクション要素のフェードインアニメーション設定
+   * .js-fadeIn, .js-fadeUp などのクラスを持つ要素を対象とする
+   */
+  const initScrollFadeAnimations = () => {
+    // 対象となるクラスを持つ要素を配列として取得
+    const targets = gsap.utils.toArray('.js-fadeIn, .js-fadeUp, .js-fadeUpLarge, .js-fadeRight');
 
-  // 初期実行処理
-  function init() {
+    targets.forEach((target) => {
+      ScrollTrigger.create({
+        trigger: target,
+        start: 'top 65%',    // ビューポートの上から65%の位置に来たら発火
+        once: true,          // 一度だけ実行
+        refreshPriority: -1, // 優先度を下げて、トップページでのpin留め処理後に計算させる
+        onEnter: () => target.classList.add('is-active'),
+      });
+    });
+  };
+
+  /**
+   * ハンバーガーメニューの開閉制御
+   */
+  const toggleMenu = () => {
+    const isOpen = hamburgerBtn.classList.contains('is-open');
+
+    if (isOpen) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  };
+
+  /**
+   * メニューを開く処理
+   */
+  const openMenu = () => {
+    hamburgerBtn?.classList.add('is-open');
+    gnav?.classList.add('is-open');
+    headerLogo?.classList.add('is-inverted');
+    gnavList.forEach((li) => li.classList.add('is-active'));
+
+    // スクロールバーの幅を計算して、bodyの右側にpaddingとして付与する
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    document.body.style.paddingRight = `${scrollbarWidth}px`;
+    document.body.style.overflow = 'hidden';
+  };
+
+  /**
+   * メニューを閉じる処理
+   */
+  const closeMenu = () => {
+    hamburgerBtn?.classList.remove('is-open');
+    gnav?.classList.remove('is-open');
+    headerLogo?.classList.remove('is-inverted');
+    gnavList.forEach((li) => li.classList.remove('is-active'));
+
+    // スクロール禁止と、付与したpaddingを解除する
+    document.body.style.overflow = '';
+    document.body.style.paddingRight = '';
+  };
+
+  /**
+   * ハンバーガーメニューのイベントを初期化
+   */
+  const initMenu = () => {
+    hamburgerBtn?.addEventListener('click', toggleMenu);
+  };
+
+  /**
+   * トップへ戻るボタンのクリックイベント
+   * ScrollToPluginを使用して滑らかにスクロールさせる
+   */
+  const initBackToTop = () => {
+    backBtn?.addEventListener('click', () => {
+      gsap.to(window, {
+        duration: 0.8,
+        scrollTo: 0,
+        ease: 'power2.out'
+      });
+    });
+  };
+
+  /**
+   * 全体の初期化処理
+   */
+  const init = () => {
     startPageAnimation();
-    showHeader();
-  }
+    initHeaderScroll();
+    initScrollFadeAnimations();
+    initBackToTop();
+    initMenu();
+  };
 
-  // 初期処理
   init();
-
-}, false);
+});

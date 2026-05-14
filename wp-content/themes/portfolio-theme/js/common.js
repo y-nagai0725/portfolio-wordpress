@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const hamburgerBtn = document.getElementById('l-header__hamburger');
 
   // トップへ戻るボタン
-  const backBtn = document.getElementById('footer__back-btn');
+  const backBtn = document.getElementById('l-footer__back-btn');
 
   // クラス付与対象リスト
   const jsTargetList = document.querySelectorAll('.js-fadeIn, .js-fadeUp, .js-fadeUpLarge, .js-fadeRight');

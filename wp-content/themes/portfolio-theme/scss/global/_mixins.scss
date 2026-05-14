@@ -37,6 +37,7 @@
 
 // コンテンツの最大幅と中央揃え
 @mixin contents-width {
+  width: 100%;
   padding: 0 3rem;
 
   @include mq(md) {

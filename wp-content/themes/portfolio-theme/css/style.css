@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* stylelint-disable */
 /***
     The new CSS reset - version 1.11.3 (last updated 25.08.2024)
@@ -550,35 +551,35 @@ body {
   }
 }
 
-.c-title {
+.c-ttl {
   font-family: "Oswald", sans-serif;
   font-weight: 700;
   color: #fff;
 }
-.c-title--left {
+.c-ttl--left {
   text-align: left;
 }
-.c-title--center {
+.c-ttl--center {
   text-align: center;
 }
-.c-title--section {
+.c-ttl--section {
   font-size: 6.2rem;
 }
 @media screen and (width >= 768px) {
-  .c-title--section {
+  .c-ttl--section {
     font-size: 13rem;
   }
 }
-.c-title--page {
+.c-ttl--page {
   font-size: 6.6rem;
 }
 @media screen and (width >= 768px) {
-  .c-title--page {
+  .c-ttl--page {
     font-size: 9.1rem;
   }
 }
 @media screen and (width >= 1024px) {
-  .c-title--page {
+  .c-ttl--page {
     font-size: 19rem;
   }
 }
@@ -644,9 +645,24 @@ body {
 }
 
 .c-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
+}
+.c-card--training::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  padding: 0.8rem;
+  font-size: 1.4rem;
+  color: #1d1d1d;
+  content: "職業訓練作品";
+  background-color: #fff;
+}
+.c-card.is-hidden {
+  display: none;
 }
 .c-card__link {
   display: block;

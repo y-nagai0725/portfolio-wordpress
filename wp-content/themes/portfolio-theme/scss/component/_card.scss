@@ -6,9 +6,26 @@
 .c-card {
   $parent: &;
 
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
+
+  &--training::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: g.$z-default;
+    padding: 0.8rem;
+    font-size: 1.4rem;
+    color: g.$black;
+    content: "職業訓練作品";
+    background-color: g.$white;
+  }
+
+  &.is-hidden {
+    display: none;
+  }
 
   &__link {
     display: block;

@@ -1,0 +1,47 @@
+@use "../global/" as g;
+
+// =========================================================================
+// 作品カード (.c-card)
+// =========================================================================
+.c-card {
+  $parent: &;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+
+  &__link {
+    display: block;
+    overflow: hidden;
+
+    @include g.hover {
+      #{$parent}__img {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  &__img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform g.$transition-base-duration g.$transition-base-easing;
+  }
+
+  &__ttl {
+    font-size: 2rem;
+    font-weight: g.$bold;
+    color: g.$white;
+
+    &--en {
+      font-family: g.$oswald;
+    }
+  }
+
+  &__tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}

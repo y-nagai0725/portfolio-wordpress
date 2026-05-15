@@ -1,0 +1,52 @@
+@use "../global/" as g;
+
+// =========================================================================
+// ボタン (.c-btn)
+// =========================================================================
+.c-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 8rem;
+  aspect-ratio: 1;
+  font-family: g.$oswald;
+  font-size: 1.3rem;
+  font-weight: g.$bold;
+  line-height: 1.5;
+  color: g.$white;
+  letter-spacing: -0.03em;
+  cursor: pointer;
+  border-color: g.$pale-gray;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 50%;
+  transition:
+    color g.$transition-base-duration g.$transition-base-easing,
+    background-color g.$transition-base-duration g.$transition-base-easing,
+    border-color g.$transition-base-duration g.$transition-base-easing;
+
+  @include g.hover {
+    color: g.$black;
+    background-color: g.$white;
+    border-color: g.$white;
+  }
+
+  &--medium {
+    @include g.mq(md) {
+      width: 13rem;
+      font-size: 1.8rem;
+    }
+
+    @include g.mq(lg) {
+      width: 22.3rem;
+      font-size: 2.4rem;
+    }
+  }
+
+  &--small {
+    @include g.mq(md) {
+      width: 9.8rem;
+      font-size: 1.4rem;
+    }
+  }
+}

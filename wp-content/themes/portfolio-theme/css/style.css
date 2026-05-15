@@ -550,4 +550,132 @@ body {
   }
 }
 
+.c-title {
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  color: #fff;
+}
+.c-title--left {
+  text-align: left;
+}
+.c-title--center {
+  text-align: center;
+}
+.c-title--section {
+  font-size: 6.2rem;
+}
+@media screen and (width >= 768px) {
+  .c-title--section {
+    font-size: 13rem;
+  }
+}
+.c-title--page {
+  font-size: 6.6rem;
+}
+@media screen and (width >= 768px) {
+  .c-title--page {
+    font-size: 9.1rem;
+  }
+}
+@media screen and (width >= 1024px) {
+  .c-title--page {
+    font-size: 19rem;
+  }
+}
+
+.c-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 8rem;
+  aspect-ratio: 1;
+  font-family: "Oswald", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #fff;
+  letter-spacing: -0.03em;
+  cursor: pointer;
+  border-color: #bababa;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 50%;
+  transition: color 0.4s ease-out, background-color 0.4s ease-out, border-color 0.4s ease-out;
+}
+@media (any-hover: hover) {
+  .c-btn:hover {
+    color: #1d1d1d;
+    background-color: #fff;
+    border-color: #fff;
+  }
+}
+@media screen and (width >= 768px) {
+  .c-btn--medium {
+    width: 13rem;
+    font-size: 1.8rem;
+  }
+}
+@media screen and (width >= 1024px) {
+  .c-btn--medium {
+    width: 22.3rem;
+    font-size: 2.4rem;
+  }
+}
+@media screen and (width >= 768px) {
+  .c-btn--small {
+    width: 9.8rem;
+    font-size: 1.4rem;
+  }
+}
+
+.c-tag {
+  padding: 0.6em 0.8em;
+  font-family: "Oswald", sans-serif;
+  font-size: 1.1rem;
+  color: #2b2b2b;
+  letter-spacing: 0.02em;
+  background-color: #bababa;
+  border-radius: 3px;
+}
+@media screen and (width >= 768px) {
+  .c-tag {
+    font-size: 1.2rem;
+  }
+}
+
+.c-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+.c-card__link {
+  display: block;
+  overflow: hidden;
+}
+@media (any-hover: hover) {
+  .c-card__link:hover .c-card__img {
+    transform: scale(1.1);
+  }
+}
+.c-card__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.4s ease-out;
+}
+.c-card__ttl {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+}
+.c-card__ttl--en {
+  font-family: "Oswald", sans-serif;
+}
+.c-card__tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
 /*# sourceMappingURL=style.css.map */

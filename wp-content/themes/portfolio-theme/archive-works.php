@@ -1,94 +1,87 @@
 <?php get_header(); ?>
 
 <main>
-  <div class="works-archive-container">
-    <div class="works-view">
-      <div class="works-view__box">
-        <h2 class="works-view__ttl">WORKS</h2>
-        <div class="works-view__filter-wrap">
-          <span class="works-view__filter-btn is-active" data-filter="all">ALL</span>
-          <span class="works-view__filter-btn" data-filter="vue-js">Vue.js</span>
-          <span class="works-view__filter-btn" data-filter="wordpress">WordPress</span>
-          <span class="works-view__filter-btn" data-filter="gsap">GSAP</span>
-        </div>
+  <div class="p-works-archive">
+    <div class="p-works-archive__head">
+      <h2 class="p-works-archive__ttl c-ttl c-ttl--page">WORKS</h2>
+      <div class="p-works-archive__filter-wrap">
+        <button class="p-works-archive__filter-btn is-active" data-filter="all">ALL</button>
+        <button class="p-works-archive__filter-btn" data-filter="vue-js">Vue.js</button>
+        <button class="p-works-archive__filter-btn" data-filter="wordpress">WordPress</button>
+        <button class="p-works-archive__filter-btn" data-filter="gsap">GSAP</button>
       </div>
-      <ul class="works-view__ul">
-        <?php
-        // ACFの「list_order」で並び替えるための条件を指定
-        $args = array(
-          'post_type'      => 'works',
-          'posts_per_page' => -1, // 「-1」は全件表示
-          'meta_key'       => 'list_order',
-          'orderby'        => 'meta_value_num',
-          'order'          => 'DESC'
-        );
-
-        // 指定した条件で、新しいクエリを作る
-        $works_query = new WP_Query($args);
-
-        // データがあるかチェックしてループ開始
-        if ($works_query->have_posts()) :
-          while ($works_query->have_posts()) : $works_query->the_post();
-
-            // タイトルへの欧文フォント適用
-            $en_class = get_field('use_en_font') ? 'en' : '';
-
-            // 職業訓練作品表示用クラス
-            $training_class = get_field('is_training_work') ? 'training' : '';
-
-            // この作品に設定された「使用技術（タクソノミー）」を取得
-            $skills = get_the_terms(get_the_ID(), 'skill');
-
-            // フィルター用skillスラッグ文字列作成
-            $skill_slugs = '';
-            if ($skills && ! is_wp_error($skills)) {
-              foreach ($skills as $skill) {
-                // スラッグを半角スペース空けで繋げる
-                $skill_slugs .= esc_attr($skill->slug) . ' ';
-              }
-            }
-
-            // skill表示用文字列作成
-            $skill_names = '';
-            if ($skills && ! is_wp_error($skills)) {
-              foreach ($skills as $index => $skill) {
-                $skill_names .= esc_attr($skill->name);
-                if ($index !== array_key_last($skills)) {
-                  $skill_names .= ' / ';
-                }
-              }
-            }
-        ?>
-            <li class="works-view__list <?php echo $training_class; ?>" data-skills="<?php echo trim($skill_slugs); ?>">
-              <a href="<?php the_permalink(); ?>" class="works-view__link">
-                <?php
-                if (has_post_thumbnail()) {
-                  the_post_thumbnail('large', array('class' => 'works-view__img', 'alt' => get_the_title() . 'サムネイル画像'));
-                }
-                ?>
-              </a>
-              <h3 class="works-view__name <?php echo $en_class; ?>"><?php the_title(); ?></h3>
-              <?php if ($skill_names): ?>
-                <span class="works-view__tag">Skill: <?php echo esc_html($skill_names); ?></span>
-              <?php endif; ?>
-            </li>
-        <?php
-          endwhile;
-          // リセット処理
-          wp_reset_postdata();
-        endif;
-        ?>
-      </ul>
     </div>
-    <ul class="breadcrumb">
-      <li class="breadcrumb__list">
-        <a href="<?php echo esc_url(home_url('/')); ?>" class="breadcrumb__link">HOME</a>
-      </li>
-      <li class="breadcrumb__list">
-        <p class="breadcrumb__txt en">WORKS</p>
-      </li>
+    <ul class="p-works-archive__works-list">
+      <?php
+      // ACFの「list_order」で並び替えるための条件を指定
+      $args = array(
+        'post_type'      => 'works',
+        'posts_per_page' => -1, // 「-1」は全件表示
+        'meta_key'       => 'list_order',
+        'orderby'        => 'meta_value_num',
+        'order'          => 'DESC'
+      );
+
+      // 指定した条件で、新しいクエリを作る
+      $works_query = new WP_Query($args);
+
+      // データがあるかチェックしてループ開始
+      if ($works_query->have_posts()) :
+        while ($works_query->have_posts()) : $works_query->the_post();
+
+          // タイトルへの欧文フォント適用
+          $en_class = get_field('use_en_font') ? 'c-card__ttl--en' : '';
+
+          // 職業訓練作品表示用クラス
+          $training_class = get_field('is_training_work') ? 'c-card--training' : '';
+
+          // この作品に設定された「使用技術（タクソノミー）」を取得
+          $skills = get_the_terms(get_the_ID(), 'skill');
+
+          // フィルター用skillスラッグ文字列作成
+          $skill_slugs = '';
+          if ($skills && ! is_wp_error($skills)) {
+            foreach ($skills as $skill) {
+              // スラッグを半角スペース空けで繋げる
+              $skill_slugs .= esc_attr($skill->slug) . ' ';
+            }
+          }
+      ?>
+          <li class="c-card <?php echo $training_class; ?>" data-skills="<?php echo trim($skill_slugs); ?>">
+            <a href="<?php the_permalink(); ?>" class="c-card__link">
+              <?php
+              if (has_post_thumbnail()) {
+                the_post_thumbnail('large', array('class' => 'c-card__img', 'alt' => get_the_title() . 'サムネイル画像'));
+              }
+              ?>
+            </a>
+            <h3 class="c-card__ttl <?php echo $en_class; ?>"><?php the_title(); ?></h3>
+            <?php if ($skills && ! is_wp_error($skills)): ?>
+              <ul class="c-card__tag-list">
+                <?php foreach ($skills as $skill) : ?>
+                  <li class="c-card__tag-item">
+                    <span class="c-tag"><?php echo esc_html($skill->name); ?></span>
+                  </li>
+                <?php endforeach; ?>
+              </ul>
+            <?php endif; ?>
+          </li>
+      <?php
+        endwhile;
+        // リセット処理
+        wp_reset_postdata();
+      endif;
+      ?>
     </ul>
   </div>
+  <ul class="c-breadcrumb">
+    <li class="c-breadcrumb__list">
+      <a href="<?php echo esc_url(home_url('/')); ?>" class="c-breadcrumb__link">HOME</a>
+    </li>
+    <li class="c-breadcrumb__list">
+      <p class="c-breadcrumb__txt c-breadcrumb__txt--en">WORKS</p>
+    </li>
+  </ul>
 </main>
 
 <?php get_footer(); ?>

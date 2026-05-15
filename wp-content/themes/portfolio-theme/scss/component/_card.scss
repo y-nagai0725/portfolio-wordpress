@@ -19,6 +19,7 @@
     padding: 0.8rem;
     font-size: 1.4rem;
     color: g.$black;
+    pointer-events: none;
     content: "職業訓練作品";
     background-color: g.$white;
   }
@@ -53,12 +54,13 @@
 
     &--en {
       font-family: g.$oswald;
+      letter-spacing: 0.02em;
     }
   }
 
   &__tag-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 1.6rem;
   }
 }

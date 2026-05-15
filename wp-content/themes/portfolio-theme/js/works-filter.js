@@ -1,8 +1,8 @@
 // WORKS一覧ページ用JS
 document.addEventListener('DOMContentLoaded', () => {
   // ボタンと作品カードを全部取得する
-  const filterButtons = document.querySelectorAll('.works-view__filter-btn');
-  const worksCards = document.querySelectorAll('.works-view__list');
+  const filterButtons = document.querySelectorAll('.p-works-archive__filter-btn');
+  const worksCards = document.querySelectorAll('.c-card');
 
   // 各ボタンにクリックイベントを追加
   filterButtons.forEach(button => {

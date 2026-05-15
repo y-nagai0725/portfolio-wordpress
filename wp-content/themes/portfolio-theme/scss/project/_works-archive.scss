@@ -1,0 +1,131 @@
+@use "../global/" as g;
+
+// =========================================================================
+//  作品一覧ページ (.p-works-archive)
+// =========================================================================
+
+.p-works-archive {
+  @include g.contents-width(116rem);
+
+  margin-top: calc(g.$header-height-sp + 4rem);
+
+  @include g.mq(md) {
+    margin-top: calc(g.$header-height-tab + 6rem);
+  }
+
+  @include g.mq(lg) {
+    margin-top: calc(g.$header-height-pc + 8rem);
+  }
+
+  &__head {
+    display: flex;
+    flex-direction: column;
+    gap: 3.2rem;
+    margin-bottom: 4.8rem;
+
+    @include g.mq(md) {
+      gap: 4rem;
+      margin-bottom: 10rem;
+    }
+
+    @include g.mq(xl) {
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: 14rem;
+    }
+  }
+
+  &__ttl {
+    opacity: 0;
+
+    .wrapper.is-active & {
+      animation: fade-right 1s 0.5s forwards;
+    }
+  }
+
+  &__filter-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 2.4rem;
+    opacity: 0;
+
+    .wrapper.is-active & {
+      animation: fade-in 1.5s 0.5s forwards;
+    }
+
+    @include g.mq(md) {
+      gap: 0.8rem 3.2rem;
+    }
+
+    @include g.mq(xl) {
+      align-self: flex-end;
+      justify-content: flex-end;
+      max-width: 38rem;
+    }
+  }
+
+  &__filter-btn {
+    position: relative;
+    display: block;
+    padding: 1rem 0;
+    font-family: g.$oswald;
+    font-size: 1.3rem;
+    color: g.$gray;
+    cursor: pointer;
+    transition: color g.$transition-base-duration g.$transition-base-easing;
+
+    &::before {
+      position: absolute;
+      bottom: 0.6rem;
+      width: 100%;
+      height: 1px;
+      content: "";
+      background-color: g.$gray;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform g.$transition-base-duration g.$transition-base-easing;
+    }
+
+    &.is-active {
+      color: g.$white;
+      pointer-events: none;
+
+      &::before {
+        background-color: g.$white;
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+    }
+
+    @include g.mq(md) {
+      font-size: 1.6rem;
+    }
+
+    @include g.hover {
+      color: g.$white;
+    }
+  }
+
+  &__works-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4.8rem;
+    margin-bottom: 7.2rem;
+    opacity: 0;
+
+    .wrapper.is-active & {
+      animation: fade-up 1s 1s forwards;
+    }
+
+    @include g.mq(md) {
+      grid-template-columns: 1fr 1fr;
+      gap: 5.6rem;
+      margin-bottom: 10rem;
+    }
+
+    @include g.mq(lg) {
+      gap: 6.4rem;
+      margin-bottom: 14rem;
+    }
+  }
+}

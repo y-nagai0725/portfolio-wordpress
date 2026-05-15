@@ -1,0 +1,100 @@
+@use "../global/" as g;
+
+// =========================================================================
+// パンくずリスト (.c-breadcrumb)
+// =========================================================================
+
+.c-breadcrumb {
+  @include g.contents-width;
+
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+  padding-bottom: 2.4rem;
+
+  @include g.mq(md) {
+    position: relative;
+
+    &::before {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: calc(100% - 5rem * 2);
+      height: 1px;
+      content: "";
+      background-color: g.$gray;
+      transform: translateX(-50%);
+    }
+  }
+
+  @include g.mq(lg) {
+    &::before {
+      width: 100%;
+    }
+  }
+
+  &__list {
+    position: relative;
+
+    &:not(:last-of-type)::after {
+      position: absolute;
+      top: 50%;
+      right: -1.5rem;
+      width: 0.6rem;
+      aspect-ratio: 1;
+      content: "";
+      border-top: 1px solid g.$gray;
+      border-right: 1px solid g.$gray;
+      transform: rotate(45deg) translateY(-50%);
+    }
+  }
+
+  &__link {
+    position: relative;
+    display: block;
+    padding: 1rem 0;
+    font-family: g.$oswald;
+    font-size: 1.3rem;
+    color: g.$gray;
+    transition: color g.$transition-base-duration g.$transition-base-easing;
+
+    &::before,
+    &::after {
+      position: absolute;
+      bottom: 0.7rem;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      content: "";
+    }
+
+    &::before {
+      background-color: g.$gray;
+    }
+
+    &::after {
+      background-color: g.$white;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform g.$transition-base-duration g.$transition-base-easing;
+    }
+
+    @include g.hover {
+      color: g.$white;
+
+      &::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+    }
+  }
+
+  &__txt {
+    font-size: 1.3rem;
+    color: g.$white;
+
+    &--en {
+      font-family: g.$oswald;
+    }
+  }
+}

@@ -678,6 +678,106 @@ body {
   gap: 1rem;
 }
 
+.c-breadcrumb {
+  width: 100%;
+  padding: 0 3rem;
+}
+@media screen and (width >= 768px) {
+  .c-breadcrumb {
+    padding: 0 5rem;
+  }
+}
+@media screen and (width >= 1024px) {
+  .c-breadcrumb {
+    width: 90%;
+    max-width: 160rem;
+    padding: 0;
+    margin-inline: auto;
+  }
+}
+.c-breadcrumb {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+  padding-bottom: 2.4rem;
+}
+@media screen and (width >= 768px) {
+  .c-breadcrumb {
+    position: relative;
+  }
+  .c-breadcrumb::before {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: calc(100% - 10rem);
+    height: 1px;
+    content: "";
+    background-color: #868686;
+    transform: translateX(-50%);
+  }
+}
+@media screen and (width >= 1024px) {
+  .c-breadcrumb::before {
+    width: 100%;
+  }
+}
+.c-breadcrumb__list {
+  position: relative;
+}
+.c-breadcrumb__list:not(:last-of-type)::after {
+  position: absolute;
+  top: 50%;
+  right: -1.5rem;
+  width: 0.6rem;
+  aspect-ratio: 1;
+  content: "";
+  border-top: 1px solid #868686;
+  border-right: 1px solid #868686;
+  transform: rotate(45deg) translateY(-50%);
+}
+.c-breadcrumb__link {
+  position: relative;
+  display: block;
+  padding: 1rem 0;
+  font-family: "Oswald", sans-serif;
+  font-size: 1.3rem;
+  color: #868686;
+  transition: color 0.4s ease-out;
+}
+.c-breadcrumb__link::before, .c-breadcrumb__link::after {
+  position: absolute;
+  bottom: 0.7rem;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  content: "";
+}
+.c-breadcrumb__link::before {
+  background-color: #868686;
+}
+.c-breadcrumb__link::after {
+  background-color: #fff;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s ease-out;
+}
+@media (any-hover: hover) {
+  .c-breadcrumb__link:hover {
+    color: #fff;
+  }
+  .c-breadcrumb__link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+.c-breadcrumb__txt {
+  font-size: 1.3rem;
+  color: #fff;
+}
+.c-breadcrumb__txt--en {
+  font-family: "Oswald", sans-serif;
+}
+
 .u-fade-in {
   opacity: 0;
 }

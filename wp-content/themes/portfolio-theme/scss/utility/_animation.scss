@@ -1,0 +1,32 @@
+@use "../global/" as g;
+
+// =========================================================================
+// アニメーション用ユーティリティ (.u-)
+// =========================================================================
+
+// フェードイン
+.u-fade-in {
+  opacity: 0;
+
+  &.is-active {
+    animation: fade-in 1s forwards;
+  }
+}
+
+// 左から右へフェードイン
+.u-fade-right {
+  opacity: 0;
+
+  &.is-active {
+    animation: fade-right 1s forwards;
+  }
+}
+
+// 下から上へフェードイン
+.u-fade-up {
+  opacity: 0;
+
+  &.is-active {
+    animation: fade-up 1s forwards;
+  }
+}

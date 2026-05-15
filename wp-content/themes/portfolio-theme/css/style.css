@@ -113,6 +113,14 @@ meter {
   display: none;
 }
 
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 @keyframes fade-right {
   0% {
     opacity: 0;
@@ -131,14 +139,6 @@ meter {
   100% {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
   }
 }
 html {
@@ -676,6 +676,27 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+}
+
+.u-fade-in {
+  opacity: 0;
+}
+.u-fade-in.is-active {
+  animation: fade-in 1s forwards;
+}
+
+.u-fade-right {
+  opacity: 0;
+}
+.u-fade-right.is-active {
+  animation: fade-right 1s forwards;
+}
+
+.u-fade-up {
+  opacity: 0;
+}
+.u-fade-up.is-active {
+  animation: fade-up 1s forwards;
 }
 
 /*# sourceMappingURL=style.css.map */

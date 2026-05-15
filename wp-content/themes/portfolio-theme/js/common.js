@@ -68,12 +68,12 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   /**
-   * 各セクション要素のフェードインアニメーション設定
-   * .js-fadeIn, .js-fadeUp などのクラスを持つ要素を対象とする
+   * 各要素のフェードインアニメーション設定
+   * .js-scroll クラスを持つ要素が画面に入ったら .is-active を付与する
    */
   const initScrollFadeAnimations = () => {
     // 対象となるクラスを持つ要素を配列として取得
-    const targets = gsap.utils.toArray('.js-fadeIn, .js-fadeUp, .js-fadeUpLarge, .js-fadeRight');
+    const targets = gsap.utils.toArray('.js-scroll');
 
     targets.forEach((target) => {
       ScrollTrigger.create({

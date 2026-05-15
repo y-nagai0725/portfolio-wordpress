@@ -1,38 +1,38 @@
 @use "./variables" as v;
 
-// fade-right
+// フェードイン
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+// 左から右へフェードイン
 @keyframes fade-right {
-  0%{
+  0% {
     opacity: 0;
     transform: translateX(-4rem);
   }
 
-  100%{
+  100% {
     opacity: 1;
     transform: translateX(0);
   }
 }
 
-// fade-up
+// 下から上へフェードイン
 @keyframes fade-up {
-  0%{
+  0% {
     opacity: 0;
     transform: translateY(4rem);
   }
 
-  100%{
+  100% {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-// fade-in
-@keyframes fade-in {
-  0%{
-    opacity: 0;
-  }
-
-  100%{
-    opacity: 1;
   }
 }

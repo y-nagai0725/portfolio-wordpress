@@ -837,15 +837,18 @@ body {
 }
 .p-works-archive {
   margin-top: calc(80px + 4rem);
+  margin-bottom: 7.2rem;
 }
 @media screen and (width >= 768px) {
   .p-works-archive {
     margin-top: calc(90px + 6rem);
+    margin-bottom: 10rem;
   }
 }
 @media screen and (width >= 1024px) {
   .p-works-archive {
     margin-top: calc(100px + 8rem);
+    margin-bottom: 14rem;
   }
 }
 .p-works-archive__head {
@@ -938,7 +941,6 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   gap: 4.8rem;
-  margin-bottom: 7.2rem;
   opacity: 0;
 }
 .wrapper.is-active .p-works-archive__works-list {
@@ -948,13 +950,11 @@ body {
   .p-works-archive__works-list {
     grid-template-columns: 1fr 1fr;
     gap: 5.6rem;
-    margin-bottom: 10rem;
   }
 }
 @media screen and (width >= 1024px) {
   .p-works-archive__works-list {
     gap: 6.4rem;
-    margin-bottom: 14rem;
   }
 }
 

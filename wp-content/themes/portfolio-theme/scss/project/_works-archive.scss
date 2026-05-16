@@ -8,13 +8,16 @@
   @include g.contents-width(116rem);
 
   margin-top: calc(g.$header-height-sp + 4rem);
+  margin-bottom: 7.2rem;
 
   @include g.mq(md) {
     margin-top: calc(g.$header-height-tab + 6rem);
+    margin-bottom: 10rem;
   }
 
   @include g.mq(lg) {
     margin-top: calc(g.$header-height-pc + 8rem);
+    margin-bottom: 14rem;
   }
 
   &__head {
@@ -110,7 +113,6 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 4.8rem;
-    margin-bottom: 7.2rem;
     opacity: 0;
 
     .wrapper.is-active & {
@@ -120,12 +122,10 @@
     @include g.mq(md) {
       grid-template-columns: 1fr 1fr;
       gap: 5.6rem;
-      margin-bottom: 10rem;
     }
 
     @include g.mq(lg) {
       gap: 6.4rem;
-      margin-bottom: 14rem;
     }
   }
 }

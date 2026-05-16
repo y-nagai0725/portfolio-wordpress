@@ -758,10 +758,12 @@ body {
   position: relative;
   display: block;
   padding: 1rem 0;
-  font-family: "Oswald", sans-serif;
   font-size: 1.3rem;
   color: #868686;
   transition: color 0.4s ease-out;
+}
+.c-breadcrumb__link--en {
+  font-family: "Oswald", sans-serif;
 }
 .c-breadcrumb__link::before, .c-breadcrumb__link::after {
   position: absolute;

@@ -74,14 +74,14 @@
       ?>
     </ul>
   </div>
-  <ul class="c-breadcrumb">
-    <li class="c-breadcrumb__list">
-      <a href="<?php echo esc_url(home_url('/')); ?>" class="c-breadcrumb__link">HOME</a>
-    </li>
-    <li class="c-breadcrumb__list">
-      <p class="c-breadcrumb__txt c-breadcrumb__txt--en">WORKS</p>
-    </li>
-  </ul>
 </main>
+
+<?php
+get_template_part('template-parts/breadcrumb', null, array(
+  'items' => array(
+    array('text' => 'WORKS', 'url' => '', 'is_en' => true)
+  )
+));
+?>
 
 <?php get_footer(); ?>

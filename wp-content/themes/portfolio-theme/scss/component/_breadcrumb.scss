@@ -53,10 +53,13 @@
     position: relative;
     display: block;
     padding: 1rem 0;
-    font-family: g.$oswald;
     font-size: 1.3rem;
     color: g.$gray;
     transition: color g.$transition-base-duration g.$transition-base-easing;
+
+    &--en {
+      font-family: g.$oswald;
+    }
 
     &::before,
     &::after {

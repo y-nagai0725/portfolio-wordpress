@@ -48,7 +48,7 @@
           }
       ?>
           <li class="c-card <?php echo $training_class; ?>" data-skills="<?php echo trim($skill_slugs); ?>">
-            <a href="<?php the_permalink(); ?>" class="c-card__link">
+            <a href="<?php echo esc_url(get_the_permalink()); ?>" class="c-card__link">
               <?php
               if (has_post_thumbnail()) {
                 the_post_thumbnail('large', array('class' => 'c-card__img', 'alt' => get_the_title() . 'サムネイル画像'));

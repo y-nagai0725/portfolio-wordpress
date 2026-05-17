@@ -43,11 +43,11 @@
           if ($skills && ! is_wp_error($skills)) {
             foreach ($skills as $skill) {
               // スラッグを半角スペース空けで繋げる
-              $skill_slugs .= esc_attr($skill->slug) . ' ';
+              $skill_slugs .= $skill->slug . ' ';
             }
           }
       ?>
-          <li class="c-card <?php echo $training_class; ?>" data-skills="<?php echo trim($skill_slugs); ?>">
+          <li class="c-card <?php echo esc_attr($training_class); ?>" data-skills="<?php echo esc_attr(trim($skill_slugs)); ?>">
             <a href="<?php echo esc_url(get_the_permalink()); ?>" class="c-card__link">
               <?php
               if (has_post_thumbnail()) {
@@ -55,7 +55,7 @@
               }
               ?>
             </a>
-            <h3 class="c-card__ttl <?php echo $en_class; ?>"><?php the_title(); ?></h3>
+            <h3 class="c-card__ttl <?php echo esc_attr($en_class); ?>"><?php the_title(); ?></h3>
             <?php if ($skills && ! is_wp_error($skills)): ?>
               <ul class="c-card__tag-list">
                 <?php foreach ($skills as $skill) : ?>

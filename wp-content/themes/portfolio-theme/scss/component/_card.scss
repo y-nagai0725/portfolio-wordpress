@@ -11,17 +11,25 @@
   flex-direction: column;
   gap: 1.6rem;
 
+  @include g.mq(lg) {
+    gap: 2rem;
+  }
+
   &--training::before {
     position: absolute;
     top: 0;
     left: 0;
     z-index: g.$z-default;
-    padding: 0.8rem;
-    font-size: 1.4rem;
+    padding: 0.6em;
+    font-size: 1.2rem;
     color: g.$black;
     pointer-events: none;
     content: "職業訓練作品";
     background-color: g.$white;
+
+    @include g.mq(lg) {
+      font-size: 1.4rem;
+    }
   }
 
   &.is-hidden {
@@ -56,11 +64,19 @@
       font-family: g.$oswald;
       letter-spacing: 0.02em;
     }
+
+    @include g.mq(lg) {
+      font-size: 2.4rem;
+    }
   }
 
   &__tag-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 1.6rem;
+    gap: 1rem;
+
+    @include g.mq(lg) {
+      gap: 1.6rem;
+    }
   }
 }

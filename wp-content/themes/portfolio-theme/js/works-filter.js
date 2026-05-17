@@ -4,6 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const filterButtons = document.querySelectorAll('.p-works-archive__filter-btn');
   const worksCards = document.querySelectorAll('.c-card');
 
+  // 要素が存在しないページでのエラーを防ぐ安全対策
+  if (filterButtons.length === 0 || worksCards.length === 0) return;
+
   // 各ボタンにクリックイベントを追加
   filterButtons.forEach(button => {
     button.addEventListener('click', () => {

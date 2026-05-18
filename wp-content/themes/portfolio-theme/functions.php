@@ -58,14 +58,14 @@ function my_portfolio_enqueue_scripts()
 
   // 作品詳細ページのみで読み込むJS
   if (is_singular('works')) {
-    wp_enqueue_script('works-intro-script', get_template_directory_uri() . '/js/worksIntroduction.js', array('gsap', 'scroll-trigger', 'common-script'), filemtime(get_theme_file_path('/js/worksIntroduction.js')), true);
+    wp_enqueue_script('works-single-script', get_template_directory_uri() . '/js/works-single.js', array('gsap', 'scroll-trigger', 'common-script'), filemtime(get_theme_file_path('/js/works-single.js')), true);
 
     // 今見ている作品のIDを取得する
     $post_id = get_queried_object_id();
 
     // 横スクロールアニメーション用JSを読み込む
     if (get_field('use_horizontal_scroll', $post_id)) {
-      wp_enqueue_script('works-intro-horizontal-script', get_template_directory_uri() . '/js/worksIntroduction_horizontalScroll.js', array('gsap', 'scroll-trigger', 'common-script'), filemtime(get_theme_file_path('/js/worksIntroduction_horizontalScroll.js')), true);
+      wp_enqueue_script('works-single-horizontal-script', get_template_directory_uri() . '/js/works-single-horizontal.js', array('gsap', 'scroll-trigger', 'common-script'), filemtime(get_theme_file_path('/js/works-single-horizontal.js')), true);
     }
   }
 

@@ -8,7 +8,7 @@
       $skills = get_the_terms(get_the_ID(), 'skill');
 
       // タイトルへの欧文フォント適用
-      $en_class = get_field('use_en_font') ? 'en' : '';
+      $en_class = get_field('use_en_font') ? 'p-works-single__ttl--en' : '';
 
       // 使用技術配列
       $tech_details = get_field('tech_details');
@@ -49,7 +49,7 @@
       }
 
       // 「次の作品」のタイトルへの欧文フォント適用
-      $next_post_en_class = get_field('use_en_font', $next_post->ID) ? 'en' : '';
+      $next_post_en_class = get_field('use_en_font', $next_post->ID) ? 'p-works-single__link-txt--en' : '';
 
       // --------------------------------------------------
       // 前の作品を取得
@@ -84,45 +84,47 @@
       }
 
       // 「前の作品」のタイトルへの欧文フォント適用
-      $prev_post_en_class = get_field('use_en_font', $prev_post->ID) ? 'en' : '';
+      $prev_post_en_class = get_field('use_en_font', $prev_post->ID) ? 'p-works-single__link-txt--en' : '';
   ?>
-      <div class="works-detail-container">
-        <div class="site-view">
-          <div id="site-view__scroll-area" class="site-view__scroll-area">
+      <div class="p-works-single">
+        <div class="p-works-single__site-view">
+          <div class="p-works-single__scroll-area">
             <?php if (get_field('use_horizontal_scroll')): ?>
-              <div class="site-view__scroll-img-wrapper">
-                <img src="<?php the_field('full_image'); ?>" alt="<?php the_title(); ?>の全体画像"
-                  class="site-view__img site-view__img--horizontal">
+              <div class="p-works-single__scroll-img-wrap">
+                <img src="<?php echo esc_url(get_field('full_image')); ?>" alt="<?php the_title(); ?>の全体画像"
+                  class="p-works-single__img p-works-single__img--horizontal">
               </div>
             <?php else: ?>
-              <img src="<?php the_field('full_image'); ?>" alt="<?php the_title(); ?>の全体画像" class="site-view__img">
+              <img src="<?php echo esc_url(get_field('full_image')); ?>" alt="<?php the_title(); ?>の全体画像" class="p-works-single__img">
             <?php endif; ?>
           </div>
-          <div id="site-view__scrollbar" class="site-view__scrollbar">
-            <div id="site-view__scrollbar-thumb" class="site-view__scrollbar-thumb"></div>
+          <div class="p-works-single__scrollbar">
+            <div class="p-works-single__scrollbar-thumb"></div>
           </div>
         </div>
-        <div class="introduction">
-          <h2 class="introduction__ttl <?php echo $en_class; ?>"><?php the_title(); ?></h2>
+        <div class="p-works-single__introduction js-scroll">
+          <h2 class="p-works-single__ttl <?php echo esc_attr($en_class); ?>"><?php the_title(); ?></h2>
           <?php if ($skills && ! is_wp_error($skills)): ?>
-            <div class="introduction__tag-wrap">
+            <ul class="p-works-single__tag-list">
               <?php
               foreach ($skills as $skill):
               ?>
-                <span class="introduction__tag"><?php echo esc_html($skill->name); ?></span>
+                <li class="p-works-single__tag-item">
+                  <span class="c-tag"><?php echo esc_html($skill->name); ?></span>
+                </li>
               <?php endforeach; ?>
-            </div>
+            </ul>
           <?php endif; ?>
-          <p class="introduction__txt">
+          <p class="p-works-single__description">
             <?php if (get_field('description')): ?>
               <?php the_field('description'); ?>
             <?php endif; ?>
           </p>
-          <div class="introduction__btn-wrap">
-            <a href="<?php the_field('site_url'); ?>" class="introduction__site-link" target="_blank">WEB SITE<span
-                class="arrow"></span></a>
+          <div class="p-works-single__site-link-wrap">
+            <a href="<?php echo esc_url(get_field('site_url')); ?>" class="p-works-single__site-link" target="_blank">WEB SITE<span
+                class="p-works-single__arrow"></span></a>
             <?php if (get_field('test_password')): ?>
-              <p class="introduction__site-notice">
+              <p class="p-works-single__site-notice">
                 ※ゲスト用テストアカウント<br>
                 <?php if (get_field('test_user')): ?>
                   ・ユーザー名: <?php the_field('test_user'); ?><br>
@@ -134,10 +136,10 @@
               </p>
             <?php endif; ?>
           </div>
-          <dl class="introduction__table">
-            <div class="introduction__table-group">
-              <dt class="introduction__table-heading">POINT</dt>
-              <dd class="introduction__table-description">
+          <dl class="p-works-single__info">
+            <div class="p-works-single__info-group">
+              <dt class="p-works-single__info-dt p-works-single__info-dt--en">POINT</dt>
+              <dd class="p-works-single__info-dd">
                 <?php if (get_field('point_1_title')): ?>
                   ・<?php the_field('point_1_title'); ?><br>
                   <?php the_field('point_1_text'); ?>
@@ -160,32 +162,32 @@
               </dd>
             </div>
             <?php if (get_field('page_count')): ?>
-              <div class="introduction__table-group">
-                <dt class="introduction__table-heading">ページ数</dt>
-                <dd class="introduction__table-description">
+              <div class="p-works-single__info-group">
+                <dt class="p-works-single__info-dt">ページ数</dt>
+                <dd class="p-works-single__info-dd">
                   <?php the_field('page_count'); ?> ページ
                 </dd>
               </div>
             <?php endif; ?>
             <?php if (get_field('group_work_role')): ?>
-              <div class="introduction__table-group">
-                <dt class="introduction__table-heading">担当役割</dt>
-                <dd class="introduction__table-description">
+              <div class="p-works-single__info-group">
+                <dt class="p-works-single__info-dt">担当役割</dt>
+                <dd class="p-works-single__info-dd">
                   <?php the_field('group_work_role'); ?>
                 </dd>
               </div>
             <?php endif; ?>
             <?php if (get_field('period')): ?>
-              <div class="introduction__table-group">
-                <dt class="introduction__table-heading">制作期間</dt>
-                <dd class="introduction__table-description">
+              <div class="p-works-single__info-group">
+                <dt class="p-works-single__info-dt">制作期間</dt>
+                <dd class="p-works-single__info-dd">
                   <?php the_field('period'); ?>
                 </dd>
               </div>
             <?php endif; ?>
-            <div class="introduction__table-group">
-              <dt class="introduction__table-heading">使用技術</dt>
-              <dd class="introduction__table-description">
+            <div class="p-works-single__info-group">
+              <dt class="p-works-single__info-dt">使用技術</dt>
+              <dd class="p-works-single__info-dd">
                 <?php if ($tech_details) {
                   foreach ($tech_details as $index => $tech) {
                     echo esc_html($tech);
@@ -197,11 +199,11 @@
                 ?>
               </dd>
             </div>
-            <div class="introduction__table-group">
-              <dt class="introduction__table-heading">URL</dt>
-              <dd class="introduction__table-description">
-                <a href="<?php the_field('site_url'); ?>" class="introduction__table-link"
-                  target="_blank"><?php the_field('site_url'); ?></a>
+            <div class="p-works-single__info-group">
+              <dt class="p-works-single__info-dt p-works-single__info-dt--en">URL</dt>
+              <dd class="p-works-single__info-dd">
+                <a href="<?php echo esc_url(get_field('site_url')); ?>" class="p-works-single__info-link"
+                  target="_blank"><?php echo esc_html(get_field('site_url')); ?></a>
                 <?php if (get_field('test_password')): ?>
                   <br><br>
                   ※ゲスト用テストアカウント<br>
@@ -216,71 +218,73 @@
               </dd>
             </div>
             <?php if (get_field('github_url')): ?>
-              <div class="introduction__table-group">
-                <dt class="introduction__table-heading">Github</dt>
-                <dd class="introduction__table-description">
-                  <a href="<?php the_field('github_url'); ?>" class="introduction__table-link"
-                    target="_blank"><?php the_field('github_url'); ?></a>
+              <div class="p-works-single__info-group">
+                <dt class="p-works-single__info-dt p-works-single__info-dt--en">GitHub</dt>
+                <dd class="p-works-single__info-dd">
+                  <a href="<?php echo esc_url(get_field('github_url')); ?>" class="p-works-single__info-link"
+                    target="_blank"><?php echo esc_html(get_field('github_url')); ?></a>
                 </dd>
               </div>
             <?php endif; ?>
             <?php if (get_field('design_url')): ?>
-              <div class="introduction__table-group">
-                <dt class="introduction__table-heading">デザイン</dt>
-                <dd class="introduction__table-description">
-                  <a href="<?php the_field('design_url'); ?>"
-                    class="introduction__table-link" target="_blank">Figmaページ（閲覧のみ可能です）</a>
+              <div class="p-works-single__info-group">
+                <dt class="p-works-single__info-dt">デザイン</dt>
+                <dd class="p-works-single__info-dd">
+                  <a href="<?php echo esc_url(get_field('design_url')); ?>"
+                    class="p-works-single__info-link" target="_blank">Figmaページ（閲覧のみ可能です）</a>
                 </dd>
               </div>
             <?php endif; ?>
             <?php if (get_field('design_file')): ?>
-              <div class="introduction__table-group">
-                <dt class="introduction__table-heading">デザイン</dt>
-                <dd class="introduction__table-description">
-                  <a href="<?php the_field('design_file'); ?>"
-                    class="introduction__table-link" target="_blank">デザインファイル（XDファイル）</a>
+              <div class="p-works-single__info-group">
+                <dt class="p-works-single__info-dt">デザイン</dt>
+                <dd class="p-works-single__info-dd">
+                  <a href="<?php echo esc_url(get_field('design_file')); ?>"
+                    class="p-works-single__info-link" target="_blank">デザインファイル（XDファイル）</a>
                 </dd>
               </div>
             <?php endif; ?>
           </dl>
-          <div class="introduction__nav-wrap">
+          <nav class="p-works-single__nav">
             <?php if ($prev_post): ?>
-              <a href="<?php echo get_permalink($prev_post->ID); ?>" class="introduction__link-prev">
-                <div class="introduction__link-img-wrap">
-                  <?php echo get_the_post_thumbnail($prev_post->ID, 'medium', 'class=introduction__link-img'); ?>
+              <a href="<?php echo esc_url(get_permalink($prev_post->ID)); ?>" class="p-works-single__link-prev">
+                <div class="p-works-single__link-img-wrap">
+                  <?php echo get_the_post_thumbnail($prev_post->ID, 'medium', array('class' => 'p-works-single__link-img', 'alt' => $prev_post->post_title . 'サムネイル画像')); ?>
                 </div>
-                <span class="introduction__link-txt <?php echo $prev_post_en_class; ?>"><?php echo esc_html($prev_post->post_title); ?></span>
+                <span class="p-works-single__link-txt <?php echo esc_attr($prev_post_en_class); ?>"><?php echo esc_html($prev_post->post_title); ?></span>
               </a>
             <?php endif; ?>
 
-            <a href="<?php echo esc_url(get_post_type_archive_link('works')); ?>" class="introduction__link-works">WORKS</a>
+            <a href="<?php echo esc_url(get_post_type_archive_link('works')); ?>" class="p-works-single__link-works c-btn c-btn--medium">WORKS</a>
 
             <?php if ($next_post): ?>
-              <a href="<?php echo get_permalink($next_post->ID); ?>" class="introduction__link-next">
-                <div class="introduction__link-img-wrap">
-                  <?php echo get_the_post_thumbnail($next_post->ID, 'medium', 'class=introduction__link-img'); ?>
+              <a href="<?php echo esc_url(get_permalink($next_post->ID)); ?>" class="p-works-single__link-next">
+                <div class="p-works-single__link-img-wrap">
+                  <?php echo get_the_post_thumbnail($next_post->ID, 'medium', array('class' => 'p-works-single__link-img', 'alt' => $next_post->post_title . 'サムネイル画像')); ?>
                 </div>
-                <span class="introduction__link-txt <?php echo $next_post_en_class; ?>"><?php echo esc_html($next_post->post_title); ?></span>
+                <span class="p-works-single__link-txt <?php echo esc_attr($next_post_en_class); ?>"><?php echo esc_html($next_post->post_title); ?></span>
               </a>
             <?php endif; ?>
-          </div>
+          </nav>
         </div>
-        <ul class="breadcrumb">
-          <li class="breadcrumb__list">
-            <a href="<?php echo esc_url(home_url('/')); ?>" class="breadcrumb__link">HOME</a>
-          </li>
-          <li class="breadcrumb__list">
-            <a href="<?php echo esc_url(get_post_type_archive_link('works')); ?>" class="breadcrumb__link">WORKS</a>
-          </li>
-          <li class="breadcrumb__list">
-            <p class="breadcrumb__txt <?php echo $en_class; ?>"><?php the_title(); ?></p>
-          </li>
-        </ul>
       </div>
   <?php
     endwhile;
   endif;
   ?>
 </main>
+
+<?php
+$post_id = get_queried_object_id();
+$post_title = get_the_title($post_id);
+$use_en = get_field('use_en_font', $post_id);
+
+get_template_part('template-parts/breadcrumb', null, array(
+  'items' => array(
+    array('text' => 'WORKS', 'url' => get_post_type_archive_link('works'), 'is_en' => true),
+    array('text' => $post_title, 'url' => '', 'is_en' => $use_en)
+  )
+));
+?>
 
 <?php get_footer(); ?>

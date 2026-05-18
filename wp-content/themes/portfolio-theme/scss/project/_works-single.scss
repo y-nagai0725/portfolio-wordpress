@@ -1,0 +1,460 @@
+@use "../global/" as g;
+
+// =========================================================================
+//  作品詳細ページ (.p-works-single)
+// =========================================================================
+
+.p-works-single {
+  @include g.contents-width(116rem);
+
+  $parent: &;
+
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+  margin-top: calc(g.$header-height-sp + 4rem);
+  margin-bottom: 7.2rem;
+
+  @include g.mq(md) {
+    gap: 4rem;
+    margin-top: calc(g.$header-height-tab + 6rem);
+    margin-bottom: 10rem;
+  }
+
+  @include g.mq(lg) {
+    gap: 4.8rem;
+    margin-top: calc(g.$header-height-pc + 8rem);
+    margin-bottom: 14rem;
+  }
+
+  &__site-view {
+    opacity: 0;
+
+    .wrapper.is-active & {
+      animation: fade-up 1s forwards;
+    }
+  }
+
+  &__scroll-area {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden scroll;
+
+    // デフォルトのスクロールバーを隠す
+    -ms-overflow-style: none; // IE, Edge
+    scrollbar-width: none; // Firefox
+
+    &::-webkit-scrollbar {
+      display: none; // Chrome, Safari
+    }
+  }
+
+  &__scroll-img-wrap {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    user-select: none;
+  }
+
+  &__img {
+    display: block;
+    width: 100%;
+    max-block-size: none; // リセットCSS上書き用
+    height: auto;
+    user-select: none;
+
+    &--horizontal {
+      max-inline-size: none; // リセットCSS上書き用
+      width: auto;
+      height: 100%;
+    }
+  }
+
+  &__scrollbar {
+    position: absolute;
+    top: 0;
+    right: -0.8rem;
+    width: 1px;
+    height: 100%;
+    cursor: pointer;
+    user-select: none;
+    background-color: g.$white;
+
+    &::before {
+      position: absolute;
+      top: 0;
+      right: -1.6rem;
+      font-family: g.$oswald;
+      font-size: 1rem;
+      color: g.$white;
+      letter-spacing: 0.08em;
+      cursor: default;
+      content: "Scroll";
+      writing-mode: vertical-rl;
+    }
+
+    @include g.mq(md) {
+      right: -1.1rem;
+
+      &::before {
+        right: -2rem;
+        font-size: 1.1rem;
+      }
+    }
+
+    @include g.mq(lg) {
+      right: -1.5rem;
+
+      &::before {
+        right: -2.4rem;
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  &__scrollbar-thumb {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 0.7rem;
+    aspect-ratio: 1;
+    touch-action: none;
+    cursor: pointer;
+    user-select: none;
+    background-color: g.$gray;
+    border-radius: 50%;
+    transform: translateX(-50%);
+
+    @include g.mq(md) {
+      width: 0.9rem;
+    }
+
+    @include g.mq(lg) {
+      width: 1.1rem;
+    }
+  }
+
+  &__introduction {
+    opacity: 0;
+
+    &.is-active {
+      animation: fade-up 1s forwards;
+    }
+  }
+
+  &__ttl {
+    margin-bottom: 1.6rem;
+    font-size: 2rem;
+    font-weight: g.$bold;
+    color: g.$white;
+
+    &--en {
+      font-family: g.$oswald;
+      letter-spacing: 0.02em;
+    }
+
+    @include g.mq(md) {
+      margin-bottom: 2rem;
+      font-size: 2.4rem;
+    }
+
+    @include g.mq(lg) {
+      margin-bottom: 2.4rem;
+      font-size: 2.8rem;
+    }
+  }
+
+  &__tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 3.2rem;
+
+    @include g.mq(md) {
+      gap: 1.3rem;
+      margin-bottom: 4rem;
+    }
+
+    @include g.mq(lg) {
+      gap: 1.6rem;
+      margin-bottom: 4.8rem;
+    }
+  }
+
+  &__description {
+    margin-bottom: 3.2rem;
+    font-size: 1.2rem;
+    font-weight: g.$bold;
+    line-height: 2;
+    color: g.$gray;
+    letter-spacing: 0.05em;
+
+    @include g.mq(md) {
+      margin-bottom: 4rem;
+      font-size: 1.3rem;
+    }
+
+    @include g.mq(lg) {
+      margin-bottom: 4.8rem;
+      font-size: 1.4rem;
+    }
+  }
+
+  &__site-link-wrap {
+    width: 60%;
+    max-width: 25rem;
+    margin: 0 auto 3.2rem;
+
+    @include g.mq(md) {
+      margin: 0 auto 4rem;
+    }
+
+    @include g.mq(lg) {
+      margin: 0 auto 4.8rem;
+    }
+  }
+
+  &__site-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 2rem 0;
+    font-family: g.$oswald;
+    font-size: 1.6rem;
+    font-weight: g.$bold;
+    color: g.$white;
+    border: 1px solid g.$white;
+    transition: color g.$transition-base-duration g.$transition-base-easing;
+
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: g.$z-back;
+      width: 100%;
+      height: 100%;
+      content: "";
+      background-color: g.$white;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform g.$transition-base-duration g.$transition-base-easing;
+    }
+
+    @include g.hover {
+      color: g.$black;
+
+      #{$parent}__arrow {
+        transform: translate(100%, -50%);
+      }
+
+      &::before {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+    }
+  }
+
+  &__arrow {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 5.2rem;
+    height: 2rem;
+    transform: translate(50%, -50%);
+    transition: transform g.$transition-base-duration g.$transition-base-easing;
+
+    &::before {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      width: 100%;
+      height: 1px;
+      content: "";
+      background-color: g.$white;
+      transform: translateY(-50%);
+    }
+
+    &::after {
+      position: absolute;
+      top: calc(50% - 0.4rem);
+      right: 0;
+      width: 0.8rem;
+      aspect-ratio: 1;
+      content: "";
+      background-color: g.$white;
+      clip-path: polygon(0 0, 0 100%, 100% 100%);
+      transform: translateY(-50%);
+    }
+  }
+
+  &__site-notice {
+    margin-top: 1.6rem;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: g.$white;
+
+    @include g.mq(md) {
+      margin-top: 2rem;
+      font-size: 1.2rem;
+    }
+
+    @include g.mq(lg) {
+      margin-top: 2.4rem;
+      font-size: 1.3rem;
+    }
+  }
+
+  &__info {
+    margin-bottom: 8rem;
+
+    @include g.mq(md) {
+      margin-bottom: 10rem;
+    }
+
+    @include g.mq(lg) {
+      margin-bottom: 12rem;
+    }
+  }
+
+  &__info-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+    padding: 2em 0;
+    font-size: 1.4rem;
+    border-top: 1px solid g.$gray;
+
+    &:last-of-type {
+      border-bottom: 1px solid g.$gray;
+    }
+
+    @include g.mq(md) {
+      flex-direction: row;
+      gap: 0;
+      font-size: 1.5rem;
+    }
+
+    @include g.mq(lg) {
+      font-size: 1.6rem;
+    }
+  }
+
+  &__info-dt {
+    font-weight: g.$bold;
+    line-height: 2;
+    color: g.$gray;
+
+    &--en {
+      font-family: g.$oswald;
+      letter-spacing: 0.02em;
+    }
+
+    @include g.mq(md) {
+      width: 18%;
+    }
+
+    @include g.mq(lg) {
+      width: 15%;
+    }
+  }
+
+  &__info-dd {
+    line-height: 2;
+    color: g.$white;
+
+    @include g.mq(md) {
+      width: 82%;
+    }
+
+    @include g.mq(lg) {
+      width: 85%;
+    }
+  }
+
+  &__info-link {
+    display: inline-block;
+    width: fit-content;
+    color: g.$blue;
+    word-break: break-all;
+    transition: opacity g.$transition-base-duration g.$transition-base-easing;
+
+    @include g.hover {
+      opacity: 0.7;
+    }
+  }
+
+  &__nav {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+    place-items: center center;
+
+    @include g.mq(md) {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+
+    @include g.mq(lg) {
+      max-width: 96rem;
+      margin-inline: auto;
+    }
+  }
+
+  &__link-prev,
+  &__link-next {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    @include g.hover {
+      #{$parent}__link-img {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  &__link-img-wrap {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  &__link-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform g.$transition-base-duration g.$transition-base-easing;
+  }
+
+  &__link-txt {
+    font-size: 1.2rem;
+    color: g.$white;
+
+    &--en {
+      font-family: g.$oswald;
+    }
+
+    @include g.mq(md) {
+      font-size: 1.4rem;
+    }
+
+    @include g.mq(lg) {
+      font-size: 1.6rem;
+    }
+  }
+
+  &__link-works {
+    grid-row: 2;
+    grid-column: 1 / 3;
+
+    @include g.mq(md) {
+      grid-row: initial;
+      grid-column: initial;
+    }
+  }
+}

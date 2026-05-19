@@ -1,0 +1,345 @@
+@use "../global/" as g;
+
+// =========================================================================
+//  お問い合わせページ (.p-contact)
+// =========================================================================
+
+.p-contact {
+  @include g.contents-width(116rem);
+
+  margin-top: calc(g.$header-height-sp + 4rem);
+  margin-bottom: 7.2rem;
+
+  @include g.mq(md) {
+    margin-top: calc(g.$header-height-tab + 6rem);
+    margin-bottom: 10rem;
+  }
+
+  @include g.mq(lg) {
+    margin-top: calc(g.$header-height-pc + 8rem);
+    margin-bottom: 14rem;
+  }
+
+  &__ttl {
+    margin-bottom: 4.8rem;
+    opacity: 0;
+
+    .wrapper.is-active & {
+      animation: fade-in 1s 0.5s forwards;
+    }
+
+    @include g.mq(md) {
+      margin-bottom: 6.4rem;
+    }
+
+    @include g.mq(lg) {
+      margin-bottom: 8rem;
+    }
+  }
+
+  &__contents-wrap {
+    opacity: 0;
+
+    .wrapper.is-active & {
+      animation: fade-up 1s 1s forwards;
+    }
+  }
+
+  &__txt {
+    margin-bottom: 2.4rem;
+    font-size: 1.2rem;
+    line-height: 2;
+    color: g.$white;
+    text-align: center;
+    letter-spacing: 0.03em;
+
+    @include g.mq(md) {
+      margin-bottom: 3.2rem;
+      font-size: 1.4rem;
+      letter-spacing: 0.05em;
+    }
+
+    @include g.mq(lg) {
+      margin-bottom: 4rem;
+    }
+  }
+
+  &__form-wrap {
+    margin-bottom: 4rem;
+
+    @include g.mq(md) {
+      max-width: 60rem;
+      margin: 0 auto 6.4rem;
+    }
+
+    @include g.mq(lg) {
+      max-width: 80rem;
+      margin: 0 auto 8rem;
+    }
+
+    // --- ここからCF7特有のメッセージ用スタイル ---
+
+    .screen-reader-response {
+      display: none;
+    }
+
+    // チェックボックスとラベルを横並びにする
+    .wpcf7-list-item {
+      & > label {
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    // チェックボックスのラベル
+    .wpcf7-list-item-label {
+      font-size: 1.2rem;
+      line-height: 1.5;
+      color: g.$gray;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+
+      @include g.mq(md) {
+        font-size: 1.3rem;
+        letter-spacing: 0.04em;
+      }
+
+      @include g.mq(lg) {
+        font-size: 1.4rem;
+        letter-spacing: 0.05em;
+      }
+    }
+
+    // チェックボックス
+    input[type="checkbox"] {
+      position: relative;
+      display: inline-block;
+      width: 1.6rem;
+      aspect-ratio: 1;
+      margin-right: 1em;
+      cursor: pointer;
+      background-color: g.$white;
+      border-radius: 0.3rem;
+
+      &::after {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 60%;
+        height: 30%;
+        content: "";
+        border-bottom: 0.2rem solid g.$green;
+        border-left: 0.2rem solid g.$green;
+        opacity: 0;
+        transform: translate(-50%, -70%) rotate(-45deg);
+        transition: opacity g.$transition-base-duration g.$transition-base-easing;
+      }
+
+      &:checked::after {
+        opacity: 1;
+      }
+    }
+
+    // 入力エラーの時のテキスト（「必須項目です」など）
+    .wpcf7-not-valid-tip {
+      display: block;
+      margin-top: 0.8em;
+      font-size: 1.2rem;
+      font-weight: g.$bold;
+      color: g.$red;
+
+      @include g.mq(md) {
+        font-size: 1.3rem;
+      }
+
+      @include g.mq(lg) {
+        font-size: 1.4rem;
+      }
+    }
+
+    // 送信ボタンの下に出る全体メッセージ
+    .wpcf7-response-output {
+      // 基本は非表示
+      display: none;
+      padding: 1em;
+      font-size: 1.4rem;
+      font-weight: g.$bold;
+      line-height: 1.5;
+      text-align: center;
+
+      // デフォルトの線を消す
+      border: none;
+      border-radius: 0.4rem;
+
+      @include g.mq(md) {
+        font-size: 1.5rem;
+      }
+
+      @include g.mq(lg) {
+        font-size: 1.6rem;
+      }
+    }
+
+    // 入力エラーや送信失敗した時のメッセージ
+    form.invalid .wpcf7-response-output,
+    form.failed .wpcf7-response-output,
+    form.unaccepted .wpcf7-response-output,
+    form.spam .wpcf7-response-output {
+      // エラー時のみ表示する
+      display: block;
+      color: g.$red;
+      background-color: g.$white;
+    }
+
+    // スピナーのカスタマイズ
+    .wpcf7-spinner {
+      display: inline-block;
+      visibility: hidden;
+      width: 2rem;
+      aspect-ratio: 1;
+      margin-inline: auto;
+
+      // デフォルトの画像やSVGを強制的に削除
+      background: none !important;
+      border: 0.3rem solid g.$white; // リングのベース色
+      border-top: 0.3rem solid g.$gray; // くるくる回る部分の色
+      border-radius: 50%;
+      animation: cf7-spin 1s linear infinite;
+
+      // デフォルトの画像やSVGを強制的に削除
+      &::before {
+        display: none !important;
+      }
+    }
+
+    // 送信中に表示
+    form.submitting .wpcf7-spinner {
+      visibility: visible;
+    }
+  }
+
+  &__form-notice {
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+    line-height: 2;
+    color: g.$gray;
+    text-align: right;
+    letter-spacing: 0.03em;
+
+    &::before {
+      color: g.$white;
+      content: "＊";
+    }
+
+    @include g.mq(md) {
+      margin-bottom: 3rem;
+      font-size: 1.4rem;
+      letter-spacing: 0.05em;
+    }
+
+    @include g.mq(lg) {
+      margin-bottom: 4rem;
+    }
+  }
+
+  &__form-box {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    margin-bottom: 3rem;
+
+    &:nth-last-of-type(2) {
+      margin-bottom: 0;
+    }
+
+    @include g.mq(md) {
+      margin-bottom: 4rem;
+    }
+  }
+
+  &__form-label {
+    display: block;
+    font-size: 1.2rem;
+    color: g.$gray;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+
+    &.required::after {
+      color: g.$white;
+      content: "＊";
+    }
+
+    @include g.mq(md) {
+      font-size: 1.4rem;
+      letter-spacing: 0.05em;
+    }
+  }
+
+  &__form-input,
+  &__form-message {
+    width: 100%;
+    padding: 1.5em;
+    font-size: 1.4rem;
+    color: g.$gray;
+    letter-spacing: 0.05em;
+    background-color: g.$white;
+    border-radius: 0.4rem;
+    transition: box-shadow g.$transition-base-duration g.$transition-base-easing;
+
+    &:focus {
+      box-shadow: 0 0 0.8rem 0 g.$blue;
+    }
+
+    &::placeholder {
+      color: g.$gray;
+    }
+
+    @include g.mq(md) {
+      font-size: 1.6rem;
+    }
+  }
+
+  &__form-message {
+    height: 28rem;
+    line-height: 2;
+  }
+
+  &__form-submit {
+    display: block;
+    width: 100%;
+    max-width: 35rem;
+    padding: 2em;
+    margin-inline: auto;
+    font-size: 1.2rem;
+    font-weight: g.$bold;
+    color: g.$white;
+    text-align: center;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    border: 1px solid g.$pale-gray;
+    transition:
+      color g.$transition-base-duration g.$transition-base-easing,
+      background-color g.$transition-base-duration g.$transition-base-easing;
+
+    @include g.hover {
+      color: g.$black;
+      background-color: g.$white;
+    }
+
+    @include g.mq(md) {
+      padding: 2.5em;
+      font-size: 1.6rem;
+    }
+  }
+}
+
+// contact form 7のスピナーのアニメーション
+@keyframes cf7-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

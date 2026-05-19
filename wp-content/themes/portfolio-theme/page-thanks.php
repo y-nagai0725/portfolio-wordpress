@@ -1,29 +1,34 @@
 <?php get_header(); ?>
 
 <main>
-  <div class="thanks-area">
-    <h2 class="thanks-area__ttl">THANKS</h2>
-    <p class="thanks-area__txt">
-      お問い合わせありがとうございました。<br>
-      内容を確認し折り返しご連絡致します。
-    </p>
-    <div class="thanks-area__link-wrap">
-      <a href="<?php echo esc_url(home_url('/')); ?>" class="thanks-area__link">HOME</a>
-      <a href="<?php echo esc_url(get_post_type_archive_link('works')); ?>" class="thanks-area__link">WORKS</a>
-      <a href="<?php echo esc_url( home_url('/contact/') ); ?>" class="thanks-area__link">CONTACT</a>
+  <div class="p-thanks">
+    <h2 class="p-thanks__ttl c-ttl c-ttl--center c-ttl--page">THANKS</h2>
+    <div class="p-thanks__contents-wrap">
+      <p class="p-thanks__txt">
+        お問い合わせありがとうございました。<br><br>
+        メッセージの送信が完了いたしました。<br>
+        ご入力いただいたメールアドレス宛に、<br>
+        自動返信メールを送信しております。<br><br>
+        内容を確認次第、ご連絡いたしますので、<br>
+        今しばらくお待ちくださいませ。
+      </p>
+      <div class="p-thanks__link-wrap">
+        <a href="<?php echo esc_url(home_url('/')); ?>" class="p-thanks__link c-btn c-btn--medium">HOME</a>
+        <a href="<?php echo esc_url(get_post_type_archive_link('works')); ?>" class="p-thanks__link c-btn c-btn--medium">WORKS</a>
+        <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="p-thanks__link c-btn c-btn--medium">CONTACT</a>
+      </div>
     </div>
   </div>
-  <ul class="breadcrumb">
-    <li class="breadcrumb__list">
-      <a href="<?php echo esc_url(home_url('/')); ?>" class="breadcrumb__link">HOME</a>
-    </li>
-    <li class="breadcrumb__list">
-      <a href="<?php echo esc_url( home_url('/contact/') ); ?>" class="breadcrumb__link">CONTACT</a>
-    </li>
-    <li class="breadcrumb__list">
-      <p class="breadcrumb__txt en">THANKS</p>
-    </li>
-  </ul>
 </main>
+
+<?php
+
+get_template_part('template-parts/breadcrumb', null, array(
+  'items' => array(
+    array('text' => 'CONTACT', 'url' => home_url('/contact/'), 'is_en' => true),
+    array('text' => 'THANKS', 'url' => '', 'is_en' => true)
+  )
+));
+?>
 
 <?php get_footer(); ?>

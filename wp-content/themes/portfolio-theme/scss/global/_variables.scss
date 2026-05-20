@@ -15,6 +15,7 @@ $oswald: "Oswald", sans-serif;
 $noto-sans: "Noto Sans JP", sans-serif;
 $normal: 400;
 $bold: 700;
+$heavy: 900;
 
 // =========================================================================
 // 色
@@ -33,6 +34,9 @@ $blue: #3ea6ff;
 // =========================================================================
 $z-back: -1;
 $z-default: 1;
+$z-mv-logo-en: 10;
+$z-mv-logo-ja: 20;
+$z-mv-btn: 30;
 $z-header: 100;
 $z-drawer: 200;
 
@@ -50,3 +54,9 @@ $transition-base-duration: 0.4s;
 
 // アニメーションの基本easing
 $transition-base-easing: ease-out;
+
+// mvロゴアニメーションeasing: 日本語テキスト
+$transition-easing-mv-logo-ja: cubic-bezier(0.34, 0.8, 0.63, 0.98);
+
+// mvロゴアニメーションeasing: 英語ロゴ画像
+$transition-easing-mv-logo-en: cubic-bezier(0.99, 0, 0.08, 1);

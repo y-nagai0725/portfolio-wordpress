@@ -37,18 +37,21 @@ function my_portfolio_enqueue_scripts()
 
   // トップページのみで読み込むJS
   if (is_front_page() || is_home()) {
+    // top-mv.js
+    wp_enqueue_script('top-mv-script', get_template_directory_uri() . '/js/top-mv.js', array('gsap', 'scroll-trigger', 'common-script'), filemtime(get_theme_file_path('/js/top-mv.js')), true);
+
     // top.js
-    wp_enqueue_script('top-script', get_template_directory_uri() . '/js/top.js', array('gsap', 'scroll-trigger', 'common-script'), filemtime(get_theme_file_path('/js/top.js')), true);
+    //wp_enqueue_script('top-script', get_template_directory_uri() . '/js/top.js', array('gsap', 'scroll-trigger', 'common-script'), filemtime(get_theme_file_path('/js/top.js')), true);
 
     // Three.js関連の読み込み
-    wp_enqueue_script('three-js', get_template_directory_uri() . '/js/three.module.js', array(), null, true);
-    wp_enqueue_script('top-mv-canvas', get_template_directory_uri() . '/js/top-mv-canvas.js', array('three-js'), filemtime(get_theme_file_path('/js/top-mv-canvas.js')), true);
-    wp_enqueue_script('top-ray-canvas', get_template_directory_uri() . '/js/top-ray-canvas.js', array('three-js'), filemtime(get_theme_file_path('/js/top-ray-canvas.js')), true);
+    //wp_enqueue_script('three-js', get_template_directory_uri() . '/js/three.module.js', array(), null, true);
+    //wp_enqueue_script('top-mv-canvas', get_template_directory_uri() . '/js/top-mv-canvas.js', array('three-js'), filemtime(get_theme_file_path('/js/top-mv-canvas.js')), true);
+    //wp_enqueue_script('top-ray-canvas', get_template_directory_uri() . '/js/top-ray-canvas.js', array('three-js'), filemtime(get_theme_file_path('/js/top-ray-canvas.js')), true);
 
     // JSへWordPressの画像パスを渡す処理
-    wp_localize_script('top-mv-canvas', 'myThemeData', array(
-      'themeUrl' => get_template_directory_uri()
-    ));
+    // wp_localize_script('top-mv-canvas', 'myThemeData', array(
+    //   'themeUrl' => get_template_directory_uri()
+    // ));
   }
 
   // 作品一覧ページのみで読み込むJS (アーカイブページやカスタム投稿タイプアーカイブなど)

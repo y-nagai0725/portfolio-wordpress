@@ -1,0 +1,296 @@
+@use "../global/" as g;
+
+// =========================================================================
+//  トップページ (.p-top)
+// =========================================================================
+
+.p-top {
+  &__ray-canvas-wrap {
+    position: fixed;
+    z-index: g.$z-back;
+    width: 100%;
+    height: 100svh;
+  }
+
+  &__mv-canvas-wrap {
+    position: fixed;
+    z-index: g.$z-back;
+    width: 100%;
+    height: 100svh;
+  }
+
+  &__mv {
+    position: relative;
+    height: 100svh;
+    overflow: hidden;
+  }
+
+  &__catchcopy-ja-wrap {
+    @include g.contents-width;
+
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    z-index: g.$z-mv-logo-ja;
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+    opacity: 0;
+    transform: rotate(-5deg) translateX(calc(-50% + 10vw));
+    transition:
+      opacity 0.4s 1s g.$transition-easing-mv-logo-ja,
+      transform 0.4s 1s g.$transition-easing-mv-logo-ja;
+
+    @include g.mq(md) {
+      top: 25%;
+      transform: translateX(calc(-50% + 10vw));
+    }
+
+    &.is-complete {
+      transition: none;
+    }
+
+    &.is-active {
+      opacity: 1;
+      transform: rotate(-5deg) translateX(-50%);
+
+      @include g.mq(md) {
+        transform: translateX(-50%);
+      }
+    }
+  }
+
+  &__catchcopy-ja {
+    color: g.$white;
+    white-space: nowrap;
+
+    &--small {
+      font-size: 1.5rem;
+      font-weight: g.$bold;
+      line-height: 2;
+      letter-spacing: 0.66em;
+
+      @include g.mq(md) {
+        letter-spacing: 1.18em;
+      }
+
+      @include g.mq(lg) {
+        font-size: 2.2rem;
+      }
+
+      @include g.mq(xl) {
+        font-size: 2.8rem;
+      }
+    }
+
+    &--large {
+      font-size: 7.5rem;
+      font-weight: g.$heavy;
+      line-height: 1.3;
+      letter-spacing: 0.12em;
+
+      @include g.mq(md) {
+        font-size: 8.7rem;
+      }
+
+      @include g.mq(lg) {
+        font-size: 12rem;
+      }
+
+      @include g.mq(xl) {
+        font-size: 14rem;
+      }
+    }
+  }
+
+  &__catchcopy-br {
+    @include g.mq(md) {
+      display: none;
+    }
+  }
+
+  &__catchcopy-en-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: g.$z-mv-logo-en;
+    width: fit-content;
+    height: 100%;
+    mix-blend-mode: overlay;
+    opacity: 0;
+    transform: translate(0, -100svh);
+    transition:
+      opacity 1.4s g.$transition-easing-mv-logo-en,
+      transform 1.4s g.$transition-easing-mv-logo-en;
+
+    &.is-complete {
+      transition: none;
+    }
+
+    &.is-active {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+
+    @include g.mq(md) {
+      @include g.contents-width;
+
+      top: 23%;
+      left: 50%;
+      height: auto;
+      transform: translate(calc(-50% - 100vw), 0);
+
+      &.is-active {
+        transform: translate(-50%, 0);
+      }
+    }
+
+    @include g.mq(lg) {
+      top: 21%;
+    }
+
+    @include g.mq(xl) {
+      top: 19%;
+    }
+
+    @include g.mq(1440px) {
+      top: 17%;
+    }
+
+    @include g.mq(1920px) {
+      top: 11%;
+    }
+  }
+
+  &__catchcopy-en-img {
+    display: block;
+    width: auto;
+    height: 100%;
+
+    @include g.mq(md) {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &__scroll-btn-wrap {
+    position: absolute;
+    right: 3rem;
+    bottom: 3rem;
+    z-index: g.$z-mv-btn;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.6s 0.8s g.$transition-base-easing;
+
+    &.is-complete {
+      transition: none;
+    }
+
+    &.is-active {
+      pointer-events: all;
+      opacity: 1;
+    }
+
+    @include g.mq(md) {
+      right: 5rem;
+      bottom: 25%;
+    }
+
+    @include g.mq(lg) {
+      @include g.contents-width;
+
+      bottom: 4rem;
+      left: 50%;
+      display: flex;
+      justify-content: flex-end;
+      transform: translateX(-50%);
+    }
+  }
+
+  &__scroll-btn {
+    display: grid;
+    place-content: center;
+    width: 15rem;
+    aspect-ratio: 1;
+    border: 1px solid g.$pale-gray;
+    border-radius: 50%;
+
+    @include g.mq(md) {
+      width: 18rem;
+    }
+
+    @include g.mq(lg) {
+      width: 22rem;
+    }
+  }
+
+  &__scroll-btn-txt {
+    position: relative;
+    display: block;
+    padding-left: 3rem;
+    font-family: g.$oswald;
+    font-size: 1.1rem;
+    line-height: 2;
+    color: g.$white;
+    letter-spacing: 0.64em;
+
+    @include g.mq(md) {
+      padding-left: 3.5rem;
+      font-size: 1.2rem;
+    }
+
+    @include g.mq(lg) {
+      padding-left: 4rem;
+      font-size: 1.4rem;
+    }
+
+    &::before {
+      position: absolute;
+      top: 0.7rem;
+      left: 0;
+      width: 1.8rem;
+      height: 2.5rem;
+      content: "";
+      background-image: url("../images/top/arrow-down.svg");
+      background-repeat: no-repeat;
+      background-size: contain;
+      animation:
+        mv-move-arrow 1.6s ease-in-out infinite,
+        mv-hide-arrow 1.6s ease-out infinite;
+    }
+  }
+}
+
+// =========================================================================
+// トップページ用keyframes
+// =========================================================================
+
+// mvのスクロールボタンの矢印アニメーション：移動量
+@keyframes mv-move-arrow {
+  0% {
+    top: 1rem;
+  }
+
+  100% {
+    top: 4rem;
+  }
+}
+
+// mvのスクロールボタンの矢印アニメーション：途中で隠す
+@keyframes mv-hide-arrow {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 0.9;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}

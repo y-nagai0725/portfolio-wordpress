@@ -46,7 +46,23 @@ document.addEventListener('DOMContentLoaded', () => {
    */
   const startPageAnimation = () => {
     wrapper?.classList.add('is-active');
-    header?.classList.add('is-active');
+
+    // トップページかどうか（MVセクションが存在するか）を確認
+    const mvSection = document.querySelector('.p-top__mv');
+    const currentScrollY = window.scrollY;
+    const threshold = window.innerHeight / 2;
+
+    if (mvSection && currentScrollY < threshold) {
+      // 【MVが見えている場合】
+      // MVのロゴアニメーション終了際にヘッダーを表示する
+      setTimeout(() => {
+        header?.classList.add('is-active');
+      }, 1800);
+    } else {
+      // 【下層ページ、または既にスクロールされている場合】
+      // すぐにヘッダーを表示する
+      header?.classList.add('is-active');
+    }
   };
 
   /**

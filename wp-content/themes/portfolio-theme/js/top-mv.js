@@ -2,6 +2,7 @@
  * トップページ: MVセクション用JS
  * ページ読み込み時のスクロール位置を判定し、
  * MVセクションの表示アニメーション（is-active / is-complete）を制御する。
+ * リンクに次セクションへのスムーススクロール処理を設定。
  */
 document.addEventListener('DOMContentLoaded', () => {
   /**
@@ -49,6 +50,29 @@ document.addEventListener('DOMContentLoaded', () => {
     mvElements.forEach(el => {
       el.classList.add('is-complete'); // transition: none を設定
       el.classList.add('is-active');   // 不透明度と最終位置をセット
+    });
+  }
+
+  // リンクのaタグ（.p-top__scroll-btn）を取得
+  const scrollBtn = scrollBtnWrap.querySelector('.p-top__scroll-btn');
+
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', (e) => {
+      // デフォルトのリンクの動きをキャンセル
+      e.preventDefault();
+
+      // 現在のヘッダーの高さを動的に取得
+      const headerHeight = document.querySelector('.l-header').offsetHeight;
+
+      // MESSAGEセクションへのスムーススクロール処理
+      gsap.to(window, {
+        duration: 0.8,
+        scrollTo: {
+          y: '#message',
+          offsetY: headerHeight // ヘッダーの高さ分だけ手前の位置にする
+        },
+        ease: 'power2.out'
+      });
     });
   }
 });

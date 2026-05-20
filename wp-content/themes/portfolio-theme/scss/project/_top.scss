@@ -19,6 +19,10 @@
     height: 100svh;
   }
 
+  // =========================================================================
+  // MVセクション
+  // =========================================================================
+
   &__mv {
     position: relative;
     height: 100svh;
@@ -260,6 +264,10 @@
     }
   }
 
+  // =========================================================================
+  // MESSAGEセクション
+  // =========================================================================
+
   &__message {
     @include g.section-margin;
 
@@ -333,6 +341,188 @@
   &__message-br {
     @include g.mq(md) {
       display: none;
+    }
+  }
+
+  // =========================================================================
+  // ABOUTセクション
+  // =========================================================================
+
+  &__about {
+    @include g.section-margin;
+  }
+
+  &__about-inner {
+    @include g.contents-width;
+  }
+
+  &__about-ttl {
+    margin-bottom: 3.2rem;
+    opacity: 0;
+
+    &.is-active {
+      animation: fade-right 1s g.$transition-base-easing forwards;
+    }
+
+    @include g.mq(md) {
+      margin-bottom: 6.4rem;
+    }
+
+    @include g.mq(lg) {
+      margin-bottom: 8rem;
+    }
+  }
+
+  &__about-profile {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    align-items: center;
+    opacity: 0;
+
+    &.is-active {
+      animation: fade-in 1s g.$transition-base-easing forwards;
+    }
+
+    @include g.mq(md) {
+      gap: 4rem;
+    }
+
+    @include g.mq(lg) {
+      flex-direction: row;
+      gap: 8rem;
+      align-items: stretch;
+      justify-content: center;
+    }
+
+    @include g.mq(xl) {
+      gap: 13rem;
+    }
+  }
+
+  &__about-img-wrap {
+    width: 18.4rem;
+
+    @include g.mq(md) {
+      width: 22rem;
+    }
+
+    @include g.mq(lg) {
+      width: 28rem;
+    }
+  }
+
+  &__about-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__about-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    @include g.mq(md) {
+      gap: 2.2rem;
+      max-width: 56rem;
+    }
+
+    @include g.mq(lg) {
+      gap: 2.4rem;
+    }
+  }
+
+  &__about-name {
+    font-size: 1.4rem;
+    font-weight: g.$bold;
+    color: g.$white;
+    letter-spacing: 0.12em;
+
+    @include g.mq(md) {
+      font-size: 2.1rem;
+    }
+  }
+
+  &__about-link-wrap {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+
+    @include g.mq(md) {
+      gap: 2.4rem;
+    }
+
+    @include g.mq(lg) {
+      gap: 3.2rem;
+    }
+  }
+
+  &__about-link {
+    position: relative;
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+    padding: 0.5em 0;
+    font-size: 1.2rem;
+    color: g.$white;
+    transition: opacity g.$transition-base-duration g.$transition-base-easing;
+
+    &--github,
+    &--blog {
+      &::before {
+        width: 1.8rem;
+        aspect-ratio: 1;
+        content: "";
+      }
+    }
+
+    &--github {
+      font-family: g.$oswald;
+      letter-spacing: 0.03em;
+
+      &::before {
+        background: url("../images/common/icon-github-white.svg") center center / cover;
+      }
+    }
+
+    &--blog {
+      &::before {
+        background: url("../images/top/about-blog-icon.svg") center center / cover;
+      }
+    }
+
+    @include g.hover {
+      opacity: 0.7;
+    }
+
+    @include g.mq(md) {
+      gap: 1rem;
+      font-size: 1.4rem;
+
+      &--github,
+      &--blog {
+        &::before {
+          width: 2.2rem;
+        }
+      }
+
+      &--github {
+        letter-spacing: 0.05em;
+      }
+    }
+  }
+
+  &__about-txt {
+    font-size: 1.2rem;
+    line-height: 2;
+    color: g.$gray;
+    letter-spacing: 0.03em;
+
+    @include g.mq(md) {
+      font-size: 1.4rem;
+      letter-spacing: 0.05em;
     }
   }
 }

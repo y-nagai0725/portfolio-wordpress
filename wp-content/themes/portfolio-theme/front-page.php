@@ -67,7 +67,30 @@
     </div>
   </section>
   <section class="p-top__about">
-
+    <div class="p-top__about-inner">
+      <h2 class="p-top__about-ttl c-ttl c-ttl--center c-ttl--section js-scroll">ABOUT</h2>
+      <div class="p-top__about-profile js-scroll">
+        <div class="p-top__about-img-wrap">
+          <img src="<?php echo get_template_directory_uri(); ?>/images/top/about-profile.jpg" alt="永井善孝 プロフィール写真" class="p-top__about-img">
+        </div>
+        <div class="p-top__about-info">
+          <p class="p-top__about-name">永井 善孝（ながい よしたか）</p>
+          <div class="p-top__about-link-wrap">
+            <a href="https://github.com/y-nagai0725" class="p-top__about-link p-top__about-link--github" target="_blank">GitHub</a>
+            <a href="https://blog.mikanbako.jp" class="p-top__about-link p-top__about-link--blog" target="_blank">技術ブログ</a>
+          </div>
+          <p class="p-top__about-txt">
+            北海道札幌市出身、大学生から函館へ、前職は病院の事務員として勤めていました。<br>
+            趣味はランニング。ダイエットと健康維持の為、週に3日程5kmをゆっくりと走っています。
+          </p>
+          <p class="p-top__about-txt">
+            職業訓練校にて、WEBデザイン、HTML/CSS、JavaScriptを学び、コーダー・フロントエンドエンジニアを目指して日々勉強、作品制作をしています。<br>
+            最近はJavaScript（Node.jsやVue.jsなど）を用いたWebアプリケーション開発に力を入れており、タイピングアプリなどをフルスクラッチで制作しました。また、本サイトのようにWordPressを用いたオリジナルテーマの構築も行っています。<br>
+            現在はGSAPやThree.jsなど、よりリッチでインタラクティブなUI/UXを実現するためのフロントエンド技術を積極的に学んでいます。
+          </p>
+        </div>
+      </div>
+    </div>
   </section>
   <section class="p-top__skill">
 

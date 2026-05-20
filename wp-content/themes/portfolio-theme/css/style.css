@@ -1235,6 +1235,196 @@ body {
     display: none;
   }
 }
+.p-top__about {
+  margin-bottom: 10rem;
+}
+@media screen and (width >= 768px) {
+  .p-top__about {
+    margin-bottom: 16rem;
+  }
+}
+@media screen and (width >= 1024px) {
+  .p-top__about {
+    margin-bottom: 24rem;
+  }
+}
+.p-top__about-inner {
+  width: 100%;
+  padding: 0 3rem;
+}
+@media screen and (width >= 768px) {
+  .p-top__about-inner {
+    padding: 0 5rem;
+  }
+}
+@media screen and (width >= 1024px) {
+  .p-top__about-inner {
+    width: 90%;
+    max-width: 160rem;
+    padding: 0;
+    margin-inline: auto;
+  }
+}
+.p-top__about-ttl {
+  margin-bottom: 3.2rem;
+  opacity: 0;
+}
+.p-top__about-ttl.is-active {
+  animation: fade-right 1s ease-out forwards;
+}
+@media screen and (width >= 768px) {
+  .p-top__about-ttl {
+    margin-bottom: 6.4rem;
+  }
+}
+@media screen and (width >= 1024px) {
+  .p-top__about-ttl {
+    margin-bottom: 8rem;
+  }
+}
+.p-top__about-profile {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  align-items: center;
+  opacity: 0;
+}
+.p-top__about-profile.is-active {
+  animation: fade-in 1s ease-out forwards;
+}
+@media screen and (width >= 768px) {
+  .p-top__about-profile {
+    gap: 4rem;
+  }
+}
+@media screen and (width >= 1024px) {
+  .p-top__about-profile {
+    flex-direction: row;
+    gap: 8rem;
+    align-items: stretch;
+    justify-content: center;
+  }
+}
+@media screen and (width >= 1280px) {
+  .p-top__about-profile {
+    gap: 13rem;
+  }
+}
+.p-top__about-img-wrap {
+  width: 18.4rem;
+}
+@media screen and (width >= 768px) {
+  .p-top__about-img-wrap {
+    width: 22rem;
+  }
+}
+@media screen and (width >= 1024px) {
+  .p-top__about-img-wrap {
+    width: 28rem;
+  }
+}
+.p-top__about-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.p-top__about-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+@media screen and (width >= 768px) {
+  .p-top__about-info {
+    gap: 2.2rem;
+    max-width: 56rem;
+  }
+}
+@media screen and (width >= 1024px) {
+  .p-top__about-info {
+    gap: 2.4rem;
+  }
+}
+.p-top__about-name {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.12em;
+}
+@media screen and (width >= 768px) {
+  .p-top__about-name {
+    font-size: 2.1rem;
+  }
+}
+.p-top__about-link-wrap {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+@media screen and (width >= 768px) {
+  .p-top__about-link-wrap {
+    gap: 2.4rem;
+  }
+}
+@media screen and (width >= 1024px) {
+  .p-top__about-link-wrap {
+    gap: 3.2rem;
+  }
+}
+.p-top__about-link {
+  position: relative;
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  padding: 0.5em 0;
+  font-size: 1.2rem;
+  color: #fff;
+  transition: opacity 0.4s ease-out;
+}
+.p-top__about-link--github::before, .p-top__about-link--blog::before {
+  width: 1.8rem;
+  aspect-ratio: 1;
+  content: "";
+}
+.p-top__about-link--github {
+  font-family: "Oswald", sans-serif;
+  letter-spacing: 0.03em;
+}
+.p-top__about-link--github::before {
+  background: url("../images/common/icon-github-white.svg") center center/cover;
+}
+.p-top__about-link--blog::before {
+  background: url("../images/top/about-blog-icon.svg") center center/cover;
+}
+@media (any-hover: hover) {
+  .p-top__about-link:hover {
+    opacity: 0.7;
+  }
+}
+@media screen and (width >= 768px) {
+  .p-top__about-link {
+    gap: 1rem;
+    font-size: 1.4rem;
+  }
+  .p-top__about-link--github::before, .p-top__about-link--blog::before {
+    width: 2.2rem;
+  }
+  .p-top__about-link--github {
+    letter-spacing: 0.05em;
+  }
+}
+.p-top__about-txt {
+  font-size: 1.2rem;
+  line-height: 2;
+  color: #868686;
+  letter-spacing: 0.03em;
+}
+@media screen and (width >= 768px) {
+  .p-top__about-txt {
+    font-size: 1.4rem;
+    letter-spacing: 0.05em;
+  }
+}
 
 @keyframes mv-move-arrow {
   0% {

@@ -52,6 +52,19 @@
   }
 }
 
+// セクション間のマージン
+@mixin section-margin {
+  margin-bottom: 10rem;
+
+  @include mq(md){
+    margin-bottom: 16rem;
+  }
+
+  @include mq(lg){
+    margin-bottom: 24rem;
+  }
+}
+
 // =========================================================================
 // Fluid Typography & Spacing (可変サイズ生成)
 // =========================================================================

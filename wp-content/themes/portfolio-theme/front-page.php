@@ -29,7 +29,42 @@
     </div>
   </section>
   <section class="p-top__message" id="message">
-
+    <div class="p-top__message-inner">
+      <div class="p-top__message-txt-wrap js-scroll">
+        <p class="p-top__message-txt">
+          前進あるのみ。
+        </p>
+        <p class="p-top__message-txt">
+          未知なる道を進むことが怖くても、<br class="p-top__message-br">
+          チャレンジし続ける。<br>
+          失敗や困難は必ずあるが、<br class="p-top__message-br">
+          それらを乗り越える。
+        </p>
+      </div>
+      <div class="p-top__message-txt-wrap js-scroll">
+        <p class="p-top__message-txt">
+          日々前進。
+        </p>
+        <p class="p-top__message-txt">
+          過去の自分を振り返っても、<br class="p-top__message-br">
+          過去を変えることはできない。<br>
+          だからこそ、未来へ向けて、<br class="p-top__message-br">
+          今を生きることが大切だ。
+        </p>
+      </div>
+      <div class="p-top__message-txt-wrap js-scroll">
+        <p class="p-top__message-txt">
+          Advance to the next level.
+        </p>
+        <p class="p-top__message-txt">
+          常に自分自身を高めていく。<br>
+          自分の弱点や課題を見つけ、<br class="p-top__message-br">
+          克服するために努力する。<br>
+          より良い未来に向けて、<br class="p-top__message-br">
+          進むことができると信じている。
+        </p>
+      </div>
+    </div>
   </section>
   <section class="p-top__about">
 

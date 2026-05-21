@@ -525,6 +525,164 @@
       letter-spacing: 0.05em;
     }
   }
+
+  // =========================================================================
+  // SKILLセクション
+  // =========================================================================
+
+  &__skill {
+    @include g.section-margin;
+  }
+
+  &__skill-inner {
+    @include g.contents-width;
+  }
+
+  &__skill-ttl {
+    margin-bottom: 3.2rem;
+    opacity: 0;
+
+    &.is-active {
+      animation: fade-right 1s g.$transition-base-easing forwards;
+    }
+
+    @include g.mq(md) {
+      margin-bottom: 6.4rem;
+    }
+
+    @include g.mq(lg) {
+      margin-bottom: 8rem;
+    }
+  }
+
+  &__skill-list {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 8rem;
+    counter-reset: skill-list-number 0;
+
+    @include g.mq(md) {
+      gap: 10rem;
+    }
+
+    @include g.mq(lg) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10rem 8rem;
+    }
+
+    @include g.mq(1440px) {
+      gap: 12rem 10rem;
+    }
+  }
+
+  &__skill-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+    padding-top: 2.4rem;
+    font-size: 1.4rem;
+    opacity: 0;
+
+    &.is-active {
+      animation: fade-in 1s g.$transition-base-easing forwards;
+    }
+
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: calc(100% - 2em);
+      height: 1px;
+      content: "";
+      background-color: g.$gray;
+    }
+
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-family: g.$oswald;
+      color: g.$gray;
+      content: counter(skill-list-number, decimal-leading-zero);
+      counter-increment: skill-list-number 1;
+      transform: translateY(-50%);
+    }
+
+    @include g.mq(md) {
+      gap: 2.8rem;
+      padding-top: 2.8rem;
+      font-size: 1.6rem;
+    }
+
+    @include g.mq(lg) {
+      gap: 3.2rem;
+      padding-top: 3.2rem;
+    }
+  }
+
+  &__skill-name {
+    font-family: g.$oswald;
+    font-size: 2.4rem;
+    color: g.$white;
+    letter-spacing: 0.05em;
+
+    @include g.mq(md) {
+      font-size: 3rem;
+    }
+  }
+
+  &__skill-txt-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+
+    @include g.mq(md) {
+      flex-direction: row;
+      gap: 4rem;
+    }
+
+    @include g.mq(lg) {
+      flex-direction: column;
+    }
+
+    @include g.mq(1440px) {
+      flex-direction: row;
+      gap: 4.8rem;
+      justify-content: space-between;
+    }
+  }
+
+  &__skill-txt {
+    font-size: 1.2rem;
+    line-height: 2;
+    color: g.$gray;
+    letter-spacing: 0.03em;
+
+    @include g.mq(md) {
+      font-size: 1.4rem;
+      letter-spacing: 0.05em;
+    }
+  }
+
+  &__skill-icon-wrap {
+    flex-shrink: 0;
+    width: 24rem;
+    margin-inline: auto;
+
+    @include g.mq(md) {
+      width: 28rem;
+    }
+
+    svg {
+      width: 100%;
+      fill: none;
+
+      path {
+        stroke: g.$gray;
+      }
+    }
+  }
 }
 
 // =========================================================================

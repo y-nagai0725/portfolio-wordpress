@@ -1425,6 +1425,182 @@ body {
     letter-spacing: 0.05em;
   }
 }
+.p-top__skill {
+  margin-bottom: 10rem;
+}
+@media screen and (width >= 768px) {
+  .p-top__skill {
+    margin-bottom: 16rem;
+  }
+}
+@media screen and (width >= 1024px) {
+  .p-top__skill {
+    margin-bottom: 24rem;
+  }
+}
+.p-top__skill-inner {
+  width: 100%;
+  padding: 0 3rem;
+}
+@media screen and (width >= 768px) {
+  .p-top__skill-inner {
+    padding: 0 5rem;
+  }
+}
+@media screen and (width >= 1024px) {
+  .p-top__skill-inner {
+    width: 90%;
+    max-width: 160rem;
+    padding: 0;
+    margin-inline: auto;
+  }
+}
+.p-top__skill-ttl {
+  margin-bottom: 3.2rem;
+  opacity: 0;
+}
+.p-top__skill-ttl.is-active {
+  animation: fade-right 1s ease-out forwards;
+}
+@media screen and (width >= 768px) {
+  .p-top__skill-ttl {
+    margin-bottom: 6.4rem;
+  }
+}
+@media screen and (width >= 1024px) {
+  .p-top__skill-ttl {
+    margin-bottom: 8rem;
+  }
+}
+.p-top__skill-list {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 8rem;
+  counter-reset: skill-list-number 0;
+}
+@media screen and (width >= 768px) {
+  .p-top__skill-list {
+    gap: 10rem;
+  }
+}
+@media screen and (width >= 1024px) {
+  .p-top__skill-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10rem 8rem;
+  }
+}
+@media screen and (width >= 1440px) {
+  .p-top__skill-list {
+    gap: 12rem 10rem;
+  }
+}
+.p-top__skill-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  padding-top: 2.4rem;
+  font-size: 1.4rem;
+  opacity: 0;
+}
+.p-top__skill-item.is-active {
+  animation: fade-in 1s ease-out forwards;
+}
+.p-top__skill-item::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(100% - 2em);
+  height: 1px;
+  content: "";
+  background-color: #868686;
+}
+.p-top__skill-item::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-family: "Oswald", sans-serif;
+  color: #868686;
+  content: counter(skill-list-number, decimal-leading-zero);
+  counter-increment: skill-list-number 1;
+  transform: translateY(-50%);
+}
+@media screen and (width >= 768px) {
+  .p-top__skill-item {
+    gap: 2.8rem;
+    padding-top: 2.8rem;
+    font-size: 1.6rem;
+  }
+}
+@media screen and (width >= 1024px) {
+  .p-top__skill-item {
+    gap: 3.2rem;
+    padding-top: 3.2rem;
+  }
+}
+.p-top__skill-name {
+  font-family: "Oswald", sans-serif;
+  font-size: 2.4rem;
+  color: #fff;
+  letter-spacing: 0.05em;
+}
+@media screen and (width >= 768px) {
+  .p-top__skill-name {
+    font-size: 3rem;
+  }
+}
+.p-top__skill-txt-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+@media screen and (width >= 768px) {
+  .p-top__skill-txt-wrap {
+    flex-direction: row;
+    gap: 4rem;
+  }
+}
+@media screen and (width >= 1024px) {
+  .p-top__skill-txt-wrap {
+    flex-direction: column;
+  }
+}
+@media screen and (width >= 1440px) {
+  .p-top__skill-txt-wrap {
+    flex-direction: row;
+    gap: 4.8rem;
+    justify-content: space-between;
+  }
+}
+.p-top__skill-txt {
+  font-size: 1.2rem;
+  line-height: 2;
+  color: #868686;
+  letter-spacing: 0.03em;
+}
+@media screen and (width >= 768px) {
+  .p-top__skill-txt {
+    font-size: 1.4rem;
+    letter-spacing: 0.05em;
+  }
+}
+.p-top__skill-icon-wrap {
+  flex-shrink: 0;
+  width: 24rem;
+  margin-inline: auto;
+}
+@media screen and (width >= 768px) {
+  .p-top__skill-icon-wrap {
+    width: 28rem;
+  }
+}
+.p-top__skill-icon-wrap svg {
+  width: 100%;
+  fill: none;
+}
+.p-top__skill-icon-wrap svg path {
+  stroke: #868686;
+}
 
 @keyframes mv-move-arrow {
   0% {

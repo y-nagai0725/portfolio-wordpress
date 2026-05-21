@@ -40,6 +40,9 @@ function my_portfolio_enqueue_scripts()
     // top-mv.js
     wp_enqueue_script('top-mv-script', get_template_directory_uri() . '/js/top-mv.js', array('gsap', 'scroll-trigger', 'common-script'), filemtime(get_theme_file_path('/js/top-mv.js')), true);
 
+    // top-skill.js
+    wp_enqueue_script('top-skill-script', get_template_directory_uri() . '/js/top-skill.js', array('gsap', 'scroll-trigger', 'common-script'), filemtime(get_theme_file_path('/js/top-skill.js')), true);
+
     // top.js
     //wp_enqueue_script('top-script', get_template_directory_uri() . '/js/top.js', array('gsap', 'scroll-trigger', 'common-script'), filemtime(get_theme_file_path('/js/top.js')), true);
 

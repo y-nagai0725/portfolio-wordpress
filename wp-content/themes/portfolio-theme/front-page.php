@@ -93,7 +93,99 @@
     </div>
   </section>
   <section class="p-top__skill">
-
+    <div class="p-top__skill-inner">
+      <h2 class="p-top__skill-ttl c-ttl c-ttl--left c-ttl--section js-scroll">SKILL</h2>
+      <ul class="p-top__skill-list">
+        <li class="p-top__skill-item">
+          <h3 class="p-top__skill-name">HTML / CSS</h3>
+          <div class="p-top__skill-txt-wrap">
+            <p class="p-top__skill-txt">
+              TODO 出来ること、やったこと、アピールすること等を記載するサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプル
+            </p>
+            <div class="p-top__skill-icon-wrap">
+              <?php echo file_get_contents(get_template_directory() . '/images/top/skill/skill-html.svg'); ?>
+            </div>
+          </div>
+        </li>
+        <li class="p-top__skill-item">
+          <h3 class="p-top__skill-name">JavaScript</h3>
+          <div class="p-top__skill-txt-wrap">
+            <p class="p-top__skill-txt">
+              TODO 出来ること、やったこと、アピールすること等を記載するサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプル
+            </p>
+            <div class="p-top__skill-icon-wrap">
+              <?php echo file_get_contents(get_template_directory() . '/images/top/skill/skill-javascript.svg'); ?>
+            </div>
+          </div>
+        </li>
+        <li class="p-top__skill-item">
+          <h3 class="p-top__skill-name">WordPress</h3>
+          <div class="p-top__skill-txt-wrap">
+            <p class="p-top__skill-txt">
+              TODO 出来ること、やったこと、アピールすること等を記載するサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプル
+            </p>
+            <div class="p-top__skill-icon-wrap">
+              <?php echo file_get_contents(get_template_directory() . '/images/top/skill/skill-wordpress.svg'); ?>
+            </div>
+          </div>
+        </li>
+        <li class="p-top__skill-item">
+          <h3 class="p-top__skill-name">Photoshop</h3>
+          <div class="p-top__skill-txt-wrap">
+            <p class="p-top__skill-txt">
+              TODO 出来ること、やったこと、アピールすること等を記載するサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプル
+            </p>
+            <div class="p-top__skill-icon-wrap">
+              <?php echo file_get_contents(get_template_directory() . '/images/top/skill/skill-photoshop.svg'); ?>
+            </div>
+          </div>
+        </li>
+        <li class="p-top__skill-item">
+          <h3 class="p-top__skill-name">XD / Figma</h3>
+          <div class="p-top__skill-txt-wrap">
+            <p class="p-top__skill-txt">
+              TODO 出来ること、やったこと、アピールすること等を記載するサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプル
+            </p>
+            <div class="p-top__skill-icon-wrap">
+              <?php echo file_get_contents(get_template_directory() . '/images/top/skill/skill-figma.svg'); ?>
+            </div>
+          </div>
+        </li>
+        <li class="p-top__skill-item">
+          <h3 class="p-top__skill-name">Git</h3>
+          <div class="p-top__skill-txt-wrap">
+            <p class="p-top__skill-txt">
+              TODO 出来ること、やったこと、アピールすること等を記載するサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプル
+            </p>
+            <div class="p-top__skill-icon-wrap">
+              <?php echo file_get_contents(get_template_directory() . '/images/top/skill/skill-git.svg'); ?>
+            </div>
+          </div>
+        </li>
+        <li class="p-top__skill-item">
+          <h3 class="p-top__skill-name">Visual Studio Code</h3>
+          <div class="p-top__skill-txt-wrap">
+            <p class="p-top__skill-txt">
+              TODO 出来ること、やったこと、アピールすること等を記載するサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプル
+            </p>
+            <div class="p-top__skill-icon-wrap">
+              <?php echo file_get_contents(get_template_directory() . '/images/top/skill/skill-vscode.svg'); ?>
+            </div>
+          </div>
+        </li>
+        <li class="p-top__skill-item">
+          <h3 class="p-top__skill-name">Word / Excel</h3>
+          <div class="p-top__skill-txt-wrap">
+            <p class="p-top__skill-txt">
+              TODO 出来ること、やったこと、アピールすること等を記載するサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプル
+            </p>
+            <div class="p-top__skill-icon-wrap">
+              <?php echo file_get_contents(get_template_directory() . '/images/top/skill/skill-excel.svg'); ?>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
   </section>
   <section class="p-top__works">
 

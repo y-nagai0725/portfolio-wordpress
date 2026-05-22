@@ -188,7 +188,92 @@
     </div>
   </section>
   <section class="p-top__works">
+    <div class="p-top__works-inner">
+      <div class="p-top__works-pinned-area">
+        <h2 class="p-top__works-ttl c-ttl c-ttl--left c-ttl--section js-scroll">WORKS</h2>
+        <ul class="p-top__works-list">
+          <?php
+          // 表示する作品の条件を指定（'show_on_top' が true の7件）
+          $top_works_args = array(
+            'post_type'      => 'works',
+            'posts_per_page' => 7, // 7件表示
+            'meta_key'       => 'top_order', // 並び替えの基準は「トップ表示順」
+            'orderby'        => 'meta_value_num',
+            'order'          => 'ASC',
+            'meta_query'     => array(
+              array(
+                'key'     => 'show_on_top',
+                'value'   => '1', // ACFの「真偽値（True / False）」は 1 / 0(または空) で保存される為
+                'compare' => '=='
+              )
+            )
+          );
 
+          // クエリを作成
+          $top_works_query = new WP_Query($top_works_args);
+
+          // ループ開始
+          if ($top_works_query->have_posts()) :
+            while ($top_works_query->have_posts()) : $top_works_query->the_post();
+              // タイトル
+              $title = get_the_title();
+
+              // タイトルへの欧文フォント適用
+              $en_class = get_field('use_en_font') ? 'p-top__works-item-ttl--en' : '';
+
+              // 紹介文取得
+              $short_desc_1 = get_field('short_desc_1');
+              $short_desc_2 = get_field('short_desc_2');
+          ?>
+              <li class="p-top__works-item">
+                <div class="p-top__works-item-txt-wrap">
+                  <h3 class="p-top__works-item-ttl <?php echo $en_class; ?>"><?php echo $title; ?></h3>
+                  <p class="p-top__works-item-txt">
+                    <?php echo $short_desc_1; ?><br>
+                    <?php echo $short_desc_2; ?>
+                  </p>
+                </div>
+                <div class="p-top__works-item-img-wrap">
+                  <?php
+                  if (has_post_thumbnail()) {
+                    the_post_thumbnail('large', array('class' => 'p-top__works-item-img', 'alt' => $title . 'サムネイル画像'));
+                  }
+                  ?>
+                  <a href="<?php echo esc_url(get_the_permalink()); ?>" class="p-top__works-item-link c-btn c-btn--medium">MORE</a>
+                </div>
+              </li>
+          <?php
+            endwhile;
+            // リセット処理
+            wp_reset_postdata();
+          endif; ?>
+        </ul>
+        <div class="p-top__works-nav-wrap">
+          <div class="p-top__works-icon-wrap">
+            <?php echo file_get_contents(get_template_directory() . '/images/top/works/works-circle-txt.svg'); ?>
+          </div>
+          <nav class="p-top__works-nav">
+            <?php
+            // ループで取得した実際の作品数（最大7件）を取得
+            $post_count = $top_works_query->post_count;
+
+            // アクティブ状態表示用要素
+            if($post_count > 0){
+              echo '<span class="p-top__works-nav-pager"></span>';
+            }
+
+            // 作品の数だけボタンを自動生成する
+            for ($i = 1; $i <= $post_count; $i++) {
+              // 1, 2 ではなく 01, 02 とゼロ埋めする
+              $num = sprintf('%02d', $i);
+              echo '<button class="p-top__works-nav-btn">' . $num . '</button>';
+            }
+            ?>
+          </nav>
+          <a href="<?php echo esc_url(get_post_type_archive_link('works')); ?>" class="p-top__works-archive-link" data-txt="VIEW ALL">VIEW ALL</a>
+        </div>
+      </div>
+    </div>
   </section>
   <section class="p-top__contact">
 

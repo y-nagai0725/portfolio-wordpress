@@ -683,6 +683,413 @@
       }
     }
   }
+
+  // =========================================================================
+  // WORKSセクション
+  // =========================================================================
+
+  &__works {
+    @include g.section-margin;
+  }
+
+  &__works-inner {
+    @include g.contents-width;
+  }
+
+  &__works-pinned-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    height: 100svh;
+    padding: 2.4rem 0;
+
+    @include g.mq(md) {
+      padding: 3.2rem 0;
+    }
+
+    @include g.mq(lg) {
+      padding: 5.6rem 0;
+    }
+  }
+
+  &__works-ttl {
+    opacity: 0;
+
+    &.is-active {
+      animation: fade-right 1s g.$transition-base-easing forwards;
+    }
+  }
+
+  &__works-list {
+    position: relative;
+  }
+
+  &__works-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+
+    &:not(:first-of-type) {
+      position: absolute;
+      top: 0;
+    }
+
+    @include g.mq(md) {
+      gap: 2.4rem;
+    }
+
+    @include g.mq(lg) {
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-end;
+    }
+  }
+
+  &__works-item-txt-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    @include g.mq(md) {
+      gap: 2.4rem;
+    }
+
+    @include g.mq(lg) {
+      position: absolute;
+      left: 0;
+      z-index: g.$z-default;
+      gap: 3.2rem;
+    }
+
+    @include g.mq(xl) {
+      gap: 4rem;
+    }
+  }
+
+  &__works-item-ttl {
+    font-size: 2.8rem;
+    font-weight: g.$bold;
+    color: g.$white;
+    letter-spacing: -0.03em;
+
+    &--en {
+      font-family: g.$oswald;
+    }
+
+    @include g.mq(md) {
+      font-size: 5.6rem;
+    }
+
+    @include g.mq(lg) {
+      font-size: 7rem;
+    }
+
+    @include g.mq(xl) {
+      font-size: 11rem;
+    }
+  }
+
+  &__works-item-txt {
+    font-size: 1.2rem;
+    line-height: 2;
+    color: g.$gray;
+    letter-spacing: 0.05em;
+
+    @include g.mq(md) {
+      font-size: 1.4rem;
+    }
+
+    @include g.mq(xl) {
+      font-size: 1.6rem;
+    }
+  }
+
+  &__works-item-img-wrap {
+    position: relative;
+    width: 100%;
+
+    &::before {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      content: "";
+      background-color: rgba(g.$black, 0.1);
+      border-radius: 1rem;
+    }
+
+    @include g.mq(lg) {
+      width: 57.5%;
+    }
+  }
+
+  &__works-item-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 1rem;
+  }
+
+  &__works-item-link {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(25%, -50%);
+  }
+
+  &__works-nav-wrap {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+
+    @include g.mq(lg) {
+      grid-template-columns: 5fr 4fr 1fr;
+      gap: 0;
+      align-items: center;
+    }
+  }
+
+  &__works-icon-wrap {
+    position: relative;
+    grid-row: 3;
+    justify-self: center;
+    width: 7.2rem;
+
+    &::before {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 1.4rem;
+      height: 1.8rem;
+      content: "";
+      background-image: url("../images/top/arrow-down.svg");
+      background-repeat: no-repeat;
+      background-size: contain;
+      transform: translate(-50%, -50%);
+      animation:
+        works-move-arrow 1.6s ease-in-out infinite,
+        works-hide-arrow 1.6s ease-out infinite;
+    }
+
+    @include g.mq(md) {
+      width: 10rem;
+
+      &::before {
+        width: 1.6rem;
+        height: 2rem;
+      }
+    }
+
+    @include g.mq(lg) {
+      grid-row: initial;
+      justify-self: flex-start;
+    }
+
+    @include g.mq(xl) {
+      width: 13rem;
+
+      &::before {
+        width: 1.8rem;
+        height: 2.4rem;
+      }
+    }
+  }
+
+  &__works-svg-wrap {
+    animation: circle-rotate 16s linear infinite;
+
+    svg {
+      width: 100%;
+      fill: g.$white;
+    }
+  }
+
+  &__works-nav {
+    position: relative;
+    display: flex;
+    justify-self: center;
+    width: fit-content;
+    padding: 0.4rem;
+    background-color: rgba(g.$white, 0.1);
+    border-radius: 100vmax;
+
+    @include g.mq(md) {
+      padding: 0.6rem;
+    }
+
+    @include g.mq(lg) {
+      padding: 0.8rem;
+    }
+  }
+
+  &__works-nav-pager {
+    position: absolute;
+    top: 0.4rem; // 親要素のpadding分ずらす
+    left: 0.4rem; // 親要素のpadding分ずらす
+    width: 4rem;
+    height: 4rem;
+    content: "";
+    background-color: g.$black;
+    border-radius: 50%;
+
+    // TODO アクティブ状態にする対象番号のボタンに移動するアニメーション処理をJS側で実装する
+    // 移動の際にwidthの値を変化させたりして形を変化させながら移動する
+    // 移動の値は自分自身のheightの値を使う（なのでheightの値はjsで変更したりしない）
+
+    // TODO JS側でアニメーション処理作成する予定なので仮です
+    transition: transform g.$transition-base-duration g.$transition-base-easing;
+
+    @for $i from 1 through 7 {
+      &.active-index-#{$i} {
+        // TODO JS側でアニメーション処理作成する予定なので仮です
+        transform: translateX(calc(4rem * ($i - 1)));
+      }
+    }
+
+    @include g.mq(md) {
+      top: 0.6rem; // 親要素のpadding分ずらす
+      left: 0.6rem; // 親要素のpadding分ずらす
+      width: 4.8rem;
+      height: 4.8rem;
+
+      @for $i from 1 through 7 {
+        &.active-index-#{$i} {
+          // TODO JS側でアニメーション処理作成する予定なので仮です
+          transform: translateX(calc(4.8rem * ($i - 1)));
+        }
+      }
+    }
+
+    @include g.mq(lg) {
+      top: 0.8rem; // 親要素のpadding分ずらす
+      left: 0.8rem; // 親要素のpadding分ずらす
+      width: 5.6rem;
+      height: 5.6rem;
+
+      @for $i from 1 through 7 {
+        &.active-index-#{$i} {
+          // TODO JS側でアニメーション処理作成する予定なので仮です
+          transform: translateX(calc(5.6rem * ($i - 1)));
+        }
+      }
+    }
+
+    @include g.mq(xl) {
+      width: 6.4rem;
+      height: 6.4rem;
+
+      @for $i from 1 through 7 {
+        &.active-index-#{$i} {
+          // TODO JS側でアニメーション処理作成する予定なので仮です
+          transform: translateX(calc(6.4rem * ($i - 1)));
+        }
+      }
+    }
+  }
+
+  &__works-nav-btn {
+    position: relative;
+    z-index: g.$z-default;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    aspect-ratio: 1;
+    font-family: g.$oswald;
+    font-size: 1.2rem;
+    font-weight: g.$bold;
+    color: g.$white;
+    letter-spacing: -0.03em;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background-color g.$transition-base-duration g.$transition-base-easing;
+
+    @include g.hover {
+      background-color: g.$black;
+    }
+
+    @include g.mq(md) {
+      width: 4.8rem;
+      font-size: 1.3rem;
+    }
+
+    @include g.mq(lg) {
+      width: 5.6rem;
+      font-size: 1.4rem;
+    }
+
+    @include g.mq(xl) {
+      width: 6.4rem;
+      font-size: 1.5rem;
+    }
+  }
+
+  &__works-archive-link {
+    position: relative;
+    display: inline-block;
+    justify-self: center;
+    width: fit-content;
+    padding: 1rem 0;
+    font-family: g.$oswald;
+    font-size: 1.6rem;
+    font-weight: g.$bold;
+    color: g.$gray;
+    letter-spacing: -0.03em;
+    transition: color g.$transition-base-duration g.$transition-base-easing;
+
+    &::before {
+      position: absolute;
+      bottom: 0.4rem;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      content: "";
+      background-color: g.$gray;
+      transform: scaleX(1);
+      transform-origin: left;
+      transition: transform g.$transition-base-duration g.$transition-base-easing;
+    }
+
+    &::after {
+      position: absolute;
+      top: 1rem;
+      left: 0;
+      color: g.$white;
+      content: attr(data-txt);
+      clip-path: inset(0 100% 0 0);
+      transition: clip-path g.$transition-base-duration g.$transition-base-easing;
+    }
+
+    @include g.hover {
+      color: g.$white;
+
+      &::before {
+        transform: scaleX(1);
+      }
+
+      &::after {
+        clip-path: inset(0);
+      }
+    }
+
+    @include g.mq(md) {
+      font-size: 1.8rem;
+    }
+
+    @include g.mq(lg) {
+      justify-self: flex-end;
+
+      &::before {
+        background-color: g.$white;
+        transform: scaleX(0);
+      }
+    }
+
+    @include g.mq(xl) {
+      font-size: 2.4rem;
+    }
+  }
 }
 
 // =========================================================================
@@ -716,5 +1123,46 @@
 
   100% {
     opacity: 0;
+  }
+}
+
+// worksのスクロールボタンの矢印アニメーション：移動量
+@keyframes works-move-arrow {
+  0% {
+    transform: translate(-50%, calc(-50% - 0.8rem));
+  }
+
+  100% {
+    transform: translate(-50%, calc(-50% + 1.5rem));
+  }
+}
+
+// worksのスクロールボタンの矢印アニメーション：途中で隠す
+@keyframes works-hide-arrow {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 0.9;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+// worksのSCROLL DOWN文字アニメーション
+@keyframes circle-rotate {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
   }
 }

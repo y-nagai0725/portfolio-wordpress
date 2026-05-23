@@ -250,7 +250,9 @@
         </ul>
         <div class="p-top__works-nav-wrap">
           <div class="p-top__works-icon-wrap">
-            <?php echo file_get_contents(get_template_directory() . '/images/top/works/works-circle-txt.svg'); ?>
+            <div class="p-top__works-svg-wrap">
+              <?php echo file_get_contents(get_template_directory() . '/images/top/works/works-circle-txt.svg'); ?>
+            </div>
           </div>
           <nav class="p-top__works-nav">
             <?php
@@ -258,7 +260,7 @@
             $post_count = $top_works_query->post_count;
 
             // アクティブ状態表示用要素
-            if($post_count > 0){
+            if ($post_count > 0) {
               echo '<span class="p-top__works-nav-pager"></span>';
             }
 

@@ -925,72 +925,17 @@
 
   &__works-nav-pager {
     position: absolute;
-    top: 0.4rem; // 親要素のpadding分ずらす
-    left: 0.4rem; // 親要素のpadding分ずらす
-    width: 4rem;
-    height: 4rem;
-    content: "";
+    top: 0;
+    left: 0;
+    z-index: g.$z-default;
+    pointer-events: none; // 後ろのボタンをクリックできるようにする
     background-color: g.$black;
-    border-radius: 50%;
-
-    // TODO アクティブ状態にする対象番号のボタンに移動するアニメーション処理をJS側で実装する
-    // 移動の際にwidthの値を変化させたりして形を変化させながら移動する
-    // 移動の値は自分自身のheightの値を使う（なのでheightの値はjsで変更したりしない）
-
-    // TODO JS側でアニメーション処理作成する予定なので仮です
-    transition: transform g.$transition-base-duration g.$transition-base-easing;
-
-    @for $i from 1 through 7 {
-      &.active-index-#{$i} {
-        // TODO JS側でアニメーション処理作成する予定なので仮です
-        transform: translateX(calc(4rem * ($i - 1)));
-      }
-    }
-
-    @include g.mq(md) {
-      top: 0.6rem; // 親要素のpadding分ずらす
-      left: 0.6rem; // 親要素のpadding分ずらす
-      width: 4.8rem;
-      height: 4.8rem;
-
-      @for $i from 1 through 7 {
-        &.active-index-#{$i} {
-          // TODO JS側でアニメーション処理作成する予定なので仮です
-          transform: translateX(calc(4.8rem * ($i - 1)));
-        }
-      }
-    }
-
-    @include g.mq(lg) {
-      top: 0.8rem; // 親要素のpadding分ずらす
-      left: 0.8rem; // 親要素のpadding分ずらす
-      width: 5.6rem;
-      height: 5.6rem;
-
-      @for $i from 1 through 7 {
-        &.active-index-#{$i} {
-          // TODO JS側でアニメーション処理作成する予定なので仮です
-          transform: translateX(calc(5.6rem * ($i - 1)));
-        }
-      }
-    }
-
-    @include g.mq(xl) {
-      width: 6.4rem;
-      height: 6.4rem;
-
-      @for $i from 1 through 7 {
-        &.active-index-#{$i} {
-          // TODO JS側でアニメーション処理作成する予定なので仮です
-          transform: translateX(calc(6.4rem * ($i - 1)));
-        }
-      }
-    }
+    border-radius: 50vmax;
   }
 
   &__works-nav-btn {
     position: relative;
-    z-index: g.$z-default;
+    z-index: g.$z-works-nav-btn;
     display: flex;
     align-items: center;
     justify-content: center;

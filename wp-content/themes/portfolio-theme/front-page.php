@@ -17,9 +17,9 @@
       </p>
     </div>
     <picture class="p-top__catchcopy-en-wrap">
-      <source media="(min-width: 1024px)" srcset="<?php echo get_template_directory_uri(); ?>/images/top/mv-catchcopy-en-pc.png">
-      <source media="(min-width: 768px)" srcset="<?php echo get_template_directory_uri(); ?>/images/top/mv-catchcopy-en-tab.png">
-      <img class="p-top__catchcopy-en-img" src="<?php echo get_template_directory_uri(); ?>/images/top/mv-catchcopy-en-sp.png"
+      <source media="(min-width: 1024px)" srcset="<?php echo get_template_directory_uri(); ?>/images/top/mv/mv-catchcopy-en-pc.png">
+      <source media="(min-width: 768px)" srcset="<?php echo get_template_directory_uri(); ?>/images/top/mv/mv-catchcopy-en-tab.png">
+      <img class="p-top__catchcopy-en-img" src="<?php echo get_template_directory_uri(); ?>/images/top/mv/mv-catchcopy-en-sp.png"
         alt="ADVANCE TO THE NEXT LEVEL">
     </picture>
     <div class="p-top__scroll-btn-wrap">

@@ -1657,6 +1657,10 @@ body {
 }
 .p-top__works-list {
   position: relative;
+  opacity: 0;
+}
+.p-top__works-list.is-active {
+  animation: fade-in 1s ease-out forwards;
 }
 .p-top__works-item {
   display: flex;
@@ -1776,6 +1780,10 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
+  opacity: 0;
+}
+.p-top__works-nav-wrap.is-active {
+  animation: fade-in 1s ease-out forwards;
 }
 @media screen and (width >= 1024px) {
   .p-top__works-nav-wrap {
@@ -1827,9 +1835,6 @@ body {
     height: 2.4rem;
   }
 }
-.p-top__works-svg-wrap {
-  animation: circle-rotate 16s linear infinite;
-}
 .p-top__works-svg-wrap svg {
   width: 100%;
   fill: #fff;
@@ -1855,124 +1860,16 @@ body {
 }
 .p-top__works-nav-pager {
   position: absolute;
-  top: 0.4rem;
-  left: 0.4rem;
-  width: 4rem;
-  height: 4rem;
-  content: "";
+  top: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: none;
   background-color: #1d1d1d;
-  border-radius: 50%;
-  transition: transform 0.4s ease-out;
-}
-.p-top__works-nav-pager.active-index-1 {
-  transform: translateX(0rem);
-}
-.p-top__works-nav-pager.active-index-2 {
-  transform: translateX(4rem);
-}
-.p-top__works-nav-pager.active-index-3 {
-  transform: translateX(8rem);
-}
-.p-top__works-nav-pager.active-index-4 {
-  transform: translateX(12rem);
-}
-.p-top__works-nav-pager.active-index-5 {
-  transform: translateX(16rem);
-}
-.p-top__works-nav-pager.active-index-6 {
-  transform: translateX(20rem);
-}
-.p-top__works-nav-pager.active-index-7 {
-  transform: translateX(24rem);
-}
-@media screen and (width >= 768px) {
-  .p-top__works-nav-pager {
-    top: 0.6rem;
-    left: 0.6rem;
-    width: 4.8rem;
-    height: 4.8rem;
-  }
-  .p-top__works-nav-pager.active-index-1 {
-    transform: translateX(0rem);
-  }
-  .p-top__works-nav-pager.active-index-2 {
-    transform: translateX(4.8rem);
-  }
-  .p-top__works-nav-pager.active-index-3 {
-    transform: translateX(9.6rem);
-  }
-  .p-top__works-nav-pager.active-index-4 {
-    transform: translateX(14.4rem);
-  }
-  .p-top__works-nav-pager.active-index-5 {
-    transform: translateX(19.2rem);
-  }
-  .p-top__works-nav-pager.active-index-6 {
-    transform: translateX(24rem);
-  }
-  .p-top__works-nav-pager.active-index-7 {
-    transform: translateX(28.8rem);
-  }
-}
-@media screen and (width >= 1024px) {
-  .p-top__works-nav-pager {
-    top: 0.8rem;
-    left: 0.8rem;
-    width: 5.6rem;
-    height: 5.6rem;
-  }
-  .p-top__works-nav-pager.active-index-1 {
-    transform: translateX(0rem);
-  }
-  .p-top__works-nav-pager.active-index-2 {
-    transform: translateX(5.6rem);
-  }
-  .p-top__works-nav-pager.active-index-3 {
-    transform: translateX(11.2rem);
-  }
-  .p-top__works-nav-pager.active-index-4 {
-    transform: translateX(16.8rem);
-  }
-  .p-top__works-nav-pager.active-index-5 {
-    transform: translateX(22.4rem);
-  }
-  .p-top__works-nav-pager.active-index-6 {
-    transform: translateX(28rem);
-  }
-  .p-top__works-nav-pager.active-index-7 {
-    transform: translateX(33.6rem);
-  }
-}
-@media screen and (width >= 1280px) {
-  .p-top__works-nav-pager {
-    width: 6.4rem;
-    height: 6.4rem;
-  }
-  .p-top__works-nav-pager.active-index-1 {
-    transform: translateX(0rem);
-  }
-  .p-top__works-nav-pager.active-index-2 {
-    transform: translateX(6.4rem);
-  }
-  .p-top__works-nav-pager.active-index-3 {
-    transform: translateX(12.8rem);
-  }
-  .p-top__works-nav-pager.active-index-4 {
-    transform: translateX(19.2rem);
-  }
-  .p-top__works-nav-pager.active-index-5 {
-    transform: translateX(25.6rem);
-  }
-  .p-top__works-nav-pager.active-index-6 {
-    transform: translateX(32rem);
-  }
-  .p-top__works-nav-pager.active-index-7 {
-    transform: translateX(38.4rem);
-  }
+  border-radius: 50vmax;
 }
 .p-top__works-nav-btn {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2117,14 +2014,6 @@ body {
   }
   100% {
     opacity: 0;
-  }
-}
-@keyframes circle-rotate {
-  0% {
-    transform: rotate(0);
-  }
-  100% {
-    transform: rotate(360deg);
   }
 }
 .p-works-archive {

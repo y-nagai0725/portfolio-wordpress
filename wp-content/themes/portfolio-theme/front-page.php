@@ -190,7 +190,7 @@
   <section class="p-top__works">
     <div class="p-top__works-inner">
       <div class="p-top__works-pinned-area">
-        <h2 class="p-top__works-ttl c-ttl c-ttl--left c-ttl--section js-scroll">WORKS</h2>
+        <h2 class="p-top__works-ttl c-ttl c-ttl--left c-ttl--section">WORKS</h2>
         <ul class="p-top__works-list">
           <?php
           // 表示する作品の条件を指定（'show_on_top' が true の7件）

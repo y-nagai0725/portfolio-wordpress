@@ -43,6 +43,9 @@ function my_portfolio_enqueue_scripts()
     // top-skill.js
     wp_enqueue_script('top-skill-script', get_template_directory_uri() . '/js/top-skill.js', array('gsap', 'scroll-trigger', 'common-script'), filemtime(get_theme_file_path('/js/top-skill.js')), true);
 
+    // top-works.js
+    wp_enqueue_script('top-works-script', get_template_directory_uri() . '/js/top-works.js', array('gsap', 'scroll-trigger', 'common-script'), filemtime(get_theme_file_path('/js/top-works.js')), true);
+
     // top.js
     //wp_enqueue_script('top-script', get_template_directory_uri() . '/js/top.js', array('gsap', 'scroll-trigger', 'common-script'), filemtime(get_theme_file_path('/js/top.js')), true);
 

@@ -723,6 +723,11 @@
 
   &__works-list {
     position: relative;
+    opacity: 0;
+
+    &.is-active {
+      animation: fade-in 1s g.$transition-base-easing forwards;
+    }
   }
 
   &__works-item {
@@ -842,6 +847,11 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 2rem;
+    opacity: 0;
+
+    &.is-active {
+      animation: fade-in 1s g.$transition-base-easing forwards;
+    }
 
     @include g.mq(lg) {
       grid-template-columns: 5fr 4fr 1fr;
@@ -897,8 +907,6 @@
   }
 
   &__works-svg-wrap {
-    animation: circle-rotate 16s linear infinite;
-
     svg {
       width: 100%;
       fill: g.$white;
@@ -1098,16 +1106,5 @@
 
   100% {
     opacity: 0;
-  }
-}
-
-// worksのSCROLL DOWN文字アニメーション
-@keyframes circle-rotate {
-  0% {
-    transform: rotate(0);
-  }
-
-  100% {
-    transform: rotate(360deg);
   }
 }

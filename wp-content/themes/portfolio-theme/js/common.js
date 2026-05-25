@@ -152,6 +152,33 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   /**
+   * メニュー内のリンククリック時にメニューを閉じる
+   */
+  const initNavLinks = () => {
+    const navLinks = document.querySelectorAll('.l-header a');
+    navLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        if (hamburgerBtn?.classList.contains('is-open')) {
+          closeMenu();
+        }
+      });
+    });
+  };
+
+  /**
+   * ブラウザバック（bfcache）時のメニュー初期化
+   * （戻るボタンで戻ってきた時に、強制的にメニューを閉じる処理）
+   */
+  const initBfcache = () => {
+    window.addEventListener('pageshow', (event) => {
+      // event.persisted が true の場合、bfcacheから復元されたことを意味する
+      if (event.persisted && hamburgerBtn?.classList.contains('is-open')) {
+        closeMenu();
+      }
+    });
+  };
+
+  /**
    * トップへ戻るボタンのクリックイベント
    * ScrollToPluginを使用して滑らかにスクロールさせる
    */
@@ -174,6 +201,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollFadeAnimations();
     initBackToTop();
     initMenu();
+    initNavLinks();
+    initBfcache();
   };
 
   init();

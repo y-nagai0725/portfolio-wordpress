@@ -277,8 +277,17 @@
       </div>
     </div>
   </section>
-  <section class="p-top__contact">
-
+  <section class="p-top__contact js-scroll">
+    <div class="p-top__contact-inner">
+      <h2 class="p-top__contact-ttl c-ttl c-ttl--center c-ttl--section js-scroll">CONTACT</h2>
+      <div class="p-top__contact-info js-scroll">
+        <p class="p-top__contact-txt">
+          お問い合わせは下のボタンから<br class="p-top__contact-br">
+          入力フォームへお進みください。
+        </p>
+        <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="p-top__contact-link c-btn c-btn--small">CONTACT<br>FORM</a>
+      </div>
+    </div>
   </section>
 </main>
 

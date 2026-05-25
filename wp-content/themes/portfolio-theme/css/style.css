@@ -595,6 +595,7 @@ body {
   font-weight: 700;
   line-height: 1.5;
   color: #fff;
+  text-align: center;
   letter-spacing: -0.03em;
   cursor: pointer;
   border-color: #bababa;
@@ -1969,6 +1970,99 @@ body {
 @media screen and (width >= 1280px) {
   .p-top__works-archive-link {
     font-size: 2.4rem;
+  }
+}
+.p-top__contact {
+  padding: 10rem 0;
+  background: url("../images/top/contact/contact-bg.jpg") center center/cover;
+  opacity: 0;
+}
+.p-top__contact.is-active {
+  animation: fade-in 1s ease-out forwards;
+}
+@media screen and (width >= 768px) {
+  .p-top__contact {
+    padding: 16rem 0;
+  }
+}
+@media screen and (width >= 1024px) {
+  .p-top__contact {
+    padding: 24rem 0;
+  }
+}
+.p-top__contact-inner {
+  width: 100%;
+  padding: 0 3rem;
+}
+@media screen and (width >= 768px) {
+  .p-top__contact-inner {
+    padding: 0 5rem;
+  }
+}
+@media screen and (width >= 1024px) {
+  .p-top__contact-inner {
+    width: 90%;
+    max-width: 160rem;
+    padding: 0;
+    margin-inline: auto;
+  }
+}
+.p-top__contact-ttl {
+  margin-bottom: 3.2rem;
+  opacity: 0;
+}
+.p-top__contact-ttl.is-active {
+  animation: fade-in 1s ease-out forwards;
+}
+@media screen and (width >= 768px) {
+  .p-top__contact-ttl {
+    margin-bottom: 6.4rem;
+  }
+}
+@media screen and (width >= 1024px) {
+  .p-top__contact-ttl {
+    margin-bottom: 8rem;
+  }
+}
+.p-top__contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  align-items: center;
+  opacity: 0;
+}
+.p-top__contact-info.is-active {
+  animation: fade-in 1s ease-out forwards;
+}
+@media screen and (width >= 768px) {
+  .p-top__contact-info {
+    gap: 3.2rem;
+  }
+}
+@media screen and (width >= 1024px) {
+  .p-top__contact-info {
+    gap: 4rem;
+  }
+}
+.p-top__contact-txt {
+  font-size: 1.2rem;
+  line-height: 2;
+  color: #fff;
+  letter-spacing: 0.05em;
+}
+@media screen and (width >= 768px) {
+  .p-top__contact-txt {
+    font-size: 1.3rem;
+  }
+}
+@media screen and (width >= 1024px) {
+  .p-top__contact-txt {
+    font-size: 1.4rem;
+  }
+}
+@media screen and (width >= 768px) {
+  .p-top__contact-br {
+    display: none;
   }
 }
 

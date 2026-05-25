@@ -1313,6 +1313,7 @@ body {
 }
 .p-top__about-img-wrap {
   width: 18.4rem;
+  aspect-ratio: 23/30;
 }
 @media screen and (width >= 768px) {
   .p-top__about-img-wrap {
@@ -1321,7 +1322,7 @@ body {
 }
 @media screen and (width >= 1024px) {
   .p-top__about-img-wrap {
-    width: 28rem;
+    width: 30rem;
   }
 }
 .p-top__about-img {

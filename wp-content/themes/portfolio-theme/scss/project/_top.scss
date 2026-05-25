@@ -402,13 +402,14 @@
 
   &__about-img-wrap {
     width: 18.4rem;
+    aspect-ratio: 23 / 30;
 
     @include g.mq(md) {
       width: 22rem;
     }
 
     @include g.mq(lg) {
-      width: 28rem;
+      width: 30rem;
     }
   }
 

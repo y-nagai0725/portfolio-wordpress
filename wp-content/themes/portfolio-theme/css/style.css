@@ -1396,7 +1396,7 @@ body {
   background: url("../images/common/icon-github-white.svg") center center/cover;
 }
 .p-top__about-link--blog::before {
-  background: url("../images/top/about-blog-icon.svg") center center/cover;
+  background: url("../images/top/about/about-blog-icon.svg") center center/cover;
 }
 @media (any-hover: hover) {
   .p-top__about-link:hover {

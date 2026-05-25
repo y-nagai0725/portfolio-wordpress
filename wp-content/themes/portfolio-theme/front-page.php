@@ -71,7 +71,7 @@
       <h2 class="p-top__about-ttl c-ttl c-ttl--center c-ttl--section js-scroll">ABOUT</h2>
       <div class="p-top__about-profile js-scroll">
         <div class="p-top__about-img-wrap">
-          <img src="<?php echo get_template_directory_uri(); ?>/images/top/about-profile.jpg" alt="永井善孝 プロフィール写真" class="p-top__about-img">
+          <img src="<?php echo get_template_directory_uri(); ?>/images/top/about/about-profile.jpg" alt="永井善孝 プロフィール写真" class="p-top__about-img">
         </div>
         <div class="p-top__about-info">
           <p class="p-top__about-name">永井 善孝（ながい よしたか）</p>

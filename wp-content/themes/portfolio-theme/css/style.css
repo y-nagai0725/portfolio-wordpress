@@ -841,13 +841,7 @@ body {
   animation: fade-up 1s forwards;
 }
 
-.p-top__ray-canvas-wrap {
-  position: fixed;
-  z-index: -1;
-  width: 100%;
-  height: 100svh;
-}
-.p-top__mv-canvas-wrap {
+.p-top__bg-canvas-wrap {
   position: fixed;
   z-index: -1;
   width: 100%;

@@ -46,18 +46,12 @@ function my_portfolio_enqueue_scripts()
     // top-works.js
     wp_enqueue_script('top-works-script', get_template_directory_uri() . '/js/top-works.js', array('gsap', 'scroll-trigger', 'common-script'), filemtime(get_theme_file_path('/js/top-works.js')), true);
 
-    // top.js
-    //wp_enqueue_script('top-script', get_template_directory_uri() . '/js/top.js', array('gsap', 'scroll-trigger', 'common-script'), filemtime(get_theme_file_path('/js/top.js')), true);
+    // ----- Three.js関連の読み込み -----
+    // three.module.js
+    wp_enqueue_script('three-js', get_template_directory_uri() . '/js/three.module.js', array(), null, true);
 
-    // Three.js関連の読み込み
-    //wp_enqueue_script('three-js', get_template_directory_uri() . '/js/three.module.js', array(), null, true);
-    //wp_enqueue_script('top-mv-canvas', get_template_directory_uri() . '/js/top-mv-canvas.js', array('three-js'), filemtime(get_theme_file_path('/js/top-mv-canvas.js')), true);
-    //wp_enqueue_script('top-ray-canvas', get_template_directory_uri() . '/js/top-ray-canvas.js', array('three-js'), filemtime(get_theme_file_path('/js/top-ray-canvas.js')), true);
-
-    // JSへWordPressの画像パスを渡す処理
-    // wp_localize_script('top-mv-canvas', 'myThemeData', array(
-    //   'themeUrl' => get_template_directory_uri()
-    // ));
+    // top-bg.js
+    wp_enqueue_script('top-bg-script', get_template_directory_uri() . '/js/top-bg.js', array('three-js'), filemtime(get_theme_file_path('/js/top-bg.js')), true);
   }
 
   // 作品一覧ページのみで読み込むJS (アーカイブページやカスタム投稿タイプアーカイブなど)
@@ -104,7 +98,7 @@ add_action('wp_enqueue_scripts', 'my_portfolio_enqueue_scripts');
 function add_type_attribute($tag, $handle, $src)
 {
   // type="module" を付与したいJSのハンドル名を配列で指定
-  $module_handles = array('three-js', 'top-mv-canvas', 'top-ray-canvas');
+  $module_handles = array('three-js', 'top-bg-script');
 
   if (in_array($handle, $module_handles)) {
     $tag = '<script type="module" src="' . esc_url($src) . '"></script>' . "\n";

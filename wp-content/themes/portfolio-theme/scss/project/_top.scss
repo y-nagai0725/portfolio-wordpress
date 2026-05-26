@@ -5,14 +5,7 @@
 // =========================================================================
 
 .p-top {
-  &__ray-canvas-wrap {
-    position: fixed;
-    z-index: g.$z-back;
-    width: 100%;
-    height: 100svh;
-  }
-
-  &__mv-canvas-wrap {
+  &__bg-canvas-wrap {
     position: fixed;
     z-index: g.$z-back;
     width: 100%;

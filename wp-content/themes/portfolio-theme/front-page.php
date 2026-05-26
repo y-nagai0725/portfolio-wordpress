@@ -1,11 +1,8 @@
 <?php get_header(); ?>
 
 <main>
-  <div class="p-top__ray-canvas-wrap">
-    <canvas id="ray-canvas"></canvas>
-  </div>
-  <div class="p-top__mv-canvas-wrap">
-    <canvas id="mv-canvas"></canvas>
+  <div class="p-top__bg-canvas-wrap">
+    <canvas id="bg-canvas"></canvas>
   </div>
   <section class="p-top__mv">
     <div class="p-top__catchcopy-ja-wrap">

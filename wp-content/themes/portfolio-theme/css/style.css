@@ -1097,7 +1097,7 @@ body {
   width: 1.8rem;
   height: 2.5rem;
   content: "";
-  background-image: url("../images/top/arrow-down.svg");
+  background-image: url("../images/common/arrow-down.svg");
   background-repeat: no-repeat;
   background-size: contain;
   animation: mv-move-arrow 1.6s ease-in-out infinite, mv-hide-arrow 1.6s ease-out infinite;
@@ -1777,7 +1777,7 @@ body {
   width: 1.4rem;
   height: 1.8rem;
   content: "";
-  background-image: url("../images/top/arrow-down.svg");
+  background-image: url("../images/common/arrow-down.svg");
   background-repeat: no-repeat;
   background-size: contain;
   transform: translate(-50%, -50%);

@@ -46,7 +46,7 @@
       transform 0.4s 1s g.$transition-easing-mv-logo-ja;
 
     @include g.mq(md) {
-      top: 25%;
+      top: 24.5%;
       transform: translateX(calc(-50% + 10vw));
     }
 
@@ -79,11 +79,7 @@
       }
 
       @include g.mq(lg) {
-        font-size: 2.2rem;
-      }
-
-      @include g.mq(xl) {
-        font-size: 2.8rem;
+        @include g.fluid-text(22, 28, $min-viewport: 1024, $max-viewport: 1920);
       }
     }
 
@@ -98,11 +94,7 @@
       }
 
       @include g.mq(lg) {
-        font-size: 12rem;
-      }
-
-      @include g.mq(xl) {
-        font-size: 14rem;
+        @include g.fluid-text(90, 140, $min-viewport: 1024, $max-viewport: 1920);
       }
     }
   }
@@ -139,7 +131,7 @@
     @include g.mq(md) {
       @include g.contents-width;
 
-      top: 23%;
+      top: clamp(11%, 32% - 11.5vw, 23%);
       left: 50%;
       height: auto;
       transform: translate(calc(-50% - 100vw), 0);
@@ -147,22 +139,6 @@
       &.is-active {
         transform: translate(-50%, 0);
       }
-    }
-
-    @include g.mq(lg) {
-      top: 21%;
-    }
-
-    @include g.mq(xl) {
-      top: 19%;
-    }
-
-    @include g.mq(1440px) {
-      top: 17%;
-    }
-
-    @include g.mq(1920px) {
-      top: 11%;
     }
   }
 

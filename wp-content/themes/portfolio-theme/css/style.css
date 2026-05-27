@@ -1618,16 +1618,16 @@ body {
   justify-content: space-around;
   width: 100%;
   height: 100svh;
-  padding: 2.4rem 0;
+  padding: 1.6rem 0;
 }
 @media screen and (width >= 768px) {
   .p-top__works-pinned-area {
-    padding: 3.2rem 0;
+    padding: 2.4rem 0;
   }
 }
 @media screen and (width >= 1024px) {
   .p-top__works-pinned-area {
-    padding: 5.6rem 0;
+    padding: 4rem 0;
   }
 }
 .p-top__works-list {

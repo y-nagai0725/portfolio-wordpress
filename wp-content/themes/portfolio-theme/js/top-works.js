@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
    * 各作品のDOM要素と表示・非表示のアニメーションを管理します。
    */
   class WorksItem {
-    animDuration = 0.6;
+    animDuration = 0.4;
     animEase = "power2.out";
 
     /**
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     hide() {
       gsap.to(this.el, {
         autoAlpha: 0,
-        duration: 0.4,
+        duration: this.animDuration,
         ease: this.animEase,
         overwrite: true
       });
@@ -249,9 +249,9 @@ document.addEventListener('DOMContentLoaded', () => {
       // サークルテキストが存在する場合は、移動方向に応じて回転を加速させる
       if (typeof rotateTween !== "undefined") {
         if (currentIndex < index) {
-          gsap.to(rotateTween, { timeScale: 10, duration: 0.2, overwrite: true });
+          gsap.to(rotateTween, { timeScale: 50, duration: 0.2, overwrite: true });
         } else if (currentIndex > index) {
-          gsap.to(rotateTween, { timeScale: -10, duration: 0.2, overwrite: true });
+          gsap.to(rotateTween, { timeScale: -50, duration: 0.2, overwrite: true });
         }
       }
 
@@ -272,14 +272,14 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollTo: {
           y: targetY,
         },
-        duration: 1,
+        duration: 0.4,
         ease: "power2.inOut",
         overwrite: "auto",
         onComplete: () => {
           // 移動完了後にフラグを解除し、サークルテキストの回転速度を元に戻す
           isJumping = false;
           if (typeof rotateTween !== "undefined") {
-            gsap.to(rotateTween, { timeScale: 1, duration: 0.5, ease: "power2.out", overwrite: true });
+            gsap.to(rotateTween, { timeScale: 1, duration: 0.4, ease: "power2.out", overwrite: true });
           }
         }
       });
@@ -313,6 +313,7 @@ document.addEventListener('DOMContentLoaded', () => {
         gsap.to(rotateTween, {
           timeScale: timeScale,
           duration: 0.1,
+          ease: "power2.out",
           overwrite: true
         });
       }
@@ -322,7 +323,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ScrollTrigger.addEventListener("scrollEnd", () => {
       gsap.to(rotateTween, {
         timeScale: 1,
-        duration: 0.5,
+        duration: 0.4,
         ease: "power2.out",
         overwrite: true
       });

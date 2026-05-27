@@ -49,10 +49,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const colors = new Float32Array(particleCount * 6);
   const speeds = new Float32Array(particleCount);
 
+  // :rootに定義したCSS変数を取得
+  const rootStyles = getComputedStyle(document.documentElement);
+  const cssColorWhite = rootStyles.getPropertyValue('--color-white').trim();
+  const cssColorGray = rootStyles.getPropertyValue('--color-gray').trim();
+  const cssColorTail = rootStyles.getPropertyValue('--color-tail').trim();
+
   // 線の色設定
-  const colorWhite = new THREE.Color(0xffffff);
-  const colorGray = new THREE.Color(0x868686);
-  const colorTail = new THREE.Color(0x1d1d1d); // 尻尾の色。少しグレーがかった黒
+  const colorWhite = new THREE.Color(cssColorWhite);
+  const colorGray = new THREE.Color(cssColorGray);
+  const colorTail = new THREE.Color(cssColorTail);
 
   for (let i = 0; i < particleCount; i++) {
     // x, y, z座標を -1000 〜 1000 の範囲にランダム配置

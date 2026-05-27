@@ -71,3 +71,12 @@ $transition-easing-mv-logo-ja: cubic-bezier(0.34, 0.8, 0.63, 0.98);
 
 // mvロゴtransitionのeasing: 英語ロゴ画像
 $transition-easing-mv-logo-en: cubic-bezier(0.99, 0, 0.08, 1);
+
+// =========================================================================
+// CSS変数（JavaScript連携用など）
+// =========================================================================
+:root {
+  --color-white: #{$white};
+  --color-gray: #{$gray};
+  --color-tail: #{$black};
+}

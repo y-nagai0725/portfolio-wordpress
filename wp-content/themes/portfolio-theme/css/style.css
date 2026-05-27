@@ -114,6 +114,12 @@ meter {
   display: none;
 }
 
+:root {
+  --color-white: #fff;
+  --color-gray: #868686;
+  --color-tail: #1d1d1d;
+}
+
 @keyframes fade-in {
   0% {
     opacity: 0;

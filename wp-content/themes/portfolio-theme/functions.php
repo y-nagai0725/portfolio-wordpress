@@ -98,7 +98,18 @@ add_action('wp_enqueue_scripts', 'my_portfolio_enqueue_scripts');
 function add_type_attribute($tag, $handle, $src)
 {
   // type="module" を付与したいJSのハンドル名を配列で指定
-  $module_handles = array('three-js', 'top-bg-script');
+  $module_handles = array(
+    'three-js',
+    'top-bg-script',
+    'common-script',
+    'top-mv-script',
+    'top-skill-script',
+    'top-works-script',
+    'works-filter-script',
+    'works-single-script',
+    'works-single-horizontal-script',
+    'contact-script'
+  );
 
   if (in_array($handle, $module_handles)) {
     $tag = '<script type="module" src="' . esc_url($src) . '"></script>' . "\n";

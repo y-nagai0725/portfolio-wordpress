@@ -1,3 +1,5 @@
+import { GSAP_CONFIG } from "./constants.js";
+
 /**
  * 全ページ共通のJavaScript
  * GSAP (ScrollTrigger / ScrollToPlugin) を使用した共通UIおよびアニメーションの制御
@@ -94,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
     targets.forEach((target) => {
       ScrollTrigger.create({
         trigger: target,
-        start: 'top 65%',    // ビューポートの上から65%の位置に来たら発火
+        start: GSAP_CONFIG.fadeTrigger,
         once: true,          // 一度だけ実行
         refreshPriority: -1, // 優先度を下げて、トップページでのpin留め処理後に計算させる
         onEnter: () => target.classList.add('is-active'),
@@ -185,12 +187,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const initBackToTop = () => {
     backBtn?.addEventListener('click', () => {
       gsap.to(window, {
-        duration: 0.8,
+        duration: GSAP_CONFIG.durationSlow,
         scrollTo: {
           y: 0,
           autoKill: true, // 途中でユーザーの操作があればスクロール動作を止める
         },
-        ease: 'power2.out',
+        ease: GSAP_CONFIG.easeBase,
       });
     });
   };

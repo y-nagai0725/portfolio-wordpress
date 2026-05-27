@@ -1,3 +1,5 @@
+import { GSAP_CONFIG } from "./constants.js";
+
 /**
  * トップページ: SKILLセクション用JS
  * SVGのパス（線）の長さを動的に取得・初期化し、
@@ -66,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
     svgElements.forEach(svg => {
       ScrollTrigger.create({
         trigger: svg,
-        start: 'top 65%', // ビューポートの上から65%の位置に来たら発火
+        start: GSAP_CONFIG.fadeTrigger,
         once: true,
         onEnter: () => {
           // SVGの先祖要素（li）を取得して同時に is-active を付与

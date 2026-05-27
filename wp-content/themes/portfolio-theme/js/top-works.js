@@ -1,3 +1,5 @@
+import { GSAP_CONFIG } from "./constants.js";
+
 /**
  * トップページ: WORKSセクション用JS
  * GSAPとScrollTriggerを使用した作品のスクロール連動アニメーション、
@@ -13,8 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
    * 各作品のDOM要素と表示・非表示のアニメーションを管理します。
    */
   class WorksItem {
-    animDuration = 0.4;
-    animEase = "power2.out";
+    animDuration = GSAP_CONFIG.durationBase;
+    animEase = GSAP_CONFIG.easeBase;
 
     /**
      * @param {HTMLElement} element - 作品のDOM要素
@@ -128,31 +130,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const tl = gsap.timeline();
 
     // 縦方向のズレと高さは先に合わせる
-    gsap.to(pager, { y: targetY, height: targetHeight, duration: 0.2 });
+    gsap.to(pager, { y: targetY, height: targetHeight, duration: 0.1 });
 
     if (isMovingRight) {
       // 右方向への移動：右に幅を伸ばしてから左を追いつかせる
       tl.to(pager, {
         width: (targetX - currentX) + targetWidth,
-        duration: 0.2,
-        ease: "power1.inOut"
+        duration: GSAP_CONFIG.durationBase / 2,
+        ease: GSAP_CONFIG.easeInOut
       }).to(pager, {
         x: targetX,
         width: targetWidth,
-        duration: 0.2,
-        ease: "power2.out"
+        duration: GSAP_CONFIG.durationBase / 2,
+        ease: GSAP_CONFIG.easeBase
       });
     } else {
       // 左方向への移動：左に移動しつつ幅を残し、後から右を追いつかせる
       tl.to(pager, {
         x: targetX,
         width: (currentX - targetX) + targetWidth,
-        duration: 0.2,
-        ease: "power1.inOut"
+        duration: GSAP_CONFIG.durationBase / 2,
+        ease: GSAP_CONFIG.easeInOut
       }).to(pager, {
         width: targetWidth,
-        duration: 0.2,
-        ease: "power2.out"
+        duration: GSAP_CONFIG.durationBase / 2,
+        ease: GSAP_CONFIG.easeBase
       });
     }
   };
@@ -249,9 +251,9 @@ document.addEventListener('DOMContentLoaded', () => {
       // サークルテキストが存在する場合は、移動方向に応じて回転を加速させる
       if (typeof rotateTween !== "undefined") {
         if (currentIndex < index) {
-          gsap.to(rotateTween, { timeScale: 50, duration: 0.2, overwrite: true });
+          gsap.to(rotateTween, { timeScale: 50, duration: 0.1, overwrite: true });
         } else if (currentIndex > index) {
-          gsap.to(rotateTween, { timeScale: -50, duration: 0.2, overwrite: true });
+          gsap.to(rotateTween, { timeScale: -50, duration: 0.1, overwrite: true });
         }
       }
 
@@ -272,14 +274,14 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollTo: {
           y: targetY,
         },
-        duration: 0.4,
-        ease: "power2.inOut",
+        duration: GSAP_CONFIG.durationBase,
+        ease: GSAP_CONFIG.easeInOut,
         overwrite: "auto",
         onComplete: () => {
           // 移動完了後にフラグを解除し、サークルテキストの回転速度を元に戻す
           isJumping = false;
           if (typeof rotateTween !== "undefined") {
-            gsap.to(rotateTween, { timeScale: 1, duration: 0.4, ease: "power2.out", overwrite: true });
+            gsap.to(rotateTween, { timeScale: 1, duration: GSAP_CONFIG.durationBase, ease: GSAP_CONFIG.easeBase, overwrite: true });
           }
         }
       });
@@ -313,7 +315,7 @@ document.addEventListener('DOMContentLoaded', () => {
         gsap.to(rotateTween, {
           timeScale: timeScale,
           duration: 0.1,
-          ease: "power2.out",
+          ease: GSAP_CONFIG.easeBase,
           overwrite: true
         });
       }
@@ -323,8 +325,8 @@ document.addEventListener('DOMContentLoaded', () => {
     ScrollTrigger.addEventListener("scrollEnd", () => {
       gsap.to(rotateTween, {
         timeScale: 1,
-        duration: 0.4,
-        ease: "power2.out",
+        duration: GSAP_CONFIG.durationBase,
+        ease: GSAP_CONFIG.easeBase,
         overwrite: true
       });
     });
@@ -337,7 +339,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   ScrollTrigger.create({
     trigger: '.p-top__works',
-    start: "top 65%",
+    start: GSAP_CONFIG.fadeTrigger,
     onEnter: () => {
       fadeElements.forEach(el => el.classList.add('is-active'));
     },

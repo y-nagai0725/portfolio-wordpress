@@ -1,3 +1,5 @@
+import { GSAP_CONFIG } from "./constants.js";
+
 /**
  * トップページ: MVセクション用JS
  * ページ読み込み時のスクロール位置を判定し、
@@ -63,11 +65,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // MESSAGEセクションへのスムーススクロール処理
       gsap.to(window, {
-        duration: 0.8,
+        duration: GSAP_CONFIG.durationSlow,
         scrollTo: {
           y: '#message',
         },
-        ease: 'power2.out'
+        ease: GSAP_CONFIG.easeBase,
       });
     });
   }

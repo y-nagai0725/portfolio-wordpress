@@ -109,7 +109,7 @@
     z-index: g.$z-mv-logo-en;
     width: fit-content;
     height: 100%;
-    mix-blend-mode: overlay;
+    mix-blend-mode: screen;
     opacity: 0;
     transform: translate(0, -100svh);
     transition:

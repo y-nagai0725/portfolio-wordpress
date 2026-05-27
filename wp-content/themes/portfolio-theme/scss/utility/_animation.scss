@@ -9,7 +9,7 @@
   opacity: 0;
 
   &.is-active {
-    animation: fade-in 1s forwards;
+    animation: fade-in g.$animation-base-duration g.$animation-base-easing forwards;
   }
 }
 
@@ -18,7 +18,7 @@
   opacity: 0;
 
   &.is-active {
-    animation: fade-right 1s forwards;
+    animation: fade-right g.$animation-base-duration g.$animation-base-easing forwards;
   }
 }
 
@@ -27,6 +27,6 @@
   opacity: 0;
 
   &.is-active {
-    animation: fade-up 1s forwards;
+    animation: fade-up g.$animation-base-duration g.$animation-base-easing forwards;
   }
 }

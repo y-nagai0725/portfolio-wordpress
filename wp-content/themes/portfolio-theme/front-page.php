@@ -27,7 +27,7 @@
   </section>
   <section class="p-top__message" id="message">
     <div class="p-top__message-inner">
-      <div class="p-top__message-txt-wrap js-scroll">
+      <div class="p-top__message-txt-wrap js-scroll u-fade-up">
         <p class="p-top__message-txt">
           前進あるのみ。
         </p>
@@ -38,7 +38,7 @@
           それらを乗り越える。
         </p>
       </div>
-      <div class="p-top__message-txt-wrap js-scroll">
+      <div class="p-top__message-txt-wrap js-scroll u-fade-up">
         <p class="p-top__message-txt">
           日々前進。
         </p>
@@ -49,7 +49,7 @@
           今を生きることが大切だ。
         </p>
       </div>
-      <div class="p-top__message-txt-wrap js-scroll">
+      <div class="p-top__message-txt-wrap js-scroll u-fade-up">
         <p class="p-top__message-txt">
           Advance to the next level.
         </p>
@@ -65,8 +65,8 @@
   </section>
   <section class="p-top__about">
     <div class="p-top__about-inner">
-      <h2 class="p-top__about-ttl c-ttl c-ttl--center c-ttl--section js-scroll">ABOUT</h2>
-      <div class="p-top__about-profile js-scroll">
+      <h2 class="p-top__about-ttl c-ttl c-ttl--center c-ttl--section js-scroll u-fade-right">ABOUT</h2>
+      <div class="p-top__about-profile js-scroll u-fade-in">
         <div class="p-top__about-img-wrap">
           <img src="<?php echo get_template_directory_uri(); ?>/images/top/about/about-profile.jpg" alt="永井善孝 プロフィール写真" class="p-top__about-img">
         </div>
@@ -91,9 +91,9 @@
   </section>
   <section class="p-top__skill">
     <div class="p-top__skill-inner">
-      <h2 class="p-top__skill-ttl c-ttl c-ttl--left c-ttl--section js-scroll">SKILL</h2>
+      <h2 class="p-top__skill-ttl c-ttl c-ttl--left c-ttl--section js-scroll u-fade-right">SKILL</h2>
       <ul class="p-top__skill-list">
-        <li class="p-top__skill-item">
+        <li class="p-top__skill-item u-fade-in">
           <h3 class="p-top__skill-name">HTML / CSS（Sass）</h3>
           <div class="p-top__skill-txt-wrap">
             <p class="p-top__skill-txt">
@@ -104,7 +104,7 @@
             </div>
           </div>
         </li>
-        <li class="p-top__skill-item">
+        <li class="p-top__skill-item u-fade-in">
           <h3 class="p-top__skill-name">JavaScript</h3>
           <div class="p-top__skill-txt-wrap">
             <p class="p-top__skill-txt">
@@ -115,7 +115,7 @@
             </div>
           </div>
         </li>
-        <li class="p-top__skill-item">
+        <li class="p-top__skill-item u-fade-in">
           <h3 class="p-top__skill-name">Vue.js</h3>
           <div class="p-top__skill-txt-wrap">
             <p class="p-top__skill-txt">
@@ -126,7 +126,7 @@
             </div>
           </div>
         </li>
-        <li class="p-top__skill-item">
+        <li class="p-top__skill-item u-fade-in">
           <h3 class="p-top__skill-name">Node.js（Express）</h3>
           <div class="p-top__skill-txt-wrap">
             <p class="p-top__skill-txt">
@@ -137,7 +137,7 @@
             </div>
           </div>
         </li>
-        <li class="p-top__skill-item">
+        <li class="p-top__skill-item u-fade-in">
           <h3 class="p-top__skill-name">WordPress</h3>
           <div class="p-top__skill-txt-wrap">
             <p class="p-top__skill-txt">
@@ -148,7 +148,7 @@
             </div>
           </div>
         </li>
-        <li class="p-top__skill-item">
+        <li class="p-top__skill-item u-fade-in">
           <h3 class="p-top__skill-name">Git / GitHub</h3>
           <div class="p-top__skill-txt-wrap">
             <p class="p-top__skill-txt">
@@ -159,7 +159,7 @@
             </div>
           </div>
         </li>
-        <li class="p-top__skill-item">
+        <li class="p-top__skill-item u-fade-in">
           <h3 class="p-top__skill-name">Figma / Adobe XD</h3>
           <div class="p-top__skill-txt-wrap">
             <p class="p-top__skill-txt">
@@ -170,7 +170,7 @@
             </div>
           </div>
         </li>
-        <li class="p-top__skill-item">
+        <li class="p-top__skill-item u-fade-in">
           <h3 class="p-top__skill-name">Photoshop</h3>
           <div class="p-top__skill-txt-wrap">
             <p class="p-top__skill-txt">
@@ -181,7 +181,7 @@
             </div>
           </div>
         </li>
-        <li class="p-top__skill-item">
+        <li class="p-top__skill-item u-fade-in">
           <h3 class="p-top__skill-name">Linux / VPS構築</h3>
           <div class="p-top__skill-txt-wrap">
             <p class="p-top__skill-txt">
@@ -192,7 +192,7 @@
             </div>
           </div>
         </li>
-        <li class="p-top__skill-item">
+        <li class="p-top__skill-item u-fade-in">
           <h3 class="p-top__skill-name">GSAP</h3>
           <div class="p-top__skill-txt-wrap">
             <p class="p-top__skill-txt">
@@ -209,8 +209,8 @@
   <section class="p-top__works">
     <div class="p-top__works-inner">
       <div class="p-top__works-pinned-area">
-        <h2 class="p-top__works-ttl c-ttl c-ttl--left c-ttl--section">WORKS</h2>
-        <ul class="p-top__works-list">
+        <h2 class="p-top__works-ttl c-ttl c-ttl--left c-ttl--section u-fade-right">WORKS</h2>
+        <ul class="p-top__works-list u-fade-in">
           <?php
           // 表示する作品の条件を指定（'show_on_top' が true の7件）
           $top_works_args = array(
@@ -267,7 +267,7 @@
             wp_reset_postdata();
           endif; ?>
         </ul>
-        <div class="p-top__works-nav-wrap">
+        <div class="p-top__works-nav-wrap u-fade-in">
           <div class="p-top__works-icon-wrap">
             <div class="p-top__works-svg-wrap">
               <?php echo file_get_contents(get_template_directory() . '/images/top/works/works-circle-txt.svg'); ?>
@@ -296,10 +296,10 @@
       </div>
     </div>
   </section>
-  <section class="p-top__contact js-scroll">
+  <section class="p-top__contact js-scroll u-fade-in">
     <div class="p-top__contact-inner">
-      <h2 class="p-top__contact-ttl c-ttl c-ttl--center c-ttl--section js-scroll">CONTACT</h2>
-      <div class="p-top__contact-info js-scroll">
+      <h2 class="p-top__contact-ttl c-ttl c-ttl--center c-ttl--section js-scroll u-fade-in">CONTACT</h2>
+      <div class="p-top__contact-info js-scroll u-fade-in">
         <p class="p-top__contact-txt">
           お問い合わせは下のボタンから<br class="p-top__contact-br">
           入力フォームへお進みください。

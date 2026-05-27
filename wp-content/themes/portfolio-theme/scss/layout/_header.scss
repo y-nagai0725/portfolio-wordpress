@@ -13,8 +13,8 @@
   opacity: 0;
   transform: translateY(-100%);
   transition:
-    opacity 0.8s 0.2s g.$transition-base-easing,
-    transform 0.8s 0.2s g.$transition-base-easing;
+    opacity 0.8s g.$transition-base-easing 0.2s,
+    transform 0.8s g.$transition-base-easing 0.2s;
 
   &.is-active {
     opacity: 1;
@@ -46,7 +46,7 @@
     color: g.$white;
     letter-spacing: -0.03em;
     pointer-events: all;
-    transition: opacity g.$transition-base-duration g.$transition-base-easing;
+    transition: opacity 0.2s g.$transition-base-easing;
 
     &.is-inverted {
       color: g.$black;
@@ -166,10 +166,10 @@
         border-radius: 50%;
         transform: translate(50%, -50%);
         transform-origin: center;
-        animation: zoom-up-sp 1s forwards;
+        animation: zoom-up-sp 1s g.$animation-base-easing forwards;
 
         @include g.mq(md) {
-          animation: zoom-up-tab 1s forwards;
+          animation: zoom-up-tab 1s g.$animation-base-easing forwards;
         }
       }
     }

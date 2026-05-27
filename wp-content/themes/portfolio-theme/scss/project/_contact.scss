@@ -25,7 +25,7 @@
     opacity: 0;
 
     .wrapper.is-active & {
-      animation: fade-in 1s 0.5s forwards;
+      animation: fade-in g.$animation-base-duration g.$animation-base-easing 0.5s forwards;
     }
 
     @include g.mq(md) {
@@ -41,7 +41,7 @@
     opacity: 0;
 
     .wrapper.is-active & {
-      animation: fade-up 1s 1s forwards;
+      animation: fade-up g.$animation-base-duration g.$animation-base-easing 1s forwards;
     }
   }
 

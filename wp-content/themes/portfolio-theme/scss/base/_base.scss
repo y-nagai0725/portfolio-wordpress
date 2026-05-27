@@ -16,6 +16,6 @@ body {
   opacity: 0;
 
   &.is-active {
-    animation: fade-in 0.8s forwards;
+    animation: fade-in 0.8s g.$animation-base-easing forwards;
   }
 }

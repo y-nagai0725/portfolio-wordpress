@@ -102,7 +102,7 @@
             <div class="p-works-single__scrollbar-thumb"></div>
           </div>
         </div>
-        <div class="p-works-single__introduction js-scroll">
+        <div class="p-works-single__introduction">
           <h2 class="p-works-single__ttl <?php echo esc_attr($en_class); ?>"><?php the_title(); ?></h2>
           <?php if ($skills && ! is_wp_error($skills)): ?>
             <ul class="p-works-single__tag-list">

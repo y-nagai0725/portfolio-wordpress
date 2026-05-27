@@ -28,10 +28,11 @@
   }
 
   &__site-view {
+    position: relative;
     opacity: 0;
 
     .wrapper.is-active & {
-      animation: fade-up 1s forwards;
+      animation: fade-in g.$animation-base-duration g.$animation-base-easing 0.5s forwards;
     }
   }
 
@@ -140,8 +141,8 @@
   &__introduction {
     opacity: 0;
 
-    &.is-active {
-      animation: fade-up 1s forwards;
+    .wrapper.is-active & {
+      animation: fade-up g.$animation-base-duration g.$animation-base-easing 1s forwards;
     }
   }
 

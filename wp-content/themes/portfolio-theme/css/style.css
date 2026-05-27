@@ -158,7 +158,7 @@ body {
   opacity: 0;
 }
 .wrapper.is-active {
-  animation: fade-in 0.8s forwards;
+  animation: fade-in 0.8s ease-out forwards;
 }
 
 .l-header {
@@ -171,7 +171,7 @@ body {
   pointer-events: none;
   opacity: 0;
   transform: translateY(-100%);
-  transition: opacity 0.8s 0.2s ease-out, transform 0.8s 0.2s ease-out;
+  transition: opacity 0.8s ease-out 0.2s, transform 0.8s ease-out 0.2s;
 }
 .l-header.is-active {
   opacity: 1;
@@ -218,7 +218,7 @@ body {
   color: #fff;
   letter-spacing: -0.03em;
   pointer-events: all;
-  transition: opacity 0.4s ease-out;
+  transition: opacity 0.2s ease-out;
 }
 .l-header__logo-link.is-inverted {
   color: #1d1d1d;
@@ -314,11 +314,11 @@ body {
   border-radius: 50%;
   transform: translate(50%, -50%);
   transform-origin: center;
-  animation: zoom-up-sp 1s forwards;
+  animation: zoom-up-sp 1s ease-out forwards;
 }
 @media screen and (width >= 768px) {
   .l-header__nav.is-open::before {
-    animation: zoom-up-tab 1s forwards;
+    animation: zoom-up-tab 1s ease-out forwards;
   }
 }
 @media screen and (width >= 768px) {
@@ -824,21 +824,21 @@ body {
   opacity: 0;
 }
 .u-fade-in.is-active {
-  animation: fade-in 1s forwards;
+  animation: fade-in 1s ease-out forwards;
 }
 
 .u-fade-right {
   opacity: 0;
 }
 .u-fade-right.is-active {
-  animation: fade-right 1s forwards;
+  animation: fade-right 1s ease-out forwards;
 }
 
 .u-fade-up {
   opacity: 0;
 }
 .u-fade-up.is-active {
-  animation: fade-up 1s forwards;
+  animation: fade-up 1s ease-out forwards;
 }
 
 .p-top__bg-canvas-wrap {
@@ -1159,10 +1159,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
-  opacity: 0;
-}
-.p-top__message-txt-wrap.is-active {
-  animation: fade-up 0.6s ease-out forwards;
 }
 @media screen and (width >= 768px) {
   .p-top__message-txt-wrap {
@@ -1232,10 +1228,6 @@ body {
 }
 .p-top__about-ttl {
   margin-bottom: 3.2rem;
-  opacity: 0;
-}
-.p-top__about-ttl.is-active {
-  animation: fade-right 1s ease-out forwards;
 }
 @media screen and (width >= 768px) {
   .p-top__about-ttl {
@@ -1252,10 +1244,6 @@ body {
   flex-direction: column;
   gap: 3rem;
   align-items: center;
-  opacity: 0;
-}
-.p-top__about-profile.is-active {
-  animation: fade-in 1s ease-out forwards;
 }
 @media screen and (width >= 768px) {
   .p-top__about-profile {
@@ -1423,10 +1411,6 @@ body {
 }
 .p-top__skill-ttl {
   margin-bottom: 3.2rem;
-  opacity: 0;
-}
-.p-top__skill-ttl.is-active {
-  animation: fade-right 1s ease-out forwards;
 }
 @media screen and (width >= 768px) {
   .p-top__skill-ttl {
@@ -1467,10 +1451,6 @@ body {
   gap: 2.4rem;
   padding-top: 2.4rem;
   font-size: 1.4rem;
-  opacity: 0;
-}
-.p-top__skill-item.is-active {
-  animation: fade-in 1s ease-out forwards;
 }
 .p-top__skill-item::before {
   position: absolute;
@@ -1650,18 +1630,8 @@ body {
     padding: 5.6rem 0;
   }
 }
-.p-top__works-ttl {
-  opacity: 0;
-}
-.p-top__works-ttl.is-active {
-  animation: fade-right 1s ease-out forwards;
-}
 .p-top__works-list {
   position: relative;
-  opacity: 0;
-}
-.p-top__works-list.is-active {
-  animation: fade-in 1s ease-out forwards;
 }
 .p-top__works-item {
   display: flex;
@@ -1781,10 +1751,6 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
-  opacity: 0;
-}
-.p-top__works-nav-wrap.is-active {
-  animation: fade-in 1s ease-out forwards;
 }
 @media screen and (width >= 1024px) {
   .p-top__works-nav-wrap {
@@ -1975,10 +1941,6 @@ body {
 .p-top__contact {
   padding: 10rem 0;
   background: url("../images/top/contact/contact-bg.jpg") center center/cover;
-  opacity: 0;
-}
-.p-top__contact.is-active {
-  animation: fade-in 1s ease-out forwards;
 }
 @media screen and (width >= 768px) {
   .p-top__contact {
@@ -2009,10 +1971,6 @@ body {
 }
 .p-top__contact-ttl {
   margin-bottom: 3.2rem;
-  opacity: 0;
-}
-.p-top__contact-ttl.is-active {
-  animation: fade-in 1s ease-out forwards;
 }
 @media screen and (width >= 768px) {
   .p-top__contact-ttl {
@@ -2029,10 +1987,6 @@ body {
   flex-direction: column;
   gap: 2.4rem;
   align-items: center;
-  opacity: 0;
-}
-.p-top__contact-info.is-active {
-  animation: fade-in 1s ease-out forwards;
 }
 @media screen and (width >= 768px) {
   .p-top__contact-info {
@@ -2166,7 +2120,7 @@ body {
   opacity: 0;
 }
 .wrapper.is-active .p-works-archive__ttl {
-  animation: fade-right 1s 0.5s forwards;
+  animation: fade-right 1s ease-out 0.5s forwards;
 }
 .p-works-archive__filter-wrap {
   display: flex;
@@ -2175,7 +2129,7 @@ body {
   opacity: 0;
 }
 .wrapper.is-active .p-works-archive__filter-wrap {
-  animation: fade-in 1.5s 0.5s forwards;
+  animation: fade-in 1s ease-out 0.5s forwards;
 }
 @media screen and (width >= 768px) {
   .p-works-archive__filter-wrap {
@@ -2236,7 +2190,7 @@ body {
   opacity: 0;
 }
 .wrapper.is-active .p-works-archive__works-list {
-  animation: fade-up 1s 1s forwards;
+  animation: fade-up 1s ease-out 1s forwards;
 }
 @media screen and (width >= 768px) {
   .p-works-archive__works-list {
@@ -2289,10 +2243,11 @@ body {
   }
 }
 .p-works-single__site-view {
+  position: relative;
   opacity: 0;
 }
 .wrapper.is-active .p-works-single__site-view {
-  animation: fade-up 1s forwards;
+  animation: fade-in 1s ease-out 0.5s forwards;
 }
 .p-works-single__scroll-area {
   position: relative;
@@ -2391,8 +2346,8 @@ body {
 .p-works-single__introduction {
   opacity: 0;
 }
-.p-works-single__introduction.is-active {
-  animation: fade-up 1s forwards;
+.wrapper.is-active .p-works-single__introduction {
+  animation: fade-up 1s ease-out 1s forwards;
 }
 .p-works-single__ttl {
   margin-bottom: 1.6rem;
@@ -2742,7 +2697,7 @@ body {
   opacity: 0;
 }
 .wrapper.is-active .p-contact__ttl {
-  animation: fade-in 1s 0.5s forwards;
+  animation: fade-in 1s ease-out 0.5s forwards;
 }
 @media screen and (width >= 768px) {
   .p-contact__ttl {
@@ -2758,7 +2713,7 @@ body {
   opacity: 0;
 }
 .wrapper.is-active .p-contact__contents-wrap {
-  animation: fade-up 1s 1s forwards;
+  animation: fade-up 1s ease-out 1s forwards;
 }
 .p-contact__txt {
   margin-bottom: 2.4rem;
@@ -3064,7 +3019,7 @@ body {
   opacity: 0;
 }
 .wrapper.is-active .p-thanks__ttl {
-  animation: fade-in 1s 0.5s forwards;
+  animation: fade-in 1s ease-out 0.5s forwards;
 }
 @media screen and (width >= 768px) {
   .p-thanks__ttl {
@@ -3080,7 +3035,7 @@ body {
   opacity: 0;
 }
 .wrapper.is-active .p-thanks__contents-wrap {
-  animation: fade-up 1s 1s forwards;
+  animation: fade-up 1s ease-out 1s forwards;
 }
 .p-thanks__txt {
   margin-bottom: 4.8rem;

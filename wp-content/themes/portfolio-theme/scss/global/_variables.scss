@@ -50,14 +50,24 @@ $header-height-sp: 80px;
 $header-height-tab: 90px;
 $header-height-pc: 100px;
 
-// アニメーションの基本速度
-$transition-base-duration: 0.4s;
+// =========================================================================
+// アニメーション
+// =========================================================================
+
+// アニメーションの基本時間
+$animation-base-duration: 1s;
 
 // アニメーションの基本easing
+$animation-base-easing: ease-out;
+
+// transitionの基本時間
+$transition-base-duration: 0.4s;
+
+// transitionの基本easing
 $transition-base-easing: ease-out;
 
-// mvロゴアニメーションeasing: 日本語テキスト
+// mvロゴtransitionのeasing: 日本語テキスト
 $transition-easing-mv-logo-ja: cubic-bezier(0.34, 0.8, 0.63, 0.98);
 
-// mvロゴアニメーションeasing: 英語ロゴ画像
+// mvロゴtransitionのeasing: 英語ロゴ画像
 $transition-easing-mv-logo-en: cubic-bezier(0.99, 0, 0.08, 1);

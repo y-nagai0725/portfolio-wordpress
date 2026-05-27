@@ -5,6 +5,10 @@
 // =========================================================================
 
 .p-top {
+  // =========================================================================
+  // canvas（Three.jsでの背景描画アニメーション用）
+  // =========================================================================
+
   &__bg-canvas-wrap {
     position: fixed;
     z-index: g.$z-back;
@@ -272,11 +276,6 @@
     display: flex;
     flex-direction: column;
     gap: 1.6rem;
-    opacity: 0;
-
-    &.is-active {
-      animation: fade-up 0.6s g.$transition-base-easing forwards;
-    }
 
     @include g.mq(md) {
       gap: 2.4rem;
@@ -327,11 +326,6 @@
 
   &__about-ttl {
     margin-bottom: 3.2rem;
-    opacity: 0;
-
-    &.is-active {
-      animation: fade-right 1s g.$transition-base-easing forwards;
-    }
 
     @include g.mq(md) {
       margin-bottom: 6.4rem;
@@ -347,11 +341,6 @@
     flex-direction: column;
     gap: 3rem;
     align-items: center;
-    opacity: 0;
-
-    &.is-active {
-      animation: fade-in 1s g.$transition-base-easing forwards;
-    }
 
     @include g.mq(md) {
       gap: 4rem;
@@ -510,11 +499,6 @@
 
   &__skill-ttl {
     margin-bottom: 3.2rem;
-    opacity: 0;
-
-    &.is-active {
-      animation: fade-right 1s g.$transition-base-easing forwards;
-    }
 
     @include g.mq(md) {
       margin-bottom: 6.4rem;
@@ -552,11 +536,6 @@
     gap: 2.4rem;
     padding-top: 2.4rem;
     font-size: 1.4rem;
-    opacity: 0;
-
-    &.is-active {
-      animation: fade-in 1s g.$transition-base-easing forwards;
-    }
 
     &::before {
       position: absolute;
@@ -721,21 +700,8 @@
     }
   }
 
-  &__works-ttl {
-    opacity: 0;
-
-    &.is-active {
-      animation: fade-right 1s g.$transition-base-easing forwards;
-    }
-  }
-
   &__works-list {
     position: relative;
-    opacity: 0;
-
-    &.is-active {
-      animation: fade-in 1s g.$transition-base-easing forwards;
-    }
   }
 
   &__works-item {
@@ -855,11 +821,6 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 2rem;
-    opacity: 0;
-
-    &.is-active {
-      animation: fade-in 1s g.$transition-base-easing forwards;
-    }
 
     @include g.mq(lg) {
       grid-template-columns: 5fr 4fr 1fr;
@@ -1059,11 +1020,6 @@
   &__contact {
     padding: 10rem 0;
     background: url("../images/top/contact/contact-bg.jpg") center center / cover;
-    opacity: 0;
-
-    &.is-active {
-      animation: fade-in 1s g.$transition-base-easing forwards;
-    }
 
     @include g.mq(md) {
       padding: 16rem 0;
@@ -1080,11 +1036,6 @@
 
   &__contact-ttl {
     margin-bottom: 3.2rem;
-    opacity: 0;
-
-    &.is-active {
-      animation: fade-in 1s g.$transition-base-easing forwards;
-    }
 
     @include g.mq(md) {
       margin-bottom: 6.4rem;
@@ -1100,11 +1051,6 @@
     flex-direction: column;
     gap: 2.4rem;
     align-items: center;
-    opacity: 0;
-
-    &.is-active {
-      animation: fade-in 1s g.$transition-base-easing forwards;
-    }
 
     @include g.mq(md) {
       gap: 3.2rem;

@@ -61,15 +61,11 @@ document.addEventListener('DOMContentLoaded', () => {
       // デフォルトのリンクの動きをキャンセル
       e.preventDefault();
 
-      // 現在のヘッダーの高さを動的に取得
-      const headerHeight = document.querySelector('.l-header').offsetHeight;
-
       // MESSAGEセクションへのスムーススクロール処理
       gsap.to(window, {
         duration: 0.8,
         scrollTo: {
           y: '#message',
-          offsetY: headerHeight // ヘッダーの高さ分だけ手前の位置にする
         },
         ease: 'power2.out'
       });

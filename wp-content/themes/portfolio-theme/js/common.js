@@ -186,8 +186,11 @@ document.addEventListener('DOMContentLoaded', () => {
     backBtn?.addEventListener('click', () => {
       gsap.to(window, {
         duration: 0.8,
-        scrollTo: 0,
-        ease: 'power2.out'
+        scrollTo: {
+          y: 0,
+          autoKill: true, // 途中でユーザーの操作があればスクロール動作を止める
+        },
+        ease: 'power2.out',
       });
     });
   };

@@ -271,7 +271,6 @@ document.addEventListener('DOMContentLoaded', () => {
       gsap.to(window, {
         scrollTo: {
           y: targetY,
-          autoKill: false, // スクロール途中でユーザーの操作をさせない
         },
         duration: 1,
         ease: "power2.inOut",

@@ -635,6 +635,44 @@
     }
   }
 
+  &__skill-txt-link {
+    position: relative;
+    display: inline-block;
+    color: g.$pale-gray;
+    transition: color g.$transition-base-duration g.$transition-base-easing;
+
+    &::before {
+      position: absolute;
+      bottom: 0.33em;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      content: "";
+      background-color: g.$pale-gray;
+    }
+
+    &::after {
+      position: absolute;
+      bottom: 0.33em;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      content: "";
+      background-color: g.$white;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform g.$transition-base-duration g.$transition-base-easing;
+    }
+
+    @include g.hover {
+      color: g.$white;
+
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+  }
+
   &__skill-icon-wrap {
     flex-shrink: 0;
     width: 24rem;

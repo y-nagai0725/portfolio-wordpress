@@ -94,10 +94,10 @@
       <h2 class="p-top__skill-ttl c-ttl c-ttl--left c-ttl--section js-scroll">SKILL</h2>
       <ul class="p-top__skill-list">
         <li class="p-top__skill-item">
-          <h3 class="p-top__skill-name">HTML / CSS</h3>
+          <h3 class="p-top__skill-name">HTML / CSS（Sass）</h3>
           <div class="p-top__skill-txt-wrap">
             <p class="p-top__skill-txt">
-              TODO 出来ること、やったこと、アピールすること等を記載するサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプル
+              職業訓練での基礎に加え、FLOCSSなどの設計思想を用いた保守性の高いコーディングが得意です。SCSS（Sass）を活用し、PCからスマートフォンまで、あらゆるデバイスで美しく見やすいレスポンシブデザインをピクセルパーフェクトで実装することができます。
             </p>
             <div class="p-top__skill-icon-wrap">
               <?php echo file_get_contents(get_template_directory() . '/images/top/skill/skill-html.svg'); ?>
@@ -108,7 +108,7 @@
           <h3 class="p-top__skill-name">JavaScript</h3>
           <div class="p-top__skill-txt-wrap">
             <p class="p-top__skill-txt">
-              TODO 出来ること、やったこと、アピールすること等を記載するサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプル
+              DOM操作から非同期処理、クラスを用いたオブジェクト指向の実装まで幅広く対応可能です。ユーザーの使いやすさを第一に考え、フロントエンドの動的なUI構築やAPI連携など、Webサイトに命を吹き込むインタラクティブな開発を得意としています。
             </p>
             <div class="p-top__skill-icon-wrap">
               <?php echo file_get_contents(get_template_directory() . '/images/top/skill/skill-javascript.svg'); ?>
@@ -116,10 +116,10 @@
           </div>
         </li>
         <li class="p-top__skill-item">
-          <h3 class="p-top__skill-name">WordPress</h3>
+          <h3 class="p-top__skill-name">Vue.js</h3>
           <div class="p-top__skill-txt-wrap">
             <p class="p-top__skill-txt">
-              TODO 出来ること、やったこと、アピールすること等を記載するサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプル
+              タイピングアプリ「GeminiType」をフルスクラッチで開発した経験があります。コンポーネント指向による再利用性の高い設計や、状態管理 (Pinia) を用いたモダンなSPA開発が可能で、複雑な要件も形にすることができます。
             </p>
             <div class="p-top__skill-icon-wrap">
               <?php echo file_get_contents(get_template_directory() . '/images/top/skill/skill-wordpress.svg'); ?>
@@ -127,10 +127,10 @@
           </div>
         </li>
         <li class="p-top__skill-item">
-          <h3 class="p-top__skill-name">Photoshop</h3>
+          <h3 class="p-top__skill-name">Node.js（Express）</h3>
           <div class="p-top__skill-txt-wrap">
             <p class="p-top__skill-txt">
-              TODO 出来ること、やったこと、アピールすること等を記載するサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプル
+              フロントエンドだけでなく、自作の「Diary」アプリやタイピングアプリのバックエンド開発も経験しました。Expressを用いたルーティング設計やAPIサーバーの構築、データベースとの連携など、Webアプリケーションの裏側の仕組みから実装まで対応できます。
             </p>
             <div class="p-top__skill-icon-wrap">
               <?php echo file_get_contents(get_template_directory() . '/images/top/skill/skill-photoshop.svg'); ?>
@@ -138,10 +138,10 @@
           </div>
         </li>
         <li class="p-top__skill-item">
-          <h3 class="p-top__skill-name">XD / Figma</h3>
+          <h3 class="p-top__skill-name">WordPress</h3>
           <div class="p-top__skill-txt-wrap">
             <p class="p-top__skill-txt">
-              TODO 出来ること、やったこと、アピールすること等を記載するサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプル
+              既存テーマのカスタマイズだけでなく、本ポートフォリオサイトのようにオリジナルテーマのゼロからの構築が可能です。カスタム投稿タイプやAdvanced Custom Fields（ACF）を活用し、運用者が更新しやすい使い勝手の良いCMS構築を得意とします。
             </p>
             <div class="p-top__skill-icon-wrap">
               <?php echo file_get_contents(get_template_directory() . '/images/top/skill/skill-figma.svg'); ?>
@@ -149,10 +149,10 @@
           </div>
         </li>
         <li class="p-top__skill-item">
-          <h3 class="p-top__skill-name">Git</h3>
+          <h3 class="p-top__skill-name">Git / GitHub</h3>
           <div class="p-top__skill-txt-wrap">
             <p class="p-top__skill-txt">
-              TODO 出来ること、やったこと、アピールすること等を記載するサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプル
+              個人開発でのソースコード管理やバージョン管理として日常的に活用しています。コミットメッセージの明確化やブランチの適切な運用を心がけており、実務における複数人でのチーム開発でも、コンフリクトへの対応などスムーズに連携をとれる基礎が身についています。
             </p>
             <div class="p-top__skill-icon-wrap">
               <?php echo file_get_contents(get_template_directory() . '/images/top/skill/skill-git.svg'); ?>
@@ -160,10 +160,10 @@
           </div>
         </li>
         <li class="p-top__skill-item">
-          <h3 class="p-top__skill-name">Visual Studio Code</h3>
+          <h3 class="p-top__skill-name">Figma / Adobe XD</h3>
           <div class="p-top__skill-txt-wrap">
             <p class="p-top__skill-txt">
-              TODO 出来ること、やったこと、アピールすること等を記載するサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプル
+              職業訓練でデザインの基礎から学びました。デザイナーが作成したカンプの意図を正確に読み取り、余白やフォントサイズなどのデザインルールを忠実に再現するコーディングが可能です。また、コンポーネントやアセットの書き出しなど基本操作をスムーズに行えます。
             </p>
             <div class="p-top__skill-icon-wrap">
               <?php echo file_get_contents(get_template_directory() . '/images/top/skill/skill-vscode.svg'); ?>
@@ -171,10 +171,32 @@
           </div>
         </li>
         <li class="p-top__skill-item">
-          <h3 class="p-top__skill-name">Word / Excel</h3>
+          <h3 class="p-top__skill-name">Photoshop</h3>
           <div class="p-top__skill-txt-wrap">
             <p class="p-top__skill-txt">
-              TODO 出来ること、やったこと、アピールすること等を記載するサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプルサンプル
+              Webサイト制作に必要な画像切り抜きやリサイズ、色調補正などのレタッチ処理をスピーディーに行うことができます。本サイトの背景画像で行ったモノクロ調整のように、サイト全体のトーン＆マナーに合わせた画像の細やかな最適化と書き出し処理が可能です。
+            </p>
+            <div class="p-top__skill-icon-wrap">
+              <?php echo file_get_contents(get_template_directory() . '/images/top/skill/skill-excel.svg'); ?>
+            </div>
+          </div>
+        </li>
+        <li class="p-top__skill-item">
+          <h3 class="p-top__skill-name">Linux / VPS構築</h3>
+          <div class="p-top__skill-txt-wrap">
+            <p class="p-top__skill-txt">
+              自作のWebアプリケーションを公開するため、自身でLinuxサーバー（VPS）を契約し、環境構築からデプロイまでを完遂した経験があります。コマンドラインでの基本操作やSSH接続、Webサーバーの立ち上げなど、インフラ面での基礎知識も備えています。
+            </p>
+            <div class="p-top__skill-icon-wrap">
+              <?php echo file_get_contents(get_template_directory() . '/images/top/skill/skill-excel.svg'); ?>
+            </div>
+          </div>
+        </li>
+        <li class="p-top__skill-item">
+          <h3 class="p-top__skill-name">GSAP</h3>
+          <div class="p-top__skill-txt-wrap">
+            <p class="p-top__skill-txt">
+              ScrollTriggerを活用したスクロール連動アニメーションなど、ユーザーの視線を惹きつけるリッチで滑らかな動きの実装が得意です。CSSだけでは表現が難しい複雑なタイムライン制御を駆使し、サイトの魅力を最大限に引き出すワンランク上のUIを実現します。
             </p>
             <div class="p-top__skill-icon-wrap">
               <?php echo file_get_contents(get_template_directory() . '/images/top/skill/skill-excel.svg'); ?>

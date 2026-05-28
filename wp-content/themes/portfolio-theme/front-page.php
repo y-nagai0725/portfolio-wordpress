@@ -68,22 +68,22 @@
       <h2 class="p-top__about-ttl c-ttl c-ttl--center c-ttl--section js-scroll u-fade-right">ABOUT</h2>
       <div class="p-top__about-profile js-scroll u-fade-in">
         <div class="p-top__about-img-wrap">
-          <img src="<?php echo get_template_directory_uri(); ?>/images/top/about/about-profile.jpg" alt="永井善孝 プロフィール写真" class="p-top__about-img">
+          <?php if (get_field('about_img')): ?>
+            <img src="<?php echo esc_url(get_field('about_img')); ?>" alt="<?php the_field('about_name'); ?> プロフィール写真" class="p-top__about-img">
+          <?php endif; ?>
         </div>
         <div class="p-top__about-info">
-          <p class="p-top__about-name">永井 善孝（ながい よしたか）</p>
+          <p class="p-top__about-name"><?php the_field('about_name'); ?></p>
           <div class="p-top__about-link-wrap">
-            <a href="https://github.com/y-nagai0725" class="p-top__about-link p-top__about-link--github" target="_blank">GitHub</a>
-            <a href="https://blog.mikanbako.jp" class="p-top__about-link p-top__about-link--blog" target="_blank">技術ブログ</a>
+            <?php if (get_field('about_github')): ?>
+              <a href="<?php echo esc_url(get_field('about_github')); ?>" class="p-top__about-link p-top__about-link--github" target="_blank">GitHub</a>
+            <?php endif; ?>
+            <?php if (get_field('about_blog')): ?>
+              <a href="<?php echo esc_url(get_field('about_blog')); ?>" class="p-top__about-link p-top__about-link--blog" target="_blank">技術ブログ</a>
+            <?php endif; ?>
           </div>
           <p class="p-top__about-txt">
-            北海道札幌市出身、大学生から函館へ、前職は病院の事務員として勤めていました。<br>
-            趣味はランニング。ダイエットと健康維持の為、週に3日程5kmをゆっくりと走っています。
-          </p>
-          <p class="p-top__about-txt">
-            職業訓練校にて、WEBデザイン、HTML/CSS、JavaScriptを学び、コーダー・フロントエンドエンジニアを目指して日々勉強、作品制作をしています。<br>
-            最近はJavaScript（Node.jsやVue.jsなど）を用いたWebアプリケーション開発に力を入れており、タイピングアプリなどをフルスクラッチで制作しました。また、本サイトのようにWordPressを用いたオリジナルテーマの構築も行っています。<br>
-            現在はGSAPやThree.jsなど、よりリッチでインタラクティブなUI/UXを実現するためのフロントエンド技術を積極的に学んでいます。
+            <?php the_field('about_txt'); ?>
           </p>
         </div>
       </div>
@@ -93,116 +93,45 @@
     <div class="p-top__skill-inner">
       <h2 class="p-top__skill-ttl c-ttl c-ttl--left c-ttl--section js-scroll u-fade-right">SKILL</h2>
       <ul class="p-top__skill-list">
-        <li class="p-top__skill-item u-fade-in">
-          <h3 class="p-top__skill-name">HTML / CSS（Sass）</h3>
-          <div class="p-top__skill-txt-wrap">
-            <p class="p-top__skill-txt">
-              職業訓練での基礎に加え、FLOCSSなどの設計思想を用いた保守性の高いコーディングが得意です。SCSS（Sass）を活用し、PCからスマートフォンまで、あらゆるデバイスで美しく見やすいレスポンシブデザインをピクセルパーフェクトで実装することができます。
-            </p>
-            <div class="p-top__skill-icon-wrap">
-              <?php echo file_get_contents(get_template_directory() . '/images/top/skill/skill-html.svg'); ?>
-            </div>
-          </div>
-        </li>
-        <li class="p-top__skill-item u-fade-in">
-          <h3 class="p-top__skill-name">JavaScript</h3>
-          <div class="p-top__skill-txt-wrap">
-            <p class="p-top__skill-txt">
-              DOM操作から非同期処理、クラスを用いたオブジェクト指向の実装まで幅広く対応可能です。ユーザーの使いやすさを第一に考え、フロントエンドの動的なUI構築やAPI連携など、Webサイトに命を吹き込むインタラクティブな開発を得意としています。
-            </p>
-            <div class="p-top__skill-icon-wrap">
-              <?php echo file_get_contents(get_template_directory() . '/images/top/skill/skill-javascript.svg'); ?>
-            </div>
-          </div>
-        </li>
-        <li class="p-top__skill-item u-fade-in">
-          <h3 class="p-top__skill-name">Vue.js</h3>
-          <div class="p-top__skill-txt-wrap">
-            <p class="p-top__skill-txt">
-              タイピングアプリ「GeminiType」をフルスクラッチで開発した経験があります。コンポーネント指向による再利用性の高い設計や、状態管理 (Pinia) を用いたモダンなSPA開発が可能で、複雑な要件も形にすることができます。
-            </p>
-            <div class="p-top__skill-icon-wrap">
-              <?php echo file_get_contents(get_template_directory() . '/images/top/skill/skill-wordpress.svg'); ?>
-            </div>
-          </div>
-        </li>
-        <li class="p-top__skill-item u-fade-in">
-          <h3 class="p-top__skill-name">Node.js（Express）</h3>
-          <div class="p-top__skill-txt-wrap">
-            <p class="p-top__skill-txt">
-              フロントエンドだけでなく、自作の「Diary」アプリやタイピングアプリのバックエンド開発も経験しました。Expressを用いたルーティング設計やAPIサーバーの構築、データベースとの連携など、Webアプリケーションの裏側の仕組みから実装まで対応できます。
-            </p>
-            <div class="p-top__skill-icon-wrap">
-              <?php echo file_get_contents(get_template_directory() . '/images/top/skill/skill-photoshop.svg'); ?>
-            </div>
-          </div>
-        </li>
-        <li class="p-top__skill-item u-fade-in">
-          <h3 class="p-top__skill-name">WordPress</h3>
-          <div class="p-top__skill-txt-wrap">
-            <p class="p-top__skill-txt">
-              既存テーマのカスタマイズだけでなく、本ポートフォリオサイトのようにオリジナルテーマのゼロからの構築が可能です。カスタム投稿タイプやAdvanced Custom Fields（ACF）を活用し、運用者が更新しやすい使い勝手の良いCMS構築を得意とします。
-            </p>
-            <div class="p-top__skill-icon-wrap">
-              <?php echo file_get_contents(get_template_directory() . '/images/top/skill/skill-figma.svg'); ?>
-            </div>
-          </div>
-        </li>
-        <li class="p-top__skill-item u-fade-in">
-          <h3 class="p-top__skill-name">Git / GitHub</h3>
-          <div class="p-top__skill-txt-wrap">
-            <p class="p-top__skill-txt">
-              個人開発でのソースコード管理やバージョン管理として日常的に活用しています。コミットメッセージの明確化やブランチの適切な運用を心がけており、実務における複数人でのチーム開発でも、コンフリクトへの対応などスムーズに連携をとれる基礎が身についています。
-            </p>
-            <div class="p-top__skill-icon-wrap">
-              <?php echo file_get_contents(get_template_directory() . '/images/top/skill/skill-git.svg'); ?>
-            </div>
-          </div>
-        </li>
-        <li class="p-top__skill-item u-fade-in">
-          <h3 class="p-top__skill-name">Figma / Adobe XD</h3>
-          <div class="p-top__skill-txt-wrap">
-            <p class="p-top__skill-txt">
-              職業訓練でデザインの基礎から学びました。デザイナーが作成したカンプの意図を正確に読み取り、余白やフォントサイズなどのデザインルールを忠実に再現するコーディングが可能です。また、コンポーネントやアセットの書き出しなど基本操作をスムーズに行えます。
-            </p>
-            <div class="p-top__skill-icon-wrap">
-              <?php echo file_get_contents(get_template_directory() . '/images/top/skill/skill-vscode.svg'); ?>
-            </div>
-          </div>
-        </li>
-        <li class="p-top__skill-item u-fade-in">
-          <h3 class="p-top__skill-name">Photoshop</h3>
-          <div class="p-top__skill-txt-wrap">
-            <p class="p-top__skill-txt">
-              Webサイト制作に必要な画像切り抜きやリサイズ、色調補正などのレタッチ処理をスピーディーに行うことができます。本サイトの背景画像で行ったモノクロ調整のように、サイト全体のトーン＆マナーに合わせた画像の細やかな最適化と書き出し処理が可能です。
-            </p>
-            <div class="p-top__skill-icon-wrap">
-              <?php echo file_get_contents(get_template_directory() . '/images/top/skill/skill-excel.svg'); ?>
-            </div>
-          </div>
-        </li>
-        <li class="p-top__skill-item u-fade-in">
-          <h3 class="p-top__skill-name">Linux / VPS構築</h3>
-          <div class="p-top__skill-txt-wrap">
-            <p class="p-top__skill-txt">
-              自作のWebアプリケーションを公開するため、自身でLinuxサーバー（VPS）を契約し、環境構築からデプロイまでを完遂した経験があります。コマンドラインでの基本操作やSSH接続、Webサーバーの立ち上げなど、インフラ面での基礎知識も備えています。
-            </p>
-            <div class="p-top__skill-icon-wrap">
-              <?php echo file_get_contents(get_template_directory() . '/images/top/skill/skill-excel.svg'); ?>
-            </div>
-          </div>
-        </li>
-        <li class="p-top__skill-item u-fade-in">
-          <h3 class="p-top__skill-name">GSAP</h3>
-          <div class="p-top__skill-txt-wrap">
-            <p class="p-top__skill-txt">
-              ScrollTriggerを活用したスクロール連動アニメーションなど、ユーザーの視線を惹きつけるリッチで滑らかな動きの実装が得意です。CSSだけでは表現が難しい複雑なタイムライン制御を駆使し、サイトの魅力を最大限に引き出すワンランク上のUIを実現します。
-            </p>
-            <div class="p-top__skill-icon-wrap">
-              <?php echo file_get_contents(get_template_directory() . '/images/top/skill/skill-excel.svg'); ?>
-            </div>
-          </div>
-        </li>
+        <?php
+        // ACFで定義しているSKILLの数
+        $max_skill_count = 12;
+
+        // 1から$max_skill_countまで繰り返し処理
+        for ($i = 1; $i <= $max_skill_count; $i++) {
+          $skill_name = get_field('skill_' . $i . '_name');
+          $skill_txt  = get_field('skill_' . $i . '_txt');
+          $skill_icon = get_field('skill_' . $i . '_icon');
+
+          // スキル名が入力されている時だけ <li> を出力する
+          if ($skill_name) :
+        ?>
+            <li class="p-top__skill-item u-fade-in">
+              <h3 class="p-top__skill-name"><?php echo esc_html($skill_name); ?></h3>
+              <div class="p-top__skill-txt-wrap">
+                <p class="p-top__skill-txt">
+                  <?php echo $skill_txt; ?>
+                </p>
+                <div class="p-top__skill-icon-wrap">
+                  <?php
+                  // SVG画像のインライン出力処理
+                  if ($skill_icon) {
+                    // 画像IDから、サーバー上の「絶対パス」を取得する
+                    $svg_path = get_attached_file($skill_icon);
+
+                    // ファイルが本当に存在するか確認してから中身を出力する
+                    if ($svg_path && file_exists($svg_path)) {
+                      echo file_get_contents($svg_path);
+                    }
+                  }
+                  ?>
+                </div>
+              </div>
+            </li>
+        <?php
+          endif;
+        }
+        ?>
       </ul>
     </div>
   </section>

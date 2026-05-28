@@ -129,3 +129,12 @@ add_filter('big_image_size_threshold', '__return_false');
 
 // サイトの「管理画面バー」を非表示にする
 add_filter('show_admin_bar', '__return_false');
+
+// =========================================================================
+// SVG画像のアップロードを許可する
+// =========================================================================
+function add_svg_to_upload_mimes($mimes) {
+  $mimes['svg'] = 'image/svg+xml';
+  return $mimes;
+}
+add_filter('upload_mimes', 'add_svg_to_upload_mimes');

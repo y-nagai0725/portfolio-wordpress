@@ -46,12 +46,8 @@ function my_portfolio_enqueue_scripts()
     // top-works.js
     wp_enqueue_script('top-works-script', get_template_directory_uri() . '/js/top-works.js', array('gsap', 'scroll-trigger', 'common-script'), filemtime(get_theme_file_path('/js/top-works.js')), true);
 
-    // ----- Three.js関連の読み込み -----
-    // three.module.js
-    wp_enqueue_script('three-js', get_template_directory_uri() . '/js/three.module.js', array(), null, true);
-
     // top-bg.js
-    wp_enqueue_script('top-bg-script', get_template_directory_uri() . '/js/top-bg.js', array('three-js'), filemtime(get_theme_file_path('/js/top-bg.js')), true);
+    wp_enqueue_script('top-bg-script', get_template_directory_uri() . '/js/top-bg.js', array('gsap', 'scroll-trigger', 'common-script'), filemtime(get_theme_file_path('/js/top-bg.js')), true);
   }
 
   // 作品一覧ページのみで読み込むJS (アーカイブページやカスタム投稿タイプアーカイブなど)
@@ -99,7 +95,6 @@ function add_type_attribute($tag, $handle, $src)
 {
   // type="module" を付与したいJSのハンドル名を配列で指定
   $module_handles = array(
-    'three-js',
     'top-bg-script',
     'common-script',
     'top-mv-script',
@@ -133,7 +128,8 @@ add_filter('show_admin_bar', '__return_false');
 // =========================================================================
 // SVG画像のアップロードを許可する
 // =========================================================================
-function add_svg_to_upload_mimes($mimes) {
+function add_svg_to_upload_mimes($mimes)
+{
   $mimes['svg'] = 'image/svg+xml';
   return $mimes;
 }

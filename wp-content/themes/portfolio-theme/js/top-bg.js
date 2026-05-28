@@ -1,4 +1,4 @@
-import * as THREE from "./three.module.js";
+import * as THREE from "./three.module.min.js";
 
 /**
  * トップページ: 背景アニメーション用JS (Three.js)

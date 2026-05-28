@@ -1,4 +1,4 @@
-@use "../global/" as g;
+@use "../../global/" as g;
 
 // =========================================================================
 //  作品一覧ページ (.p-works-archive)
@@ -41,7 +41,7 @@
   &__ttl {
     opacity: 0;
 
-    .wrapper.is-active & {
+    .l-wrapper.is-active & {
       animation: fade-right g.$animation-base-duration g.$animation-base-easing 0.5s forwards;
     }
   }
@@ -52,7 +52,7 @@
     gap: 0.4rem 2.4rem;
     opacity: 0;
 
-    .wrapper.is-active & {
+    .l-wrapper.is-active & {
       animation: fade-in g.$animation-base-duration g.$animation-base-easing 0.5s forwards;
     }
 
@@ -115,7 +115,7 @@
     gap: 4.8rem;
     opacity: 0;
 
-    .wrapper.is-active & {
+    .l-wrapper.is-active & {
       animation: fade-up g.$animation-base-duration g.$animation-base-easing 1s forwards;
     }
 

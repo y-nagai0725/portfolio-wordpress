@@ -34,7 +34,7 @@ if (is_front_page() || is_home()) {
         echo 'id="' . esc_attr($my_body_id) . '"';
       } ?> <?php body_class(); ?>>
   <?php wp_body_open(); ?>
-  <div class="wrapper">
+  <div class="l-wrapper">
     <header class="l-header">
       <div class="l-header__inner">
         <h1 class="l-header__logo">

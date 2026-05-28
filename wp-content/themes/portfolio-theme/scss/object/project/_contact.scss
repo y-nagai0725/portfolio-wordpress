@@ -1,4 +1,4 @@
-@use "../global/" as g;
+@use "../../global/" as g;
 
 // =========================================================================
 //  お問い合わせページ (.p-contact)
@@ -24,7 +24,7 @@
     margin-bottom: 4.8rem;
     opacity: 0;
 
-    .wrapper.is-active & {
+    .l-wrapper.is-active & {
       animation: fade-in g.$animation-base-duration g.$animation-base-easing 0.5s forwards;
     }
 
@@ -40,7 +40,7 @@
   &__contents-wrap {
     opacity: 0;
 
-    .wrapper.is-active & {
+    .l-wrapper.is-active & {
       animation: fade-up g.$animation-base-duration g.$animation-base-easing 1s forwards;
     }
   }

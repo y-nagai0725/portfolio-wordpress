@@ -1,0 +1,14 @@
+@use "../global" as g;
+
+// =========================================================================
+// 全体ラッパー (.l-wrapper)
+// =========================================================================
+
+.l-wrapper {
+  overflow: hidden;
+  opacity: 0;
+
+  &.is-active {
+    animation: fade-in 0.8s g.$animation-base-easing forwards;
+  }
+}

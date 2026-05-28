@@ -10,12 +10,3 @@ body {
   line-height: 1;
   background-color: g.$black;
 }
-
-.wrapper {
-  overflow: hidden;
-  opacity: 0;
-
-  &.is-active {
-    animation: fade-in 0.8s g.$animation-base-easing forwards;
-  }
-}

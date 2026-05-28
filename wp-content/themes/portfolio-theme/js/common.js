@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * wrapper
    */
-  const wrapper = document.querySelector('.wrapper');
+  const wrapper = document.querySelector('.l-wrapper');
 
   /**
    * ヘッダー

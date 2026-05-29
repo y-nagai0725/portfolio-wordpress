@@ -29,18 +29,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /**
    * SVGの初期設定
-   * 各path要素の長さを動的に計算し、stroke-dashoffet, stroke-dasharrayプロパティを設定して最初は線が見えない状態にする。
+   * 各path要素の長さを動的に計算し、stroke-dashoffset, stroke-dasharrayプロパティを設定して最初は線が見えない状態にする。
    */
   const setupSvgPathLengths = () => {
     svgElements.forEach(svg => {
+      // SVG内のすべてのパス要素
       const pathElements = svg.querySelectorAll("path");
       pathElements.forEach(path => {
-        // パス全体の長さを取得
+        // パス全体の長さ
         const pathLength = path.getTotalLength();
 
         // 線の間隔とズレの数値を同じにして、線が見えない状態にする
-        path.style.strokeDashoffset = pathLength;
-        path.style.strokeDasharray = pathLength;
+        path.style.strokeDashoffset = pathLength.toString();
+        path.style.strokeDasharray = pathLength.toString();
       });
     });
   };
@@ -50,13 +51,14 @@ document.addEventListener('DOMContentLoaded', () => {
    * @param {SVGElement} svg - アニメーションを開始する対象のSVG要素
    */
   const animateSvgPaths = (svg) => {
+    // SVG内のすべてのパス要素
     const pathElements = svg.querySelectorAll("path");
     pathElements.forEach(path => {
       // transitionを設定して、隠していたstroke-dashoffsetを0に向かって滑らかに動かす
       path.style.transitionProperty = 'stroke-dashoffset';
       path.style.transitionDuration = PATH_ANIMATION_DURATION;
       path.style.transitionTimingFunction = PATH_ANIMATION_TIMING_FUNCTION;
-      path.style.strokeDashoffset = 0;
+      path.style.strokeDashoffset = "0";
     });
   };
 
@@ -71,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         start: GSAP_CONFIG.fadeTrigger,
         once: true,
         onEnter: () => {
-          // SVGの先祖要素（li）を取得して同時に is-active を付与
+          // SVGの先祖要素（li）
           const parentItem = svg.closest('.p-top__skill-item');
           if (parentItem) {
             parentItem.classList.add('is-active');

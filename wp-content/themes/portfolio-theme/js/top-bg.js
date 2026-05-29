@@ -5,28 +5,48 @@ import * as THREE from "./three.module.min.js";
  * MV〜MESSAGEセクションにかけて、GSAPと連動して空間の動きを変化させる
  */
 document.addEventListener('DOMContentLoaded', () => {
+  /**
+   * 描画対象のCanvas要素
+   * @type {HTMLCanvasElement | null}
+   */
   const canvas = document.querySelector('#bg-canvas');
   if (!canvas) return;
 
-  // スマホ・タブレット（1023px以下）かどうかの判定
+  /**
+   * スマホ・タブレット（1023px以下）かどうかの判定フラグ
+   * @type {boolean}
+   */
   const isSp = window.innerWidth <= 1023;
 
   // =========================================================
   // Three.jsの基本セットアップ
   // =========================================================
-  // 3D空間（シーン）の作成
+  /**
+   * 3D空間（シーン）
+   * @type {THREE.Scene}
+   */
   const scene = new THREE.Scene();
 
   // 空間の奥行きを表現する「霧（フォグ）」の設定
   scene.fog = new THREE.FogExp2(0x000000, 0.00065);
 
-  // カメラの設定（視野角, アスペクト比, 描画開始距離, 描画終了距離）
-  // SP表示時は視野角を広くして、画面が狭くても空間の広がりを保つ
+  /**
+   * 初期視野角（SP表示時は視野角を広くして空間の広がりを保つ）
+   * @type {number}
+   */
   const initialFov = isSp ? 105 : 75;
+
+  /**
+   * カメラ
+   * @type {THREE.PerspectiveCamera}
+   */
   const camera = new THREE.PerspectiveCamera(initialFov, window.innerWidth / window.innerHeight, 0.1, 2000);
   camera.position.z = 1000;
 
-  // レンダラーの設定
+  /**
+   * レンダラー
+   * @type {THREE.WebGLRenderer}
+   */
   const renderer = new THREE.WebGLRenderer({
     canvas: canvas,
     alpha: true,      // 背景を透過
@@ -39,25 +59,54 @@ document.addEventListener('DOMContentLoaded', () => {
   // =========================================================
   // 光の線（ラインセグメント）の生成
   // =========================================================
-  // パーティクルの数
-  // SP時は重くならないよう＆密集しすぎないように数を減らす
+  /**
+   * パーティクルの数（SP時は負荷軽減と密度調整のため数を減らす）
+   * @type {number}
+   */
   const particleCount = isSp ? 500 : 700;
 
+  /**
+   * ジオメトリ
+   * @type {THREE.BufferGeometry}
+   */
   const geometry = new THREE.BufferGeometry();
-  // 1本の線につき「頭」と「尻尾」の2つの頂点(x,y,z)が必要なため、数は * 6 になる
+
+  /**
+   * 頂点座標の配列（1本の線につき頭と尻尾の2頂点×XYZの3座標 = 6）
+   * @type {Float32Array}
+   */
   const positions = new Float32Array(particleCount * 6);
+
+  /**
+   * 頂点カラーの配列
+   * @type {Float32Array}
+   */
   const colors = new Float32Array(particleCount * 6);
+
+  /**
+   * 各パーティクルの移動スピードの配列
+   * @type {Float32Array}
+   */
   const speeds = new Float32Array(particleCount);
 
-  // :rootに定義したCSS変数を取得
+  /**
+   * CSSのルート変数（:root）を取得
+   * @type {CSSStyleDeclaration}
+   */
   const rootStyles = getComputedStyle(document.documentElement);
+
+  /** @type {string} */
   const cssColorWhite = rootStyles.getPropertyValue('--color-white').trim();
+  /** @type {string} */
   const cssColorGray = rootStyles.getPropertyValue('--color-gray').trim();
+  /** @type {string} */
   const cssColorTail = rootStyles.getPropertyValue('--color-tail').trim();
 
-  // 線の色設定
+  /** @type {THREE.Color} */
   const colorWhite = new THREE.Color(cssColorWhite);
+  /** @type {THREE.Color} */
   const colorGray = new THREE.Color(cssColorGray);
+  /** @type {THREE.Color} */
   const colorTail = new THREE.Color(cssColorTail);
 
   for (let i = 0; i < particleCount; i++) {
@@ -98,7 +147,10 @@ document.addEventListener('DOMContentLoaded', () => {
   geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
   geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
-  // 線の質感（マテリアル）設定
+  /**
+   * 線の質感（マテリアル）設定
+   * @type {THREE.LineBasicMaterial}
+   */
   const material = new THREE.LineBasicMaterial({
     vertexColors: true,
     transparent: true,
@@ -107,13 +159,20 @@ document.addEventListener('DOMContentLoaded', () => {
     depthWrite: false                 // 手前の黒い尻尾が、奥の光を隠してしまうバグを防ぐ必須設定
   });
 
-  // 線(LineSegments)としてシーンに追加
+  /**
+   * 線(LineSegments)のメッシュ
+   * @type {THREE.LineSegments}
+   */
   const lines = new THREE.LineSegments(geometry, material);
   scene.add(lines);
 
   // =========================================================
   // アニメーションの状態管理（GSAPで操作する対象）
   // =========================================================
+  /**
+   * 背景アニメーションの進行状態と表示フラグを管理
+   * @type {{progress: number, isVisible: boolean}}
+   */
   const bgState = {
     progress: 0,        // 0 = A(奥から手前へ), 1 = B(下から上へ)
     isVisible: true     // Canvasが表示されているか（エコモード用フラグ）
@@ -141,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
     end: 'top 40%',
     scrub: true,
     onUpdate: (self) => {
-      canvas.style.opacity = 1 - self.progress;
+      canvas.style.opacity = (1 - self.progress).toString();
       bgState.isVisible = self.progress < 1; // 完全に消えたら false にする
     }
   });
@@ -149,6 +208,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // =========================================================
   // アニメーションループ（毎フレームの計算）
   // =========================================================
+  /**
+   * 毎フレーム実行されるアニメーションループ関数
+   */
   const animate = () => {
     requestAnimationFrame(animate);
 

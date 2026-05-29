@@ -1,14 +1,14 @@
 @use "../../global/" as g;
 
 // =========================================================================
-//  トップページ (.p-top)
+// Project: Top
+// トップページ固有のスタイル（.p-top）
 // =========================================================================
 
 .p-top {
   // =========================================================================
-  // canvas（Three.jsでの背景描画アニメーション用）
+  // 背景キャンバス (Three.js用)
   // =========================================================================
-
   &__bg-canvas-wrap {
     position: fixed;
     z-index: g.$z-back;
@@ -17,15 +17,17 @@
   }
 
   // =========================================================================
-  // MVセクション
+  // MV (メインビジュアル) セクション
   // =========================================================================
-
   &__mv {
     position: relative;
     height: 100svh;
     overflow: hidden;
   }
 
+  // =========================================================================
+  // MV：日本語キャッチコピー
+  // =========================================================================
   &__catchcopy-ja-wrap {
     @include g.contents-width;
 
@@ -47,10 +49,12 @@
       transform: translateX(calc(-50% + 10vw));
     }
 
+    // JavaScriptで付与され、.is-active と合わせることで transition 無しで最終状態にする
     &.is-complete {
       transition: none;
     }
 
+    // JavaScriptで付与され、フェードインとスライドをトリガーする
     &.is-active {
       opacity: 1;
       transform: rotate(-5deg) translateX(-50%);
@@ -76,6 +80,7 @@
       }
 
       @include g.mq(lg) {
+        // 画面幅に応じてフォントサイズを滑らかに可変させる
         @include g.fluid-text(22, 28, $min-viewport: 1024, $max-viewport: 1920);
       }
     }
@@ -98,10 +103,13 @@
 
   &__catchcopy-br {
     @include g.mq(md) {
-      display: none;
+      display: none; // タブレット以上で改行を解除
     }
   }
 
+  // =========================================================================
+  // MV：英語キャッチコピー画像
+  // =========================================================================
   &__catchcopy-en-wrap {
     position: absolute;
     top: 0;
@@ -109,9 +117,9 @@
     z-index: g.$z-mv-logo-en;
     width: fit-content;
     height: 100%;
-    mix-blend-mode: screen;
+    mix-blend-mode: screen; // 背景とブレンドしてスタイリッシュな表現に
     opacity: 0;
-    transform: translate(0, -100svh);
+    transform: translate(0, -100svh); // 初期状態は画面外（上）に配置
     transition:
       opacity 1.4s g.$transition-easing-mv-logo-en,
       transform 1.4s g.$transition-easing-mv-logo-en;
@@ -122,7 +130,7 @@
 
     &.is-active {
       opacity: 1;
-      transform: translate(0, 0);
+      transform: translate(0, 0); // 上から下へスライドイン
     }
 
     @include g.mq(md) {
@@ -131,7 +139,7 @@
       top: clamp(11%, 32% - 11.5vw, 23%);
       left: 50%;
       height: auto;
-      transform: translate(calc(-50% - 100vw), 0);
+      transform: translate(calc(-50% - 100vw), 0); // PC表示時は左からスライド
 
       &.is-active {
         transform: translate(-50%, 0);
@@ -150,6 +158,9 @@
     }
   }
 
+  // =========================================================================
+  // MV：スクロールダウンボタン
+  // =========================================================================
   &__scroll-btn-wrap {
     position: absolute;
     right: 3rem;
@@ -221,6 +232,7 @@
       font-size: 1.4rem;
     }
 
+    // 下向き矢印のアニメーション設定
     &::before {
       position: absolute;
       top: 0.7rem;
@@ -231,6 +243,8 @@
       background-image: url("../images/common/arrow-down.svg");
       background-repeat: no-repeat;
       background-size: contain;
+
+      // アニメーションのキーフレーム定義はファイル下部に記載
       animation:
         mv-move-arrow 1.6s ease-in-out infinite,
         mv-hide-arrow 1.6s ease-out infinite;
@@ -244,6 +258,7 @@
   &__message {
     @include g.section-margin;
 
+    // 上下余白（画面幅に応じて広げる）
     padding: 10rem 0;
 
     @include g.mq(md) {
@@ -272,6 +287,7 @@
     }
   }
 
+  // メッセージの各段落ラッパー
   &__message-txt-wrap {
     display: flex;
     flex-direction: column;
@@ -306,9 +322,10 @@
     }
   }
 
+  // スマホ表示時のみ有効な改行
   &__message-br {
     @include g.mq(md) {
-      display: none;
+      display: none; // タブレット以上で改行を解除
     }
   }
 
@@ -328,6 +345,7 @@
     @include g.section-ttl-margin;
   }
 
+  // プロフィールレイアウト（スマホ：縦並び / PC：横並び）
   &__about-profile {
     display: flex;
     flex-direction: column;
@@ -350,9 +368,10 @@
     }
   }
 
+  // プロフィール画像のラッパー
   &__about-img-wrap {
     width: 18.4rem;
-    aspect-ratio: 23 / 30;
+    aspect-ratio: 23 / 30; // 画像の縦横比を固定
 
     @include g.mq(md) {
       width: 22rem;
@@ -370,6 +389,7 @@
     object-fit: cover;
   }
 
+  // プロフィールテキスト領域
   &__about-info {
     display: flex;
     flex-direction: column;
@@ -396,6 +416,7 @@
     }
   }
 
+  // 外部リンクのラッパー（GitHub, ブログなど）
   &__about-link-wrap {
     display: flex;
     gap: 2rem;
@@ -410,6 +431,7 @@
     }
   }
 
+  // 外部リンクの共通スタイル
   &__about-link {
     position: relative;
     display: flex;
@@ -420,6 +442,7 @@
     color: g.$white;
     transition: opacity g.$transition-base-duration g.$transition-base-easing;
 
+    // アイコン表示用の擬似要素
     &--github,
     &--blog {
       &::before {
@@ -493,18 +516,19 @@
     @include g.section-ttl-margin;
   }
 
+  // スキルリストのグリッドレイアウト
   &__skill-list {
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(1, 1fr); // スマホ時は1カラム
     gap: 8rem;
-    counter-reset: skill-list-number 0;
+    counter-reset: skill-list-number 0; // CSSカウンターを初期化（自動連番用）
 
     @include g.mq(md) {
       gap: 10rem;
     }
 
     @include g.mq(lg) {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, 1fr); // PC時は2カラム
       gap: 10rem 8rem;
     }
 
@@ -513,6 +537,7 @@
     }
   }
 
+  // 各スキルアイテム
   &__skill-item {
     position: relative;
     display: flex;
@@ -521,24 +546,26 @@
     padding-top: 2.4rem;
     font-size: 1.4rem;
 
+    // 上部の区切り線
     &::before {
       position: absolute;
       top: 0;
       left: 0;
-      width: calc(100% - 2em);
+      width: calc(100% - 2em); // 番号と重ならないように幅を調整
       height: 1px;
       content: "";
       background-color: g.$gray;
     }
 
+    // 右上の自動連番（01, 02...）
     &::after {
       position: absolute;
       top: 0;
       right: 0;
       font-family: g.$oswald;
       color: g.$gray;
-      content: counter(skill-list-number, decimal-leading-zero);
-      counter-increment: skill-list-number 1;
+      content: counter(skill-list-number, decimal-leading-zero); // 0埋めの数字を出力
+      counter-increment: skill-list-number 1; // カウンターを1増やす
       transform: translateY(-50%);
     }
 
@@ -565,11 +592,13 @@
     }
   }
 
+  // テキストとアイコンのラッパー
   &__skill-txt-wrap {
     display: flex;
     flex-direction: column;
     gap: 2.4rem;
 
+    // 画面幅に応じて縦並び・横並びを柔軟に切り替える
     @include g.mq(md) {
       flex-direction: row;
       gap: 4rem;
@@ -598,12 +627,15 @@
     }
   }
 
+  // スキル詳細などのリンクテキスト（ホバー時の下線アニメーション）
   &__skill-txt-link {
     position: relative;
     display: inline-block;
     color: g.$pale-gray;
+    cursor: pointer; // ホバー時にクリックできることを明示
     transition: color g.$transition-base-duration g.$transition-base-easing;
 
+    // 通常時の下線（グレー）
     &::before {
       position: absolute;
       bottom: 0.33em;
@@ -614,6 +646,7 @@
       background-color: g.$pale-gray;
     }
 
+    // ホバー時に伸びる白線
     &::after {
       position: absolute;
       bottom: 0.33em;
@@ -622,8 +655,8 @@
       height: 1px;
       content: "";
       background-color: g.$white;
-      transform: scaleX(0);
-      transform-origin: left;
+      transform: scaleX(0); // 初期状態は非表示
+      transform-origin: right; // 初期起点を右に設定（マウスが離れた時に左から右へ消える動き）
       transition: transform g.$transition-base-duration g.$transition-base-easing;
     }
 
@@ -632,10 +665,12 @@
 
       &::after {
         transform: scaleX(1);
+        transform-origin: left; // ホバー起点を左に変更（左から右へ線が伸びる動き）
       }
     }
   }
 
+  // インラインSVGアイコンのラッパーとスタイル制御
   &__skill-icon-wrap {
     flex-shrink: 0;
     width: 24rem;
@@ -645,6 +680,7 @@
       width: 28rem;
     }
 
+    // PHPで出力されたインラインSVGの線をCSSで制御する
     svg {
       width: 100%;
       fill: none;
@@ -667,12 +703,13 @@
     @include g.contents-width;
   }
 
+  // GSAP (ScrollTrigger) で画面に固定（ピン留め）するエリア
   &__works-pinned-area {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     width: 100%;
-    height: 100svh;
+    height: 100svh; // 画面の高さいっぱいに固定
     padding: 1.6rem 0;
 
     @include g.mq(md) {
@@ -684,16 +721,19 @@
     }
   }
 
+  // 作品アイテムを重ねて配置するためのラッパー
   &__works-list {
     position: relative;
   }
 
+  // 各作品アイテム
   &__works-item {
     display: flex;
     flex-direction: column;
     gap: 2rem;
     width: 100%;
 
+    // 2つ目以降のアイテムをabsoluteで上に重ねる（JavaScriptでフェードやスライド切り替えを行うため）
     &:not(:first-of-type) {
       position: absolute;
       top: 0;
@@ -769,10 +809,12 @@
     }
   }
 
+  // サムネイル画像のラッパー
   &__works-item-img-wrap {
     position: relative;
     width: 100%;
 
+    // 画像の上に薄い暗幕をかけてテキストなどの視認性を高める
     &::before {
       position: absolute;
       width: 100%;
@@ -794,6 +836,7 @@
     border-radius: 1rem;
   }
 
+  // MOREボタン（画像に被せるように配置）
   &__works-item-link {
     position: absolute;
     top: 50%;
@@ -801,24 +844,27 @@
     transform: translate(25%, -50%);
   }
 
+  // ナビゲーション全体のレイアウト
   &__works-nav-wrap {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; // スマホ時は1カラム縦並び
     gap: 2rem;
 
     @include g.mq(lg) {
-      grid-template-columns: 5fr 4fr 1fr;
+      grid-template-columns: 5fr 4fr 1fr; // PC時は3カラム構成
       gap: 0;
       align-items: center;
     }
   }
 
+  // スクロールを促すアイコンエリア
   &__works-icon-wrap {
     position: relative;
-    grid-row: 3;
+    grid-row: 3; // スマホ時は一番下に配置
     justify-self: center;
     width: 7.2rem;
 
+    // 下向き矢印のアニメーション設定
     &::before {
       position: absolute;
       top: 50%;
@@ -845,7 +891,7 @@
     }
 
     @include g.mq(lg) {
-      grid-row: initial;
+      grid-row: initial; // PC時はGridの並び順に従う（左端）
       justify-self: flex-start;
     }
 
@@ -866,6 +912,7 @@
     }
   }
 
+  // 作品切り替え用ページネーション
   &__works-nav {
     position: relative;
     display: flex;
@@ -884,6 +931,7 @@
     }
   }
 
+  // 現在表示している作品を示すアクティブ背景（JavaScriptで位置を移動）
   &__works-nav-pager {
     position: absolute;
     top: 0;
@@ -931,6 +979,7 @@
     }
   }
 
+  // 作品一覧ページへのリンク
   &__works-archive-link {
     position: relative;
     display: inline-block;
@@ -943,6 +992,7 @@
     color: g.$gray;
     letter-spacing: -0.03em;
 
+    // ホバー時の下線
     &::before {
       position: absolute;
       bottom: 0.4rem;
@@ -952,19 +1002,21 @@
       content: "";
       background-color: g.$gray;
       transform: scaleX(1);
-      transform-origin: right;
+      transform-origin: right; // 左から右へ消える動き
       transition: transform g.$transition-base-duration g.$transition-base-easing;
     }
 
+    // ホバー時の白テキスト（クリップパス）
     &::after {
       position: absolute;
       top: 1rem;
       left: 0;
       color: g.$white;
       content: attr(data-txt);
-      clip-path: inset(0 100% 0 0); // 初期表示時は隠しておく
+      clip-path: inset(0 100% 0 0); // 初期表示時は右側を100%削る
     }
 
+    // マウスが離れた時（JavaScript連携）
     &.is-leave {
       &::after {
         animation: clip-out g.$animation-fast-duration g.$animation-base-easing forwards;
@@ -974,7 +1026,7 @@
     @include g.hover {
       &::before {
         transform: scaleX(1);
-        transform-origin: left;
+        transform-origin: left; // 左から右へ現れる動き
       }
 
       &::after {
@@ -991,7 +1043,7 @@
 
       &::before {
         background-color: g.$white;
-        transform: scaleX(0);
+        transform: scaleX(0); // PC時は初期非表示
       }
     }
 
@@ -1006,6 +1058,8 @@
 
   &__contact {
     padding: 10rem 0;
+
+    // 背景画像を中央配置でセクション全体にカバーさせる
     background: url("../images/top/contact/contact-bg.jpg") center center / cover;
 
     @include g.mq(md) {
@@ -1055,18 +1109,23 @@
     }
   }
 
+  // スマホ表示時のみ有効な改行
   &__contact-br {
     @include g.mq(md) {
-      display: none;
+      display: none; // タブレット以上で改行を解除
     }
   }
 }
 
 // =========================================================================
-// トップページ用keyframes
+// Keyframes (トップページ専用アニメーション)
 // =========================================================================
 
-// mvのスクロールボタンの矢印アニメーション：移動量
+// =========================================================================
+// MV：スクロールダウンを促す矢印アニメーション
+// =========================================================================
+
+// 矢印の移動アニメーション（上から下へ）
 @keyframes mv-move-arrow {
   0% {
     top: 1rem;
@@ -1077,7 +1136,7 @@
   }
 }
 
-// mvのスクロールボタンの矢印アニメーション：途中で隠す
+// 矢印のフェードアニメーション（移動に合わせて透過度を変化させる）
 @keyframes mv-hide-arrow {
   0% {
     opacity: 0;
@@ -1096,7 +1155,11 @@
   }
 }
 
-// worksのスクロールボタンの矢印アニメーション：移動量
+// =========================================================================
+// WORKS：スクロールを促す矢印アニメーション
+// =========================================================================
+
+// 矢印の移動アニメーション（transformによる位置調整用）
 @keyframes works-move-arrow {
   0% {
     transform: translate(-50%, calc(-50% - 0.8rem));
@@ -1107,7 +1170,7 @@
   }
 }
 
-// worksのスクロールボタンの矢印アニメーション：途中で隠す
+// 矢印のフェードアニメーション
 @keyframes works-hide-arrow {
   0% {
     opacity: 0;

@@ -1,9 +1,15 @@
-<?php get_header(); ?>
+<?php
+// =========================================================================
+// トップページテンプレート (front-page.php)
+// サイトのフロントページ（ホーム）の構造と動的コンテンツの出力を行います。
+// =========================================================================
+get_header(); ?>
 
 <main>
   <div class="p-top__bg-canvas-wrap">
     <canvas id="bg-canvas"></canvas>
   </div>
+
   <section class="p-top__mv">
     <div class="p-top__catchcopy-ja-wrap">
       <p class="p-top__catchcopy-ja p-top__catchcopy-ja--large">
@@ -13,24 +19,24 @@
         前進することでしか、<br class="p-top__catchcopy-br">未来は変わらない
       </p>
     </div>
+
     <picture class="p-top__catchcopy-en-wrap">
       <source media="(min-width: 1024px)" srcset="<?php echo get_template_directory_uri(); ?>/images/top/mv/mv-catchcopy-en-pc.png">
       <source media="(min-width: 768px)" srcset="<?php echo get_template_directory_uri(); ?>/images/top/mv/mv-catchcopy-en-tab.png">
-      <img class="p-top__catchcopy-en-img" src="<?php echo get_template_directory_uri(); ?>/images/top/mv/mv-catchcopy-en-sp.png"
-        alt="ADVANCE TO THE NEXT LEVEL">
+      <img class="p-top__catchcopy-en-img" src="<?php echo get_template_directory_uri(); ?>/images/top/mv/mv-catchcopy-en-sp.png" alt="ADVANCE TO THE NEXT LEVEL">
     </picture>
+
     <div class="p-top__scroll-btn-wrap">
       <a href="#message" class="p-top__scroll-btn">
         <span class="p-top__scroll-btn-txt">SCROLL<br>DOWN</span>
       </a>
     </div>
   </section>
+
   <section class="p-top__message" id="message">
     <div class="p-top__message-inner">
       <div class="p-top__message-txt-wrap js-scroll u-fade-up">
-        <p class="p-top__message-txt">
-          前進あるのみ。
-        </p>
+        <p class="p-top__message-txt">前進あるのみ。</p>
         <p class="p-top__message-txt">
           未知なる道を進むことが怖くても、<br class="p-top__message-br">
           チャレンジし続ける。<br>
@@ -39,9 +45,7 @@
         </p>
       </div>
       <div class="p-top__message-txt-wrap js-scroll u-fade-up">
-        <p class="p-top__message-txt">
-          日々前進。
-        </p>
+        <p class="p-top__message-txt">日々前進。</p>
         <p class="p-top__message-txt">
           過去の自分を振り返っても、<br class="p-top__message-br">
           過去を変えることはできない。<br>
@@ -50,9 +54,7 @@
         </p>
       </div>
       <div class="p-top__message-txt-wrap js-scroll u-fade-up">
-        <p class="p-top__message-txt">
-          Advance to the next level.
-        </p>
+        <p class="p-top__message-txt">Advance to the next level.</p>
         <p class="p-top__message-txt">
           常に自分自身を高めていく。<br>
           自分の弱点や課題を見つけ、<br class="p-top__message-br">
@@ -63,6 +65,7 @@
       </div>
     </div>
   </section>
+
   <section class="p-top__about">
     <div class="p-top__about-inner">
       <h2 class="p-top__about-ttl c-ttl c-ttl--center c-ttl--section js-scroll u-fade-right">ABOUT</h2>
@@ -89,21 +92,21 @@
       </div>
     </div>
   </section>
+
   <section class="p-top__skill">
     <div class="p-top__skill-inner">
       <h2 class="p-top__skill-ttl c-ttl c-ttl--left c-ttl--section js-scroll u-fade-right">SKILL</h2>
       <ul class="p-top__skill-list">
         <?php
-        // ACFで定義しているSKILLの数
+        // ACFで定義しているSKILLの最大数
         $max_skill_count = 12;
 
-        // 1から$max_skill_countまで繰り返し処理
+        // 1から$max_skill_countまで繰り返し処理を行い、入力がある項目のみ出力
         for ($i = 1; $i <= $max_skill_count; $i++) {
           $skill_name = get_field('skill_' . $i . '_name');
           $skill_txt  = get_field('skill_' . $i . '_txt');
           $skill_icon = get_field('skill_' . $i . '_icon');
 
-          // スキル名が入力されている時だけ <li> を出力する
           if ($skill_name) :
         ?>
             <li class="p-top__skill-item u-fade-in">
@@ -116,10 +119,7 @@
                   <?php
                   // SVG画像のインライン出力処理
                   if ($skill_icon) {
-                    // 画像IDから、サーバー上の「絶対パス」を取得する
-                    $svg_path = get_attached_file($skill_icon);
-
-                    // ファイルが本当に存在するか確認してから中身を出力する
+                    $svg_path = get_attached_file($skill_icon); // 画像IDからサーバー上の絶対パスを取得
                     if ($svg_path && file_exists($svg_path)) {
                       echo file_get_contents($svg_path);
                     }
@@ -135,41 +135,36 @@
       </ul>
     </div>
   </section>
+
   <section class="p-top__works">
     <div class="p-top__works-inner">
       <div class="p-top__works-pinned-area">
         <h2 class="p-top__works-ttl c-ttl c-ttl--left c-ttl--section u-fade-right">WORKS</h2>
+
         <ul class="p-top__works-list u-fade-in">
           <?php
-          // 表示する作品の条件を指定（'show_on_top' が true の7件）
+          // 表示する作品のクエリ条件を指定
           $top_works_args = array(
             'post_type'      => 'works',
-            'posts_per_page' => 7, // 7件表示
-            'meta_key'       => 'top_order', // 並び替えの基準は「トップ表示順」
+            'posts_per_page' => 7, // トップページには最大7件表示
+            'meta_key'       => 'top_order', // ACFの「トップ表示順」を基準に並び替え
             'orderby'        => 'meta_value_num',
             'order'          => 'ASC',
             'meta_query'     => array(
               array(
                 'key'     => 'show_on_top',
-                'value'   => '1', // ACFの「真偽値（True / False）」は 1 / 0(または空) で保存される為
+                'value'   => '1', // 「トップページに表示する」がチェックされているもののみ取得
                 'compare' => '=='
               )
             )
           );
 
-          // クエリを作成
           $top_works_query = new WP_Query($top_works_args);
 
-          // ループ開始
           if ($top_works_query->have_posts()) :
             while ($top_works_query->have_posts()) : $top_works_query->the_post();
-              // タイトル
               $title = get_the_title();
-
-              // タイトルへの欧文フォント適用
               $en_class = get_field('use_en_font') ? 'p-top__works-item-ttl--en' : '';
-
-              // 紹介文取得
               $short_desc_1 = get_field('short_desc_1');
               $short_desc_2 = get_field('short_desc_2');
           ?>
@@ -192,10 +187,11 @@
               </li>
           <?php
             endwhile;
-            // リセット処理
-            wp_reset_postdata();
-          endif; ?>
+            wp_reset_postdata(); // クエリのリセット
+          endif;
+          ?>
         </ul>
+
         <div class="p-top__works-nav-wrap u-fade-in">
           <div class="p-top__works-icon-wrap">
             <div class="p-top__works-svg-wrap">
@@ -204,27 +200,27 @@
           </div>
           <nav class="p-top__works-nav">
             <?php
-            // ループで取得した実際の作品数（最大7件）を取得
+            // ループで取得した実際の作品数をもとにナビゲーションを生成
             $post_count = $top_works_query->post_count;
 
-            // アクティブ状態表示用要素
             if ($post_count > 0) {
               echo '<span class="p-top__works-nav-pager"></span>';
             }
 
-            // 作品の数だけボタンを自動生成する
             for ($i = 1; $i <= $post_count; $i++) {
-              // 1, 2 ではなく 01, 02 とゼロ埋めする
+              // 1桁の数字を「01」「02」のようにゼロ埋めして出力
               $num = sprintf('%02d', $i);
               echo '<button class="p-top__works-nav-btn">' . $num . '</button>';
             }
             ?>
           </nav>
+
           <a href="<?php echo esc_url(get_post_type_archive_link('works')); ?>" class="p-top__works-archive-link js-clip" data-txt="VIEW ALL">VIEW ALL</a>
         </div>
       </div>
     </div>
   </section>
+
   <section class="p-top__contact js-scroll u-fade-in">
     <div class="p-top__contact-inner">
       <h2 class="p-top__contact-ttl c-ttl c-ttl--center c-ttl--section js-scroll u-fade-in">CONTACT</h2>

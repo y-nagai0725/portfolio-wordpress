@@ -15,20 +15,38 @@ document.addEventListener('DOMContentLoaded', () => {
    * 各作品のDOM要素と表示・非表示のアニメーションを管理します。
    */
   class WorksItem {
+    /**
+     * アニメーションの基本時間
+     * @type {number}
+     */
     animDuration = GSAP_CONFIG.durationBase;
+
+    /**
+     * アニメーションの基本イージング
+     * @type {string}
+     */
     animEase = GSAP_CONFIG.easeBase;
 
     /**
+     * コンストラクタ
      * @param {HTMLElement} element - 作品のDOM要素
      * @param {number} index - 作品のインデックス番号
      */
     constructor(element, index) {
+      /** @type {HTMLElement} */
       this.el = element;
+
+      /** @type {number} */
       this.index = index;
 
       // アニメーション対象の内部要素を取得
+      /** @type {HTMLElement | null} */
       this.ttl = this.el.querySelector('.p-top__works-item-ttl');
+
+      /** @type {HTMLElement | null} */
       this.txt = this.el.querySelector('.p-top__works-item-txt');
+
+      /** @type {HTMLElement | null} */
       this.imgWrap = this.el.querySelector('.p-top__works-item-img-wrap');
 
       // 最初の作品以外は初期状態で非表示にする
@@ -82,20 +100,52 @@ document.addEventListener('DOMContentLoaded', () => {
   // =========================================================
   // グローバル変数と初期設定
   // =========================================================
+  /**
+   * ピン留めするエリアの要素
+   * @type {HTMLElement | null}
+   */
   const pinnedArea = document.querySelector('.p-top__works-pinned-area');
-  // 取得したNodeListを配列に変換し、WorksItemクラスのインスタンスを生成
+
+  /**
+   * 取得したNodeListを配列に変換し、WorksItemクラスのインスタンスを生成した配列
+   * @type {Array<WorksItem>}
+   */
   const worksItems = [...document.querySelectorAll('.p-top__works-item')].map((el, index) => new WorksItem(el, index));
+
+  /**
+   * ナビゲーションボタンの要素群
+   * @type {NodeListOf<HTMLElement>}
+   */
   const navButtons = document.querySelectorAll('.p-top__works-nav-btn');
+
+  /**
+   * ページャー（現在位置を示す背景）要素
+   * @type {HTMLElement | null}
+   */
   const pager = document.querySelector('.p-top__works-nav-pager');
 
   // 対象要素が存在しないページでは処理を中断
   if (!pinnedArea || worksItems.length === 0) return;
 
+  /**
+   * 作品の総数
+   * @type {number}
+   */
   const itemsCount = worksItems.length;
 
-  // 状態管理用変数
-  let isJumping = false; // アンカーリンクによる強制スクロール中かどうかのフラグ
-  let currentIndex = 0;  // 現在表示されている作品のインデックス
+  // --- 状態管理用変数 ---
+
+  /**
+   * アンカーリンクによる強制スクロール中かどうかのフラグ
+   * @type {boolean}
+   */
+  let isJumping = false;
+
+  /**
+   * 現在表示されている作品のインデックス
+   * @type {number}
+   */
+  let currentIndex = 0;
 
 
   // =========================================================
@@ -113,10 +163,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /**
    * ページャーを移動先のボタンに合わせてアニメーションさせる関数
-   * 移動方向に向かって幅が伸びる弾力的な表現（スライム風）を実装しています。
+   * 移動方向に向かって幅が伸びる表現を実装しています。
    * @param {number} newIndex - 移動先のインデックス番号
    */
   const animatePager = (newIndex) => {
+    // ターゲットとなるボタン要素
     const targetBtn = navButtons[newIndex];
     if (!pager || !targetBtn) return;
 
@@ -160,10 +211,12 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   /**
-   * リサイズ時のページャー位置更新
-   * パフォーマンス低下を防ぐため、リサイズ完了後 200ms 後に再計算を実行します。
+   * リサイズ時のページャー位置更新用タイマー
+   * @type {number | undefined}
    */
   let resizeTimer;
+
+  // パフォーマンス低下を防ぐため、リサイズ完了後 200ms 後に再計算を実行します。
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
@@ -182,6 +235,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // =========================================================
   // スクロールトリガー（ピン留めと作品切り替え）
   // =========================================================
+  /**
+   * レスポンシブ対応のためのGSAP MatchMediaインスタンス
+   * @type {gsap.MatchMedia}
+   */
   let mm = gsap.matchMedia();
 
   mm.add({
@@ -292,7 +349,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // =========================================================
   // サークルテキストのスクロール連動回転処理
   // =========================================================
+  /**
+   * サークルテキストのSVGラッパー要素
+   * @type {HTMLElement | null}
+   */
   const circleText = document.querySelector('.p-top__works-svg-wrap');
+
+  /**
+   * 回転アニメーションを管理するTweenインスタンス
+   * @type {gsap.core.Tween | undefined}
+   */
   let rotateTween;
 
   if (circleText) {
@@ -335,6 +401,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // =========================================================
   // エリア全体の表示アニメーション（is-active付与）
   // =========================================================
+  /**
+   * フェードインさせる対象の要素群
+   * @type {NodeListOf<HTMLElement>}
+   */
   const fadeElements = document.querySelectorAll('.p-top__works-ttl, .p-top__works-list, .p-top__works-nav-wrap');
 
   ScrollTrigger.create({

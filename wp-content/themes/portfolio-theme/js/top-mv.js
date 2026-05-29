@@ -9,34 +9,40 @@ import { GSAP_CONFIG } from "./constants.js";
 document.addEventListener('DOMContentLoaded', () => {
   /**
    * 日本語テキストラッパー要素
+   * @type {HTMLElement | null}
    */
   const jaWrap = document.querySelector('.p-top__catchcopy-ja-wrap');
 
   /**
    * 英語ロゴ画像ラッパー要素
+   * @type {HTMLElement | null}
    */
   const enWrap = document.querySelector('.p-top__catchcopy-en-wrap');
 
   /**
    * スクロールボタンラッパー要素
+   * @type {HTMLElement | null}
    */
   const scrollBtnWrap = document.querySelector('.p-top__scroll-btn-wrap');
 
-  /// 要素が存在しないページでのエラーを防ぐ安全対策
+  // 要素が存在しないページでのエラーを防ぐ安全対策
   if (!jaWrap || !enWrap || !scrollBtnWrap) return;
 
   /**
    * 複数の要素に同じ処理をするため、配列にまとめておく
+   * @type {Array<HTMLElement>}
    */
   const mvElements = [jaWrap, enWrap, scrollBtnWrap];
 
   /**
    * 現在のスクロール量
+   * @type {number}
    */
   const currentScrollY = window.scrollY;
 
   /**
    * 判定の基準（画面の高さの半分）
+   * @type {number}
    */
   const threshold = window.innerHeight / 2;
 
@@ -55,7 +61,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // リンクのaタグ（.p-top__scroll-btn）を取得
+  /**
+   * リンクのaタグ（.p-top__scroll-btn）を取得
+   * @type {HTMLElement | null}
+   */
   const scrollBtn = scrollBtnWrap.querySelector('.p-top__scroll-btn');
 
   if (scrollBtn) {

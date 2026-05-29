@@ -1,8 +1,14 @@
-<?php get_header(); ?>
+<?php
+// =========================================================================
+// 送信完了（サンクス）ページテンプレート (page-thanks.php)
+// お問い合わせフォーム送信後にリダイレクトされるページです。
+// =========================================================================
+get_header(); ?>
 
 <main>
   <div class="p-thanks">
     <h2 class="p-thanks__ttl c-ttl c-ttl--center c-ttl--page">THANKS</h2>
+
     <div class="p-thanks__contents-wrap">
       <p class="p-thanks__txt">
         お問い合わせありがとうございました。<br><br>
@@ -12,6 +18,7 @@
         内容を確認次第、ご連絡いたしますので、<br>
         今しばらくお待ちくださいませ。
       </p>
+
       <div class="p-thanks__link-wrap">
         <a href="<?php echo esc_url(home_url('/')); ?>" class="p-thanks__link c-btn c-btn--medium">HOME</a>
         <a href="<?php echo esc_url(get_post_type_archive_link('works')); ?>" class="p-thanks__link c-btn c-btn--medium">WORKS</a>
@@ -22,7 +29,9 @@
 </main>
 
 <?php
-
+// =========================================================================
+// パンくずリストの呼び出し
+// =========================================================================
 get_template_part('template-parts/breadcrumb', null, array(
   'items' => array(
     array('text' => 'CONTACT', 'url' => home_url('/contact/'), 'is_en' => true),

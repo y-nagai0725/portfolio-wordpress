@@ -1,7 +1,8 @@
 @use "../../global/" as g;
 
 // =========================================================================
-// ボタン (.c-btn)
+// Component: Button
+// サイト共通のボタンパーツ（.c-btn）のスタイル設定
 // =========================================================================
 .c-btn {
   display: flex;
@@ -26,12 +27,14 @@
     background-color g.$transition-base-duration g.$transition-base-easing,
     border-color g.$transition-base-duration g.$transition-base-easing;
 
+  // ホバー時のスタイル
   @include g.hover {
     color: g.$black;
     background-color: g.$white;
     border-color: g.$white;
   }
 
+  // 中サイズのボタン（WORKSセクションなどで使用）
   &--medium {
     @include g.mq(md) {
       width: 13rem;
@@ -44,6 +47,7 @@
     }
   }
 
+  // 小サイズのボタン（CONTACTセクションなどで使用）
   &--small {
     @include g.mq(md) {
       width: 9.8rem;

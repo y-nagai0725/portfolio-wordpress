@@ -1,7 +1,8 @@
 @use "../../global/" as g;
 
 // =========================================================================
-// パンくずリスト (.c-breadcrumb)
+// Component: Breadcrumb
+// 下層ページで使用するパンくずリスト（.c-breadcrumb）のスタイル設定
 // =========================================================================
 
 .c-breadcrumb {
@@ -12,6 +13,7 @@
   align-items: center;
   padding-bottom: 2.4rem;
 
+  // タブレット以上のサイズで下線を引く
   @include g.mq(md) {
     position: relative;
 
@@ -33,9 +35,11 @@
     }
   }
 
+  // パンくずの各リストアイテム
   &__list {
     position: relative;
 
+    // 最後の要素以外に「>」のような区切り線を追加
     &:not(:last-of-type)::after {
       position: absolute;
       top: 50%;
@@ -49,6 +53,7 @@
     }
   }
 
+  // リンクテキスト
   &__link {
     position: relative;
     display: block;
@@ -61,6 +66,7 @@
       font-family: g.$oswald;
     }
 
+    // ホバー時の下線アニメーション用要素
     &::before,
     &::after {
       position: absolute;
@@ -71,10 +77,12 @@
       content: "";
     }
 
+    // 通常時のグレーの下線
     &::before {
       background-color: g.$gray;
     }
 
+    // ホバー時に表示される白い下線（初期状態はscaleX(0)で見えない）
     &::after {
       background-color: g.$white;
       transform: scaleX(0);
@@ -87,11 +95,12 @@
 
       &::after {
         transform: scaleX(1);
-        transform-origin: left;
+        transform-origin: left; // 左から右へ伸びるアニメーション
       }
     }
   }
 
+  // 現在のページテキスト（リンクではない部分）
   &__txt {
     font-size: 1.3rem;
     color: g.$white;

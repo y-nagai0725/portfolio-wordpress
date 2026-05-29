@@ -9,37 +9,44 @@ document.addEventListener('DOMContentLoaded', () => {
   gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
   /**
-   * wrapper
+   * wrapper要素
+   * @type {HTMLElement | null}
    */
   const wrapper = document.querySelector('.l-wrapper');
 
   /**
-   * ヘッダー
+   * ヘッダー要素
+   * @type {HTMLElement | null}
    */
   const header = document.querySelector('.l-header');
 
   /**
-   * ヘッダーロゴ
+   * ヘッダーロゴのリンク要素
+   * @type {HTMLElement | null}
    */
   const headerLogo = document.querySelector('.l-header__logo-link');
 
   /**
-   * ハンバーガーボタン
+   * ハンバーガーボタン要素
+   * @type {HTMLElement | null}
    */
   const hamburgerBtn = document.querySelector('.l-header__hamburger');
 
   /**
-   * グローバルナビゲーション
+   * グローバルナビゲーション要素
+   * @type {HTMLElement | null}
    */
   const gnav = document.querySelector('.l-header__nav');
 
   /**
-   * グローバルナビゲーションリスト
+   * グローバルナビゲーションのリストアイテム群
+   * @type {NodeListOf<HTMLElement>}
    */
   const gnavList = document.querySelectorAll('.l-header__nav-item');
 
   /**
-   * トップへ戻るボタン
+   * トップへ戻るボタン要素
+   * @type {HTMLElement | null}
    */
   const backBtn = document.querySelector('.l-footer__back-btn');
 
@@ -112,8 +119,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // 対象となるクラスを持つ要素を配列として取得
     const targets = document.querySelectorAll('.js-clip');
 
-    // マウスが要素から離れた時だけ .is-leave を付与する
     targets.forEach(target => {
+      // マウスが要素から離れた時だけ .is-leave を付与する
       target.addEventListener('mouseleave', () => {
         target.classList.add('is-leave');
       });

@@ -1,10 +1,11 @@
 @use "../../global/" as g;
 
 // =========================================================================
-//  お問い合わせページ (.p-contact)
+// お問い合わせページ (.p-contact)
 // =========================================================================
 
 .p-contact {
+  // コンテンツの最大幅を1160pxに制限
   @include g.contents-width(116rem);
 
   margin-top: calc(g.$header-height-sp + 4rem);
@@ -20,10 +21,14 @@
     margin-bottom: 14rem;
   }
 
+  // =========================================================================
+  // ページタイトル
+  // =========================================================================
   &__ttl {
     margin-bottom: 4.8rem;
     opacity: 0;
 
+    // JavaScriptでラッパーに is-active が付与されたらフェードイン
     .l-wrapper.is-active & {
       animation: fade-in g.$animation-base-duration g.$animation-base-easing 0.5s forwards;
     }
@@ -37,6 +42,9 @@
     }
   }
 
+  // =========================================================================
+  // コンテンツラッパー（フェードアップアニメーション用）
+  // =========================================================================
   &__contents-wrap {
     opacity: 0;
 
@@ -45,6 +53,9 @@
     }
   }
 
+  // =========================================================================
+  // 導入テキスト
+  // =========================================================================
   &__txt {
     margin-bottom: 2.4rem;
     font-size: 1.2rem;
@@ -64,6 +75,9 @@
     }
   }
 
+  // =========================================================================
+  // フォーム全体のラッパー
+  // =========================================================================
   &__form-wrap {
     margin-bottom: 4rem;
 
@@ -77,13 +91,16 @@
       margin: 0 auto 8rem;
     }
 
-    // --- ここからCF7特有のメッセージ用スタイル ---
+    // =======================================================================
+    // Contact Form 7 固有のクラスに対するスタイル上書き
+    // =======================================================================
 
+    // スクリーンリーダー用の不可視テキストを非表示化
     .screen-reader-response {
       display: none;
     }
 
-    // チェックボックスとラベルを横並びにする
+    // 同意チェックボックスのラッパー：チェックボックスとテキストを横並びに配置
     .wpcf7-list-item {
       & > label {
         display: flex;
@@ -91,7 +108,7 @@
       }
     }
 
-    // チェックボックスのラベル
+    // 同意チェックボックスのテキストラベル
     .wpcf7-list-item-label {
       font-size: 1.2rem;
       line-height: 1.5;
@@ -110,7 +127,7 @@
       }
     }
 
-    // チェックボックス
+    // カスタムチェックボックスのデザイン
     input[type="checkbox"] {
       position: relative;
       display: inline-block;
@@ -121,6 +138,7 @@
       background-color: g.$white;
       border-radius: 0.3rem;
 
+      // チェックマーク（擬似要素で作ったL字を回転させる）
       &::after {
         position: absolute;
         top: 50%;
@@ -135,12 +153,13 @@
         transition: opacity g.$transition-base-duration g.$transition-base-easing;
       }
 
+      // チェックされた時のみチェックマークを表示
       &:checked::after {
         opacity: 1;
       }
     }
 
-    // 入力エラーの時のテキスト（「必須項目です」など）
+    // 各項目の入力エラーメッセージ（「必須項目です」など）
     .wpcf7-not-valid-tip {
       display: block;
       margin-top: 0.8em;
@@ -157,18 +176,15 @@
       }
     }
 
-    // 送信ボタンの下に出る全体メッセージ
+    // フォーム下部に出力される全体メッセージ（送信完了、送信エラーなど）
     .wpcf7-response-output {
-      // 基本は非表示
-      display: none;
+      display: none; // 初期状態では非表示
       padding: 1em;
       font-size: 1.4rem;
       font-weight: g.$bold;
       line-height: 1.5;
       text-align: center;
-
-      // デフォルトの線を消す
-      border: none;
+      border: none; // CF7デフォルトの枠線をリセット
       border-radius: 0.4rem;
 
       @include g.mq(md) {
@@ -180,18 +196,17 @@
       }
     }
 
-    // 入力エラーや送信失敗した時のメッセージ
+    // 各種エラー状態の時のみ、全体メッセージを赤字で表示
     form.invalid .wpcf7-response-output,
     form.failed .wpcf7-response-output,
     form.unaccepted .wpcf7-response-output,
     form.spam .wpcf7-response-output {
-      // エラー時のみ表示する
       display: block;
       color: g.$red;
       background-color: g.$white;
     }
 
-    // スピナーのカスタマイズ
+    // カスタムスピナー（ローディングインジケーター）のデザイン
     .wpcf7-spinner {
       display: inline-block;
       visibility: hidden;
@@ -199,25 +214,30 @@
       aspect-ratio: 1;
       margin-inline: auto;
 
-      // デフォルトの画像やSVGを強制的に削除
+      // CF7デフォルトの画像を強制削除し、CSS border でリングを表現
       background: none !important;
       border: 0.3rem solid g.$white; // リングのベース色
-      border-top: 0.3rem solid g.$gray; // くるくる回る部分の色
+      border-top: 0.3rem solid g.$gray; // 回転する強調部分の色
       border-radius: 50%;
       animation: cf7-spin 1s linear infinite;
 
-      // デフォルトの画像やSVGを強制的に削除
+      // CF7デフォルトのSVGを強制削除
       &::before {
         display: none !important;
       }
     }
 
-    // 送信中に表示
+    // フォーム送信処理中のみスピナーを表示
     form.submitting .wpcf7-spinner {
       visibility: visible;
     }
   }
 
+  // =========================================================================
+  // フォーム各パーツのデザイン
+  // =========================================================================
+
+  // 「必須項目」の注記テキスト
   &__form-notice {
     margin-bottom: 2rem;
     font-size: 1.2rem;
@@ -242,6 +262,7 @@
     }
   }
 
+  // ラベルと入力欄をまとめるラッパー
   &__form-box {
     display: flex;
     flex-direction: column;
@@ -257,6 +278,7 @@
     }
   }
 
+  // 入力項目の見出し（ラベル）
   &__form-label {
     display: block;
     font-size: 1.2rem;
@@ -264,6 +286,7 @@
     letter-spacing: 0.03em;
     cursor: pointer;
 
+    // 必須項目の場合は「※」を付与
     &.required::after {
       color: g.$white;
       content: "※";
@@ -275,6 +298,7 @@
     }
   }
 
+  // テキスト入力欄（input / textarea 共通）
   &__form-input,
   &__form-message {
     width: 100%;
@@ -286,6 +310,7 @@
     border-radius: 0.4rem;
     transition: box-shadow g.$transition-base-duration g.$transition-base-easing;
 
+    // フォーカス時のアウトライン（光彩）
     &:focus {
       box-shadow: 0 0 0.6rem 0 g.$white;
     }
@@ -299,11 +324,13 @@
     }
   }
 
+  // テキストエリア固有のスタイル
   &__form-message {
     height: 28rem;
     line-height: 2;
   }
 
+  // 送信ボタン
   &__form-submit {
     display: block;
     width: 100%;
@@ -316,6 +343,7 @@
     text-align: center;
     letter-spacing: 0.05em;
     cursor: pointer;
+    user-select: none;
     border: 1px solid g.$pale-gray;
     transition:
       color g.$transition-base-duration g.$transition-base-easing,
@@ -333,7 +361,9 @@
   }
 }
 
-// contact form 7のスピナーのアニメーション
+// =========================================================================
+// Keyframes: カスタムスピナーの回転アニメーション
+// =========================================================================
 @keyframes cf7-spin {
   0% {
     transform: rotate(0deg);

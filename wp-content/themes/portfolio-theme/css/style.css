@@ -2958,6 +2958,7 @@ body {
   text-align: center;
   letter-spacing: 0.05em;
   cursor: pointer;
+  user-select: none;
   border: 1px solid #bababa;
   transition: color 0.4s ease-out, background-color 0.4s ease-out;
 }

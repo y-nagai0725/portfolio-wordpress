@@ -635,6 +635,7 @@
     display: inline-block;
     color: g.$pale-gray;
     cursor: pointer; // ホバー時にクリックできることを明示
+    user-select: none;
     transition: color g.$transition-base-duration g.$transition-base-easing;
 
     // 通常時の下線（グレー）

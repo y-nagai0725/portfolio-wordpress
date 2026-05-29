@@ -1,13 +1,15 @@
 @use "../global" as g;
 
 // =========================================================================
-// 全体ラッパー (.l-wrapper)
+// Wrapper Layout
+// サイト全体を包むラッパー要素（.l-wrapper）のスタイル設定
 // =========================================================================
 
 .l-wrapper {
   overflow: hidden;
   opacity: 0;
 
+  // ページ読み込み完了時、JavaScriptによって付与されて全体をフェードインさせる
   &.is-active {
     animation: fade-in 0.8s g.$animation-base-easing forwards;
   }

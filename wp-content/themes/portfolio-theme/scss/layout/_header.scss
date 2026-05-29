@@ -1,10 +1,12 @@
 @use "../global/" as g;
 
 // =========================================================================
-// ヘッダー (.l-header)
+// Header Layout
+// ヘッダーおよびグローバルナビゲーション（.l-header）のスタイル設定
 // =========================================================================
 
 .l-header {
+  // 親要素を変数に格納（ハンバーガーメニューのアニメーション等で使用）
   $parent: &;
 
   position: fixed;
@@ -20,6 +22,7 @@
     opacity 0.8s g.$transition-base-easing 0.2s,
     transform 0.8s g.$transition-base-easing 0.2s;
 
+  // JavaScriptにより付与され、ヘッダーを上部からフェードインさせる
   &.is-active {
     opacity: 1;
     transform: translateY(0);
@@ -41,6 +44,9 @@
     justify-content: space-between;
   }
 
+  // =========================================================================
+  // ロゴ
+  // =========================================================================
   &__logo-link {
     display: block;
     padding: 1rem 0;
@@ -52,14 +58,17 @@
     pointer-events: all;
     transition: opacity 0.2s g.$transition-base-easing;
 
+    // ハンバーガーメニュー展開時にテキスト色を反転
     &.is-inverted {
       color: g.$black;
     }
 
+    // スクロール時にロゴを非表示にする
     &.is-hidden {
       pointer-events: none;
       opacity: 0;
 
+      // メニュー展開時はスクロール状態でも強制的に表示
       &.is-inverted {
         pointer-events: all;
         opacity: 1;
@@ -67,6 +76,9 @@
     }
   }
 
+  // =========================================================================
+  // ハンバーガーメニューボタン
+  // =========================================================================
   &__hamburger {
     position: relative;
     z-index: g.$z-drawer;
@@ -77,6 +89,7 @@
     pointer-events: all;
     cursor: pointer;
 
+    // メニュー展開時の「×」ボタンへの変化アニメーション
     &.is-open {
       #{$parent}__hamburger-line--top,
       #{$parent}__hamburger-line--middle,
@@ -99,6 +112,7 @@
       }
     }
 
+    // PC表示時のホバーアニメーション（線の幅を少し縮める）
     @include g.mq(lg) {
       @include g.hover {
         #{$parent}__hamburger-line--middle {
@@ -145,6 +159,9 @@
     }
   }
 
+  // =========================================================================
+  // グローバルナビゲーション（フルスクリーンメニュー）
+  // =========================================================================
   &__nav {
     position: fixed;
     top: 0;
@@ -156,6 +173,7 @@
     pointer-events: none;
     opacity: 0;
 
+    // メニュー展開時の背景アニメーション（円形に広がるエフェクト）
     &.is-open {
       pointer-events: all;
       opacity: 1;
@@ -198,6 +216,7 @@
       border-bottom: 1px solid g.$gray;
     }
 
+    // 各アイテムのフェードイン時間をずらす（スタッガー効果）
     &:nth-of-type(2) {
       animation-delay: 0.2s;
     }
@@ -225,6 +244,9 @@
     }
   }
 
+  // =========================================================================
+  // ナビゲーションリンク（クリップパスアニメーション）
+  // =========================================================================
   &__nav-link {
     position: relative;
     display: block;
@@ -250,11 +272,13 @@
       font-weight: g.$bold;
       letter-spacing: 0.05em;
 
+      // transitionではなくanimationを使用し、常に一定方向（左から右）へ流れる動きを実装
       &::before,
       &::after {
-        clip-path: inset(0 100% 0 0); // 初期表示時は隠しておく
+        clip-path: inset(0 100% 0 0); // 初期表示時は右側を100%削り、見えない状態にしておく
       }
 
+      // ホバー時の黒背景
       &::before {
         position: absolute;
         top: 0;
@@ -265,6 +289,7 @@
         background-color: g.$black;
       }
 
+      // ホバー時の白テキスト（data-txt属性から取得）
       &::after {
         position: absolute;
         top: 2.4rem;
@@ -273,6 +298,7 @@
         content: attr(data-txt);
       }
 
+      // JavaScriptにより、マウスが離れた時（mouseleave）に付与される
       &.is-leave {
         &::before,
         &::after {
@@ -280,6 +306,7 @@
         }
       }
 
+      // ホバー時
       @include g.hover {
         &::before,
         &::after {
@@ -290,7 +317,11 @@
   }
 }
 
-// スライドメニュー表示アニメーションsp
+// =========================================================================
+// Keyframes (スライドメニュー用アニメーション)
+// =========================================================================
+
+// スマートフォン用表示アニメーション
 @keyframes zoom-up-sp {
   0% {
     opacity: 0;
@@ -303,7 +334,7 @@
   }
 }
 
-// スライドメニュー表示アニメーションtab
+// タブレット・PC用表示アニメーション
 @keyframes zoom-up-tab {
   0% {
     opacity: 0;

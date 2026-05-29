@@ -1,3 +1,9 @@
+<?php
+// =========================================================================
+// ヘッダーテンプレート (header.php)
+// サイトの全ページで共通して読み込まれる <head> タグとヘッダーUIを出力します。
+// =========================================================================
+?>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -14,7 +20,11 @@
 </head>
 
 <?php
-// ページごとにbodyのIDを決める
+/**
+ * ページごとのbody要素のIDを設定
+ * CSSやJavaScriptでのページ固有のスタイリング・制御に使用します。
+ * @var string $my_body_id
+ */
 $my_body_id = '';
 
 if (is_front_page() || is_home()) {
@@ -40,11 +50,13 @@ if (is_front_page() || is_home()) {
         <h1 class="l-header__logo">
           <a href="<?php echo esc_url(home_url('/')); ?>" class="l-header__logo-link">NAGAI YOSHITAKA</a>
         </h1>
+
         <button class="l-header__hamburger">
           <span class="l-header__hamburger-line l-header__hamburger-line--top"></span>
           <span class="l-header__hamburger-line l-header__hamburger-line--middle"></span>
           <span class="l-header__hamburger-line l-header__hamburger-line--bottom"></span>
         </button>
+
         <nav class="l-header__nav">
           <ul class="l-header__nav-list">
             <li class="l-header__nav-item"><a href="<?php echo esc_url(home_url('/')); ?>" class="l-header__nav-link js-clip" data-txt="HOME">HOME</a></li>

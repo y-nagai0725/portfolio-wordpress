@@ -5,7 +5,6 @@
 // =========================================================================
 
 .l-footer {
-  position: relative;
   padding: 4.8rem 0;
 
   @include g.mq(md) {
@@ -15,6 +14,7 @@
   &__inner {
     @include g.contents-width;
 
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 3rem;
@@ -27,6 +27,7 @@
   }
 
   &__logo-link {
+    position: relative;
     display: block;
     padding: 1rem 0;
     font-family: g.$oswald;
@@ -34,10 +35,26 @@
     font-weight: g.$bold;
     color: g.$gray;
     letter-spacing: -0.03em;
-    transition: color g.$transition-base-duration g.$transition-base-easing;
+
+    &::before {
+      position: absolute;
+      top: 1rem;
+      left: 0;
+      color: g.$white;
+      content: attr(data-txt);
+      clip-path: inset(0 100% 0 0); // 初期表示時は隠しておく
+    }
+
+    &.is-leave {
+      &::before {
+        animation: clip-out g.$animation-fast-duration g.$animation-base-easing forwards;
+      }
+    }
 
     @include g.hover {
-      color: g.$white;
+      &::before {
+        animation: clip-in g.$animation-fast-duration g.$animation-base-easing forwards;
+      }
     }
   }
 
@@ -50,8 +67,8 @@
 
   &__back-btn {
     position: absolute;
-    right: 2rem;
-    bottom: 2rem;
+    right: 3rem;
+    bottom: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -60,6 +77,7 @@
     cursor: pointer;
     border: 1px solid g.$pale-gray;
     border-radius: 50%;
+    transform: translateY(50%);
     transition: background-color g.$transition-base-duration g.$transition-base-easing;
 
     &::before {
@@ -75,7 +93,13 @@
       transition: border-color g.$transition-base-duration g.$transition-base-easing;
     }
 
+    @include g.mq(md) {
+      right: 5rem;
+      transform: translateY(100%);
+    }
+
     @include g.mq(lg) {
+      right: 0;
       width: 4.4rem;
 
       @include g.hover {

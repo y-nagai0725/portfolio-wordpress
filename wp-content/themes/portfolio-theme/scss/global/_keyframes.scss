@@ -40,3 +40,25 @@
     transform: translateY(0);
   }
 }
+
+// clip-pathアニメーション: 左から右へ【現れる】動き
+@keyframes clip-in {
+  0% {
+    clip-path: inset(0 100% 0 0); // 右側を100%削る（見えない）
+  }
+
+  100% {
+    clip-path: inset(0 0 0 0); // 全て表示
+  }
+}
+
+// clip-pathアニメーション: 左から右へ【消える】動き
+@keyframes clip-out {
+  0% {
+    clip-path: inset(0 0 0 0); // 全て表示
+  }
+
+  100% {
+    clip-path: inset(0 0 0 100%); // 左側を100%削る（見えない）
+  }
+}

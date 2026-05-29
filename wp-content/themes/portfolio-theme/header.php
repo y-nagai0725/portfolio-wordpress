@@ -47,11 +47,10 @@ if (is_front_page() || is_home()) {
         </button>
         <nav class="l-header__nav">
           <ul class="l-header__nav-list">
-            <li class="l-header__nav-item"><a href="<?php echo esc_url(home_url('/')); ?>" class="l-header__nav-link">HOME</a></li>
-            <li class="l-header__nav-item"><a href="<?php echo esc_url(get_post_type_archive_link('works')); ?>" class="l-header__nav-link">WORKS</a></li>
-            <li class="l-header__nav-item"><a href="<?php echo esc_url(home_url('/contact/')); ?>" class="l-header__nav-link">CONTACT</a></li>
-            <li class="l-header__nav-item"><a href="https://github.com/y-nagai0725" class="l-header__nav-link l-header__nav-link--github"
-                target="_blank">GITHUB</a></li>
+            <li class="l-header__nav-item"><a href="<?php echo esc_url(home_url('/')); ?>" class="l-header__nav-link js-clip" data-txt="HOME">HOME</a></li>
+            <li class="l-header__nav-item"><a href="<?php echo esc_url(get_post_type_archive_link('works')); ?>" class="l-header__nav-link js-clip" data-txt="WORKS">WORKS</a></li>
+            <li class="l-header__nav-item"><a href="<?php echo esc_url(home_url('/contact/')); ?>" class="l-header__nav-link js-clip" data-txt="CONTACT">CONTACT</a></li>
+            <li class="l-header__nav-item"><a href="https://github.com/y-nagai0725" class="l-header__nav-link js-clip" data-txt="GITHUB" target="_blank">GITHUB</a></li>
           </ul>
         </nav>
       </div>

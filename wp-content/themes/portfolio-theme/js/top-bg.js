@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const scene = new THREE.Scene();
 
   // 空間の奥行きを表現する「霧（フォグ）」の設定
-  scene.fog = new THREE.FogExp2(0x000000, 0.0008);
+  scene.fog = new THREE.FogExp2(0x000000, 0.00065);
 
   // カメラの設定（視野角, アスペクト比, 描画開始距離, 描画終了距離）
   // SP表示時は視野角を広くして、画面が狭くても空間の広がりを保つ
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // =========================================================
   // パーティクルの数
   // SP時は重くならないよう＆密集しすぎないように数を減らす
-  const particleCount = isSp ? 500 : 800;
+  const particleCount = isSp ? 500 : 700;
 
   const geometry = new THREE.BufferGeometry();
   // 1本の線につき「頭」と「尻尾」の2つの頂点(x,y,z)が必要なため、数は * 6 になる

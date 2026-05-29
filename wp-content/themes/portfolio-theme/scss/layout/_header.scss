@@ -218,6 +218,7 @@
 
     @include g.mq(lg) {
       &:not(:last-of-type) {
+        margin-bottom: 2.4rem;
         border-bottom: none;
       }
     }
@@ -225,7 +226,7 @@
 
   &__nav-link {
     position: relative;
-    display: flex;
+    display: block;
     gap: 0.8rem;
     align-items: center;
     width: fit-content;
@@ -236,52 +237,52 @@
     color: g.$black;
     letter-spacing: 0.1em;
 
-    &--github {
-      &::after {
-        display: block;
-        width: 1.5em;
-        aspect-ratio: 1;
-        content: "";
-        background: url("../images/common/icon-github-black.svg") center center / cover;
-      }
-    }
-
     @include g.mq(md) {
       padding: 3.2rem 0;
       font-size: 2rem;
     }
 
     @include g.mq(lg) {
-      gap: 1.6rem;
-      padding: 4rem 0;
+      padding: 2.4rem 0;
       margin-inline: 0;
       font-size: 6.4rem;
       font-weight: g.$bold;
       letter-spacing: 0.05em;
 
-      &--github {
-        &::after {
-          width: 1em;
-        }
+      &::before,
+      &::after {
+        clip-path: inset(0 100% 0 0); // 初期表示時は隠しておく
       }
 
       &::before {
         position: absolute;
-        bottom: 2rem;
+        top: 0;
         left: 0;
         width: 100%;
-        height: 0.4rem;
+        height: 100%;
         content: "";
         background-color: g.$black;
-        transform: scaleX(0);
-        transform-origin: right;
-        transition: transform g.$transition-base-duration g.$transition-base-easing;
+      }
+
+      &::after {
+        position: absolute;
+        top: 2.4rem;
+        left: 0;
+        color: g.$white;
+        content: attr(data-txt);
+      }
+
+      &.is-leave {
+        &::before,
+        &::after {
+          animation: clip-out g.$animation-fast-duration g.$animation-base-easing forwards;
+        }
       }
 
       @include g.hover {
-        &::before {
-          transform: scaleX(1);
-          transform-origin: left;
+        &::before,
+        &::after {
+          animation: clip-in g.$animation-fast-duration g.$animation-base-easing forwards;
         }
       }
     }

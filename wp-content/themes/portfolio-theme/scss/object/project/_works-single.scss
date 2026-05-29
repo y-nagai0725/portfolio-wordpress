@@ -385,7 +385,7 @@
     transition: opacity g.$transition-base-duration g.$transition-base-easing;
 
     @include g.hover {
-      opacity: 0.7;
+      opacity: g.$opacity-hover;
     }
   }
 

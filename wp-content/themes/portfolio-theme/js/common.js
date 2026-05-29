@@ -105,6 +105,27 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   /**
+   * 各要素の clip-path アニメーション設定
+   * .js-clip クラスを持つ要素にマウスが離れた時だけ .is-leave を付与する
+   */
+  const initClipAnimations = () => {
+    // 対象となるクラスを持つ要素を配列として取得
+    const targets = document.querySelectorAll('.js-clip');
+
+    // マウスが要素から離れた時だけ .is-leave を付与する
+    targets.forEach(target => {
+      target.addEventListener('mouseleave', () => {
+        target.classList.add('is-leave');
+      });
+
+      // 再度ホバーした時にクラスをリセットしておく（誤動作防止）
+      target.addEventListener('mouseenter', () => {
+        target.classList.remove('is-leave');
+      });
+    });
+  };
+
+  /**
    * ハンバーガーメニューの開閉制御
    */
   const toggleMenu = () => {
@@ -204,6 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
     startPageAnimation();
     initHeaderScroll();
     initScrollFadeAnimations();
+    initClipAnimations();
     initBackToTop();
     initMenu();
     initNavLinks();

@@ -445,7 +445,7 @@
     }
 
     @include g.hover {
-      opacity: 0.7;
+      opacity: g.$opacity-hover;
     }
 
     @include g.mq(md) {
@@ -942,7 +942,6 @@
     font-weight: g.$bold;
     color: g.$gray;
     letter-spacing: -0.03em;
-    transition: color g.$transition-base-duration g.$transition-base-easing;
 
     &::before {
       position: absolute;
@@ -953,7 +952,7 @@
       content: "";
       background-color: g.$gray;
       transform: scaleX(1);
-      transform-origin: left;
+      transform-origin: right;
       transition: transform g.$transition-base-duration g.$transition-base-easing;
     }
 
@@ -963,19 +962,23 @@
       left: 0;
       color: g.$white;
       content: attr(data-txt);
-      clip-path: inset(0 100% 0 0);
-      transition: clip-path g.$transition-base-duration g.$transition-base-easing;
+      clip-path: inset(0 100% 0 0); // 初期表示時は隠しておく
+    }
+
+    &.is-leave {
+      &::after {
+        animation: clip-out g.$animation-fast-duration g.$animation-base-easing forwards;
+      }
     }
 
     @include g.hover {
-      color: g.$white;
-
       &::before {
         transform: scaleX(1);
+        transform-origin: left;
       }
 
       &::after {
-        clip-path: inset(0);
+        animation: clip-in g.$animation-fast-duration g.$animation-base-easing forwards;
       }
     }
 

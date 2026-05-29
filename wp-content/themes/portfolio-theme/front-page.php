@@ -220,7 +220,7 @@
             }
             ?>
           </nav>
-          <a href="<?php echo esc_url(get_post_type_archive_link('works')); ?>" class="p-top__works-archive-link" data-txt="VIEW ALL">VIEW ALL</a>
+          <a href="<?php echo esc_url(get_post_type_archive_link('works')); ?>" class="p-top__works-archive-link js-clip" data-txt="VIEW ALL">VIEW ALL</a>
         </div>
       </div>
     </div>

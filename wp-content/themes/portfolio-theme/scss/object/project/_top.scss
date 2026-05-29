@@ -200,6 +200,7 @@
     place-content: center;
     width: 15rem;
     aspect-ratio: 1;
+    user-select: none;
     border: 1px solid g.$pale-gray;
     border-radius: 50%;
 
@@ -440,6 +441,7 @@
     padding: 0.5em 0;
     font-size: 1.2rem;
     color: g.$white;
+    user-select: none;
     transition: opacity g.$transition-base-duration g.$transition-base-easing;
 
     // アイコン表示用の擬似要素
@@ -956,6 +958,7 @@
     color: g.$white;
     letter-spacing: -0.03em;
     cursor: pointer;
+    user-select: none;
     border-radius: 50%;
     transition: background-color g.$transition-base-duration g.$transition-base-easing;
 
@@ -991,6 +994,7 @@
     font-weight: g.$bold;
     color: g.$gray;
     letter-spacing: -0.03em;
+    user-select: none;
 
     // ホバー時の下線
     &::before {

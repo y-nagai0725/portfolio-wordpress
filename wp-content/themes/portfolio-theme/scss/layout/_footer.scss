@@ -39,6 +39,7 @@
     font-weight: g.$bold;
     color: g.$gray;
     letter-spacing: -0.03em;
+    user-select: none;
 
     // ホバー時に白テキストを被せる
     &::before {

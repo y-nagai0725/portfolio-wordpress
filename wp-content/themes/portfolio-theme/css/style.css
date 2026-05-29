@@ -240,6 +240,7 @@ body {
   color: #fff;
   letter-spacing: -0.03em;
   pointer-events: all;
+  user-select: none;
   transition: opacity 0.2s ease-out;
 }
 .l-header__logo-link.is-inverted {
@@ -409,6 +410,7 @@ body {
   font-size: 1.4rem;
   color: #1d1d1d;
   letter-spacing: 0.1em;
+  user-select: none;
 }
 @media screen and (width >= 768px) {
   .l-header__nav-link {
@@ -520,6 +522,7 @@ body {
   font-weight: 700;
   color: #868686;
   letter-spacing: -0.03em;
+  user-select: none;
 }
 .l-footer__logo-link::before {
   position: absolute;
@@ -639,6 +642,7 @@ body {
   text-align: center;
   letter-spacing: -0.03em;
   cursor: pointer;
+  user-select: none;
   border-color: #bababa;
   border-style: solid;
   border-width: 1px;
@@ -822,6 +826,7 @@ body {
   padding: 1rem 0;
   font-size: 1.3rem;
   color: #868686;
+  user-select: none;
   transition: color 0.4s ease-out;
 }
 .c-breadcrumb__link--en {
@@ -1069,6 +1074,7 @@ body {
   place-content: center;
   width: 15rem;
   aspect-ratio: 1;
+  user-select: none;
   border: 1px solid #bababa;
   border-radius: 50%;
 }
@@ -1353,6 +1359,7 @@ body {
   padding: 0.5em 0;
   font-size: 1.2rem;
   color: #fff;
+  user-select: none;
   transition: opacity 0.4s ease-out;
 }
 .p-top__about-link--github::before, .p-top__about-link--blog::before {
@@ -1870,6 +1877,7 @@ body {
   color: #fff;
   letter-spacing: -0.03em;
   cursor: pointer;
+  user-select: none;
   border-radius: 50%;
   transition: background-color 0.4s ease-out;
 }
@@ -1907,6 +1915,7 @@ body {
   font-weight: 700;
   color: #868686;
   letter-spacing: -0.03em;
+  user-select: none;
 }
 .p-top__works-archive-link::before {
   position: absolute;
@@ -2172,6 +2181,7 @@ body {
   font-size: 1.3rem;
   color: #868686;
   cursor: pointer;
+  user-select: none;
   transition: color 0.4s ease-out;
 }
 .p-works-archive__filter-btn::before {

@@ -56,6 +56,7 @@
     color: g.$white;
     letter-spacing: -0.03em;
     pointer-events: all;
+    user-select: none;
     transition: opacity 0.2s g.$transition-base-easing;
 
     // ハンバーガーメニュー展開時にテキスト色を反転
@@ -259,6 +260,7 @@
     font-size: 1.4rem;
     color: g.$black;
     letter-spacing: 0.1em;
+    user-select: none;
 
     @include g.mq(md) {
       padding: 3.2rem 0;

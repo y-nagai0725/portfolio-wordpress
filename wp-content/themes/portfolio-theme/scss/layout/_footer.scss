@@ -1,7 +1,8 @@
 @use "../global/" as g;
 
 // =========================================================================
-// フッター (.l-footer)
+// Footer Layout
+// フッター（.l-footer）のスタイル設定
 // =========================================================================
 
 .l-footer {
@@ -26,6 +27,9 @@
     }
   }
 
+  // =========================================================================
+  // ロゴ（クリップパスアニメーション）
+  // =========================================================================
   &__logo-link {
     position: relative;
     display: block;
@@ -36,21 +40,24 @@
     color: g.$gray;
     letter-spacing: -0.03em;
 
+    // ホバー時に白テキストを被せる
     &::before {
       position: absolute;
       top: 1rem;
       left: 0;
       color: g.$white;
       content: attr(data-txt);
-      clip-path: inset(0 100% 0 0); // 初期表示時は隠しておく
+      clip-path: inset(0 100% 0 0); // 初期表示時は右側を100%削り、見えない状態にしておく
     }
 
+    // JavaScriptにより、マウスが離れた時（mouseleave）に付与される
     &.is-leave {
       &::before {
         animation: clip-out g.$animation-fast-duration g.$animation-base-easing forwards;
       }
     }
 
+    // ホバー時のアニメーション（左から右へ現れる）
     @include g.hover {
       &::before {
         animation: clip-in g.$animation-fast-duration g.$animation-base-easing forwards;
@@ -58,6 +65,9 @@
     }
   }
 
+  // =========================================================================
+  // コピーライト
+  // =========================================================================
   &__small {
     font-family: g.$oswald;
     font-size: 1.1rem;
@@ -65,6 +75,9 @@
     letter-spacing: 0.05em;
   }
 
+  // =========================================================================
+  // トップへ戻るボタン
+  // =========================================================================
   &__back-btn {
     position: absolute;
     right: 3rem;
@@ -80,6 +93,7 @@
     transform: translateY(50%);
     transition: background-color g.$transition-base-duration g.$transition-base-easing;
 
+    // 上向きの矢印（ボーダーで作成）
     &::before {
       position: absolute;
       top: 50%;
@@ -102,6 +116,7 @@
       right: 0;
       width: 4.4rem;
 
+      // ホバー時は背景を白にして矢印を黒にする
       @include g.hover {
         background-color: g.$white;
 

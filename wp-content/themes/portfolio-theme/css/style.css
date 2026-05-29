@@ -388,6 +388,7 @@ body {
 .l-header__nav-item.is-active {
   animation-name: fade-up;
   animation-duration: 1s;
+  animation-timing-function: ease-out;
   animation-fill-mode: forwards;
 }
 @media screen and (width >= 1024px) {

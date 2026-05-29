@@ -1,8 +1,19 @@
-// WORKS一覧ページ用JS
+/**
+ * 作品一覧ページ: 絞り込みフィルター用JS
+ * 選択された技術（タクソノミー）に応じて、該当する作品カードの表示/非表示を切り替える
+ */
 document.addEventListener('DOMContentLoaded', () => {
-  // ボタンと作品カードを全部取得する
+  /**
+   * 絞り込み用のフィルターボタン群
+   * @type {NodeListOf<HTMLElement>}
+   */
   const filterButtons = document.querySelectorAll('.p-works-archive__filter-btn');
-  const worksCards = document.querySelectorAll('.c-card');
+
+  /**
+   * フィルタリング対象となる作品カード群
+   * @type {NodeListOf<HTMLElement>}
+   */
+  const worksCards = document.querySelectorAll('.p-works-archive__works-item');
 
   // 要素が存在しないページでのエラーを防ぐ安全対策
   if (filterButtons.length === 0 || worksCards.length === 0) return;

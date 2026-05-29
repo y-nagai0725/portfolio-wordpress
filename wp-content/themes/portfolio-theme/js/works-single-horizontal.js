@@ -7,16 +7,19 @@
 document.addEventListener('DOMContentLoaded', () => {
   /**
    * スクロールエリア
+   * @type {HTMLElement | null}
    */
   const scrollArea = document.querySelector(".p-works-single__scroll-area");
 
   /**
    * スクロール画像ラッパー
+   * @type {HTMLElement | null}
    */
   const scrollImgWrapper = document.querySelector(".p-works-single__scroll-img-wrap");
 
   /**
    * スクロール画像
+   * @type {HTMLElement | null}
    */
   const scrollImage = document.querySelector(".p-works-single__img--horizontal");
 
@@ -27,10 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
    * 横スクロールアニメーションの初期構築を行う
    */
   const initHorizontalScroll = () => {
-    /**
-     * 画像を横にスライドさせる総距離を計算する
-     * @returns {number} 画像の本来の横幅 - 見えているラッパーエリアの横幅
-     */
+    // 画像を横にスライドさせる総距離を計算する
     const getScrollAmount = () => scrollImage.scrollWidth - scrollImgWrapper.clientWidth;
 
     // =========================================================================
@@ -54,10 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
       scrollArea.appendChild(spacer);
     }
 
-    /**
-     * 画像の高さと横スクロール距離を合算し、spacer の高さを更新する
-     * これにより、横スクロールに必要な分だけの「縦のスクロール可能領域」が確保される
-     */
+    // 画像の高さと横スクロール距離を合算し、spacer の高さを更新する
+    // これにより、横スクロールに必要な分だけの「縦のスクロール可能領域」が確保される
     const setSpacerHeight = () => {
       spacer.style.height = `${scrollImgWrapper.clientHeight + getScrollAmount()}px`;
     };
@@ -86,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ScrollTrigger.addEventListener('refreshInit', setSpacerHeight);
 
     // GSAPの初期構築が完了したことを確定させ、強制的に全体をリフレッシュする
-    // この発火を worksIntroduction.js がキャッチし、カスタムスクロールバーの比率を再計算する
+    // この発火を works-single.js がキャッチし、カスタムスクロールバーの比率を再計算する
     ScrollTrigger.refresh();
   };
 

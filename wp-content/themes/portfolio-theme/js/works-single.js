@@ -6,16 +6,19 @@
 document.addEventListener('DOMContentLoaded', () => {
   /**
    * スクロールエリア
+   * @type {HTMLElement | null}
    */
   const scrollArea = document.querySelector('.p-works-single__scroll-area');
 
   /**
    * スクロールバーのつまみ
+   * @type {HTMLElement | null}
    */
   const scrollbarThumb = document.querySelector('.p-works-single__scrollbar-thumb');
 
   /**
-   * スクロールバー
+   * スクロールバー全体（トラック）
+   * @type {HTMLElement | null}
    */
   const scrollbar = document.querySelector('.p-works-single__scrollbar');
 
@@ -48,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
    * （初期化時、リサイズ時、画像読み込み完了時に実行）
    */
   const updateMetrics = () => {
+    // エリアの表示上の高さと、スクロール可能な全体の高さを取得
     const areaHeight = scrollArea.clientHeight;
     const totalHeight = scrollArea.scrollHeight;
 
@@ -64,9 +68,10 @@ document.addEventListener('DOMContentLoaded', () => {
    * @param {number} scrollTop - スクロールエリアの現在のスクロール量
    */
   const updateThumbPosition = (scrollTop) => {
+    // スクロール量からつまみのY座標を計算
     let y = scrollTop * state.ratio;
 
-    // はみ出さないように制限する
+    // はみ出さないように稼働領域内に制限する
     y = Math.max(0, Math.min(y, state.trackHeight));
 
     scrollbarThumb.style.transform = `translate(-50%, ${y}px)`;
@@ -79,6 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * スクロールエリアのサイズ変更を監視（画像読み込みなどによる高さ変動を検知）
    * 初回実行も兼ねているため、個別の初期化呼び出しは不要
+   * @type {ResizeObserver}
    */
   const resizeObserver = new ResizeObserver(() => {
     updateMetrics();
@@ -87,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
   resizeObserver.observe(scrollArea);
 
   // GSAP(ScrollTrigger)の再計算（横スクロール用余白の生成など）が完全に完了したタイミングをキャッチ
-  // worksIntroduction-horizontal-scroll.js での refresh() 実行後に同期させる
+  // works-single-horizontal.js での refresh() 実行後に同期させる
   if (typeof ScrollTrigger !== 'undefined') {
     ScrollTrigger.addEventListener('refresh', () => {
       updateMetrics();
@@ -103,7 +109,8 @@ document.addEventListener('DOMContentLoaded', () => {
    * エリア本体をスクロールした時の処理（マウスホイールやスワイプ操作）
    */
   scrollArea.addEventListener('scroll', () => {
-    if (state.active) return; // つまみをドラッグ中は二重動作を防ぐために無視
+    // つまみをドラッグ中は二重動作を防ぐために無視
+    if (state.active) return;
     updateThumbPosition(scrollArea.scrollTop);
   }, { passive: true });
 
@@ -112,10 +119,13 @@ document.addEventListener('DOMContentLoaded', () => {
    * クリックした位置へつまみとスクロールを移動させる
    */
   scrollbar.addEventListener('click', (event) => {
-    if (event.target === scrollbarThumb) return; // つまみ自身をクリックした場合は無視
+    // つまみ自身をクリックした場合は無視
+    if (event.target === scrollbarThumb) return;
 
     updateMetrics();
-    if (state.ratio === 0) return; // スクロール不要時（画像が全体表示済など）は無視
+
+    // スクロール不要時（画像が全体表示済など）は無視
+    if (state.ratio === 0) return;
 
     // Y座標を計算
     const rect = scrollbar.getBoundingClientRect();
@@ -150,8 +160,11 @@ document.addEventListener('DOMContentLoaded', () => {
    */
   scrollbarThumb.addEventListener('pointermove', (event) => {
     if (!state.active) return;
-    event.preventDefault(); // 意図しないテキスト選択やスクロールの干渉をガード
 
+    // 意図しないテキスト選択やスクロールの干渉をガード
+    event.preventDefault();
+
+    // ポインターの移動量からスクロール量を計算
     const deltaY = event.clientY - state.startY;
     const scrollDelta = deltaY / state.ratio;
 

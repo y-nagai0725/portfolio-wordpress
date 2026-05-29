@@ -1,42 +1,55 @@
-<?php get_header(); ?>
+<?php
+// =========================================================================
+// 作品詳細ページテンプレート (single-works.php)
+// カスタム投稿タイプ「works」の個別記事を表示します。
+// ACF（Advanced Custom Fields）を使用して入力された各種データを展開します。
+// =========================================================================
+get_header(); ?>
 
 <main>
   <?php
   if (have_posts()) :
     while (have_posts()) : the_post();
-      // 'skill' タクソノミーのデータを取得
+
+      // -------------------------------------------------------------------------
+      // 各種メタデータ・タクソノミーの取得
+      // -------------------------------------------------------------------------
+
+      // 'skill' タクソノミー（使用技術のタグ）のデータを取得
       $skills = get_the_terms(get_the_ID(), 'skill');
 
-      // タイトルへの欧文フォント適用
+      // タイトルへの欧文フォント適用判定クラス
       $en_class = get_field('use_en_font') ? 'p-works-single__ttl--en' : '';
 
-      // 使用技術配列
+      // 使用技術（詳細）の配列を取得
       $tech_details = get_field('tech_details');
 
-      // 現在表示している作品の「一覧表示順序」の数字を取得
+      // 現在表示している作品の「一覧表示順序」の数値を取得
       $current_order = (int) get_field('list_order');
 
-      // --------------------------------------------------
-      // 次の作品を取得
-      // --------------------------------------------------
+
+      // -------------------------------------------------------------------------
+      // 次の作品（Next Post）の取得処理
+      // 日付順ではなく、ACFの「list_order」を基準に遷移先を決定します
+      // -------------------------------------------------------------------------
       $next_posts = get_posts(array(
         'post_type'      => 'works',
         'posts_per_page' => 1,
-        'meta_key'       => 'list_order', // ACFのフィールド名を指定
-        'orderby'        => 'meta_value_num', // 数字として並び替える
+        'meta_key'       => 'list_order',
+        'orderby'        => 'meta_value_num', // 数値として比較・並び替えを実施
         'order'          => 'DESC',
         'meta_query'     => array(
           array(
             'key'     => 'list_order',
             'value'   => $current_order,
-            'compare' => '<', // 今の数字より小さい（<）ものだけ探す
+            'compare' => '<', // 現在の数値より小さい（次の順位の）ものを検索
             'type'    => 'NUMERIC'
           )
         )
       ));
       $next_post = !empty($next_posts) ? $next_posts[0] : null;
 
-      // もし「次の作品」がない場合、最初の作品を取得
+      // もし「次の作品」が存在しない場合（現在が最後の作品の場合）、一番最初の作品を取得してループさせる
       if (empty($next_post)) {
         $first_posts = get_posts(array(
           'post_type'      => 'works',
@@ -48,12 +61,13 @@
         $next_post = !empty($first_posts) ? $first_posts[0] : null;
       }
 
-      // 「次の作品」のタイトルへの欧文フォント適用
+      // 「次の作品」のタイトルへの欧文フォント適用判定
       $next_post_en_class = get_field('use_en_font', $next_post->ID) ? 'p-works-single__link-txt--en' : '';
 
-      // --------------------------------------------------
-      // 前の作品を取得
-      // --------------------------------------------------
+
+      // -------------------------------------------------------------------------
+      // 前の作品（Previous Post）の取得処理
+      // -------------------------------------------------------------------------
       $prev_posts = get_posts(array(
         'post_type'      => 'works',
         'posts_per_page' => 1,
@@ -64,29 +78,31 @@
           array(
             'key'     => 'list_order',
             'value'   => $current_order,
-            'compare' => '>', // 今の数字より大きい（>）ものだけ探す
+            'compare' => '>', // 現在の数値より大きい（前の順位の）ものを検索
             'type'    => 'NUMERIC'
           )
         )
       ));
       $prev_post = !empty($prev_posts) ? $prev_posts[0] : null;
 
-      // もし「前の作品」がない場合、最後の作品を取得
+      // もし「前の作品」が存在しない場合（現在が最初の作品の場合）、一番最後の作品を取得してループさせる
       if (empty($prev_post)) {
         $last_posts = get_posts(array(
           'post_type'      => 'works',
           'posts_per_page' => 1,
           'meta_key'       => 'list_order',
           'orderby'        => 'meta_value_num',
-          'order'          => 'ASC'
+          'order'          => 'ASC' // 昇順で1件目＝一番最後の作品
         ));
         $prev_post = !empty($last_posts) ? $last_posts[0] : null;
       }
 
-      // 「前の作品」のタイトルへの欧文フォント適用
+      // 「前の作品」のタイトルへの欧文フォント適用判定
       $prev_post_en_class = get_field('use_en_font', $prev_post->ID) ? 'p-works-single__link-txt--en' : '';
   ?>
+
       <div class="p-works-single">
+
         <div class="p-works-single__site-view">
           <div class="p-works-single__scroll-area">
             <?php if (get_field('use_horizontal_scroll')): ?>
@@ -98,31 +114,34 @@
               <img src="<?php echo esc_url(get_field('full_image')); ?>" alt="<?php the_title(); ?>の全体画像" class="p-works-single__img">
             <?php endif; ?>
           </div>
+
           <div class="p-works-single__scrollbar">
             <div class="p-works-single__scrollbar-thumb"></div>
           </div>
         </div>
+
         <div class="p-works-single__introduction">
           <h2 class="p-works-single__ttl <?php echo esc_attr($en_class); ?>"><?php the_title(); ?></h2>
-          <?php if ($skills && ! is_wp_error($skills)): ?>
+
+          <?php if ($skills && !is_wp_error($skills)): ?>
             <ul class="p-works-single__tag-list">
-              <?php
-              foreach ($skills as $skill):
-              ?>
+              <?php foreach ($skills as $skill): ?>
                 <li class="p-works-single__tag-item">
                   <span class="c-tag"><?php echo esc_html($skill->name); ?></span>
                 </li>
               <?php endforeach; ?>
             </ul>
           <?php endif; ?>
+
           <p class="p-works-single__description">
             <?php if (get_field('description')): ?>
               <?php the_field('description'); ?>
             <?php endif; ?>
           </p>
+
           <div class="p-works-single__site-link-wrap">
-            <a href="<?php echo esc_url(get_field('site_url')); ?>" class="p-works-single__site-link" target="_blank">WEB SITE<span
-                class="p-works-single__arrow"></span></a>
+            <a href="<?php echo esc_url(get_field('site_url')); ?>" class="p-works-single__site-link" target="_blank">WEB SITE</a>
+
             <?php if (get_field('test_password')): ?>
               <p class="p-works-single__site-notice">
                 ※ゲスト用テストアカウント<br>
@@ -136,6 +155,7 @@
               </p>
             <?php endif; ?>
           </div>
+
           <dl class="p-works-single__info">
             <div class="p-works-single__info-group">
               <dt class="p-works-single__info-dt p-works-single__info-dt--en">POINT</dt>
@@ -161,6 +181,7 @@
                 <?php endif; ?>
               </dd>
             </div>
+
             <?php if (get_field('page_count')): ?>
               <div class="p-works-single__info-group">
                 <dt class="p-works-single__info-dt">ページ数</dt>
@@ -169,6 +190,7 @@
                 </dd>
               </div>
             <?php endif; ?>
+
             <?php if (get_field('group_work_role')): ?>
               <div class="p-works-single__info-group">
                 <dt class="p-works-single__info-dt">担当役割</dt>
@@ -177,6 +199,7 @@
                 </dd>
               </div>
             <?php endif; ?>
+
             <?php if (get_field('period')): ?>
               <div class="p-works-single__info-group">
                 <dt class="p-works-single__info-dt">制作期間</dt>
@@ -185,12 +208,15 @@
                 </dd>
               </div>
             <?php endif; ?>
+
             <div class="p-works-single__info-group">
               <dt class="p-works-single__info-dt">使用技術</dt>
               <dd class="p-works-single__info-dd">
-                <?php if ($tech_details) {
+                <?php
+                if ($tech_details) {
                   foreach ($tech_details as $index => $tech) {
                     echo esc_html($tech);
+                    // 最後の要素以外にはスラッシュを追加
                     if ($index !== array_key_last($tech_details)) {
                       echo " / ";
                     }
@@ -199,6 +225,7 @@
                 ?>
               </dd>
             </div>
+
             <div class="p-works-single__info-group">
               <dt class="p-works-single__info-dt p-works-single__info-dt--en">URL</dt>
               <dd class="p-works-single__info-dd">
@@ -217,6 +244,7 @@
                 <?php endif; ?>
               </dd>
             </div>
+
             <?php if (get_field('github_url')): ?>
               <div class="p-works-single__info-group">
                 <dt class="p-works-single__info-dt p-works-single__info-dt--en">GitHub</dt>
@@ -226,6 +254,7 @@
                 </dd>
               </div>
             <?php endif; ?>
+
             <?php if (get_field('design_url')): ?>
               <div class="p-works-single__info-group">
                 <dt class="p-works-single__info-dt">デザイン</dt>
@@ -235,6 +264,7 @@
                 </dd>
               </div>
             <?php endif; ?>
+
             <?php if (get_field('design_file')): ?>
               <div class="p-works-single__info-group">
                 <dt class="p-works-single__info-dt">デザイン</dt>
@@ -245,6 +275,7 @@
               </div>
             <?php endif; ?>
           </dl>
+
           <nav class="p-works-single__nav">
             <?php if ($prev_post): ?>
               <a href="<?php echo esc_url(get_permalink($prev_post->ID)); ?>" class="p-works-single__link-prev">
@@ -275,6 +306,9 @@
 </main>
 
 <?php
+// =========================================================================
+// パンくずリストの呼び出し
+// =========================================================================
 $post_id = get_queried_object_id();
 $post_title = get_the_title($post_id);
 $use_en = get_field('use_en_font', $post_id);

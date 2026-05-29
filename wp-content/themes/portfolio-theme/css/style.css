@@ -1162,16 +1162,16 @@ body {
 .p-top__message-inner {
   display: flex;
   flex-direction: column;
-  gap: 4.8rem;
+  gap: 8rem;
 }
 @media screen and (width >= 768px) {
   .p-top__message-inner {
-    gap: 6.4rem;
+    gap: 8.8rem;
   }
 }
 @media screen and (width >= 1024px) {
   .p-top__message-inner {
-    gap: 8rem;
+    gap: 9.6rem;
     width: fit-content;
   }
 }

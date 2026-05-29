@@ -72,7 +72,7 @@ get_header(); ?>
       <div class="p-top__about-profile js-scroll u-fade-in">
         <div class="p-top__about-img-wrap">
           <?php if (get_field('about_img')): ?>
-            <img src="<?php echo esc_url(get_field('about_img')); ?>" alt="<?php the_field('about_name'); ?> プロフィール写真" class="p-top__about-img">
+            <img src="<?php echo esc_url(get_field('about_img')); ?>" alt="<?php the_field('about_name'); ?> プロフィール写真" class="p-top__about-img" loading="lazy">
           <?php endif; ?>
         </div>
         <div class="p-top__about-info">

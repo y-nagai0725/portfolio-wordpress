@@ -502,6 +502,49 @@
     }
   }
 
+  &__about-txt-link {
+    position: relative;
+    display: inline-block;
+    color: g.$pale-gray;
+    cursor: pointer; // ホバー時にクリックできることを明示
+    user-select: none;
+    transition: color g.$transition-base-duration g.$transition-base-easing;
+
+    // 通常時の下線（グレー）
+    &::before {
+      position: absolute;
+      bottom: 0.33em;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      content: "";
+      background-color: g.$pale-gray;
+    }
+
+    // ホバー時に伸びる白線
+    &::after {
+      position: absolute;
+      bottom: 0.33em;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      content: "";
+      background-color: g.$white;
+      transform: scaleX(0); // 初期状態は非表示
+      transform-origin: right; // 初期起点を右に設定（マウスが離れた時に左から右へ消える動き）
+      transition: transform g.$transition-base-duration g.$transition-base-easing;
+    }
+
+    @include g.hover {
+      color: g.$white;
+
+      &::after {
+        transform: scaleX(1);
+        transform-origin: left; // ホバー起点を左に変更（左から右へ線が伸びる動き）
+      }
+    }
+  }
+
   // =========================================================================
   // SKILLセクション
   // =========================================================================

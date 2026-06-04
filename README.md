@@ -163,7 +163,7 @@ MVセクションからスクロールで滑らかに繋がる、自身の想い
 * テキスト（スキルの経験や強みなどの詳細説明）
 
 ##### SVGパス描画アニメーション
-![SVGパス描画アニメーションのwebp動画](docs/top/skill/skill-svg.webp)
+![SVGパス描画アニメーションのwebp動画](docs/top/skill/skill-animate-path.webp)
 
 各スキルのアイコンには、SVGの `path` 要素を活用した描画アニメーションを実装しています。SVGパスの全長を取得した上で、 `stroke-dasharray` と `stroke-dashoffset` プロパティの数値をコントロール（オフセット値をパスの全長から0へと変化）させることで、線が滑らかに描かれていく、視覚的に心地よい演出にこだわりました。
 

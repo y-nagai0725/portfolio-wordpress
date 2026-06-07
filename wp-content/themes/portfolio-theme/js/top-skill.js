@@ -17,15 +17,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /**
    * パス（線）が描き終わるまでのアニメーション時間
-   * @type {string}
+   * @type {number}
    */
-  const PATH_ANIMATION_DURATION = "2.8s";
+  const PATH_ANIMATION_DURATION = 2;
 
   /**
-   * パス（線）描画のイージング
-   * @type {string}
-   */
-  const PATH_ANIMATION_TIMING_FUNCTION = "ease-in-out";
+  * 基準の1/3のアニメーション時間
+  * @type {number}
+  */
+  const SHORT_DURATION = PATH_ANIMATION_DURATION / 3;
 
   /**
    * SVGの初期設定
@@ -53,12 +53,56 @@ document.addEventListener('DOMContentLoaded', () => {
   const animateSvgPaths = (svg) => {
     // SVG内のすべてのパス要素
     const pathElements = svg.querySelectorAll("path");
+
     pathElements.forEach(path => {
-      // transitionを設定して、隠していたstroke-dashoffsetを0に向かって滑らかに動かす
-      path.style.transitionProperty = 'stroke-dashoffset';
-      path.style.transitionDuration = PATH_ANIMATION_DURATION;
-      path.style.transitionTimingFunction = PATH_ANIMATION_TIMING_FUNCTION;
-      path.style.strokeDashoffset = "0";
+      // ベースの設定値
+      let animConfig = {
+        duration: PATH_ANIMATION_DURATION,
+        delay: 0,
+        hasFadeOut: false,
+        fadeOutDelay: 0
+      };
+
+      // クラス名に応じて、設定値を上書きする
+      if (path.classList.contains('js-draw-fade-out')) {
+        animConfig.hasFadeOut = true;
+      } else if (path.classList.contains('js-draw-fade-out-delay')) {
+        animConfig.hasFadeOut = true;
+        animConfig.fadeOutDelay = SHORT_DURATION;
+      } else if (path.classList.contains('js-draw-delay')) {
+        animConfig.duration = SHORT_DURATION;
+        animConfig.delay = PATH_ANIMATION_DURATION;
+      } else if (path.classList.contains('js-draw-delay-long')) {
+        animConfig.duration = SHORT_DURATION;
+        animConfig.delay = PATH_ANIMATION_DURATION + SHORT_DURATION;
+      } else if (path.classList.contains('js-draw-delay-fade-out')) {
+        animConfig.duration = SHORT_DURATION;
+        animConfig.delay = PATH_ANIMATION_DURATION;
+        animConfig.hasFadeOut = true;
+      }
+
+      // GSAPに渡すパラメータ
+      const tweenParams = {
+        strokeDashoffset: 0,
+        duration: animConfig.duration,
+        delay: animConfig.delay,
+        ease: GSAP_CONFIG.easeInOut
+      };
+
+      // フェードアウトが必要な場合のみ onComplete の処理を追加
+      if (animConfig.hasFadeOut) {
+        tweenParams.onComplete = () => {
+          gsap.to(path, {
+            autoAlpha: 0,
+            duration: SHORT_DURATION,
+            delay: animConfig.fadeOutDelay,
+            ease: GSAP_CONFIG.easeInOut
+          });
+        };
+      }
+
+      // アニメーション処理実行
+      gsap.to(path, tweenParams);
     });
   };
 
@@ -79,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
             parentItem.classList.add('is-active');
           }
 
-          // SVGの一筆書きアニメーションを開始
+          // SVGのパス描画アニメーション実行
           animateSvgPaths(svg);
         },
       });

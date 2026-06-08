@@ -10,7 +10,7 @@ get_header(); ?>
     <canvas id="bg-canvas"></canvas>
   </div>
 
-  <section class="p-top__mv">
+  <div class="p-top__mv">
     <div class="p-top__catchcopy-ja-wrap">
       <p class="p-top__catchcopy-ja p-top__catchcopy-ja--large">
         未来へ<br class="p-top__catchcopy-br">突き進め
@@ -31,9 +31,9 @@ get_header(); ?>
         <span class="p-top__scroll-btn-txt">SCROLL<br>DOWN</span>
       </a>
     </div>
-  </section>
+  </div>
 
-  <section class="p-top__message" id="message">
+  <div class="p-top__message" id="message">
     <div class="p-top__message-inner">
       <div class="p-top__message-txt-wrap js-scroll u-fade-up">
         <p class="p-top__message-txt">前進あるのみ。</p>
@@ -64,7 +64,7 @@ get_header(); ?>
         </p>
       </div>
     </div>
-  </section>
+  </div>
 
   <section class="p-top__about">
     <div class="p-top__about-inner">
